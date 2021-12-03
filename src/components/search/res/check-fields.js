@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React from 'react';
 import {FormControlLabel, Switch, Grid} from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import {setNewConstruction, setGuestHouse, setWaterFrontView, setGolfAccess} from 'api/res'
@@ -10,10 +10,7 @@ const CheckFields = () => {
     const guestHouse = useSelector(state=>state.res.guestHouse);
     const newConstruction = useSelector(state=>state.res.newConstruction);
 
-    const [searchRes, setSearchRes] = useState(false)
-    const handleChange=()=>{
 
-    };
 
 return ( 
     <React.Fragment>

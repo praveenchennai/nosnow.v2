@@ -10,7 +10,7 @@ const useStyles = makeStyles(listingCss());
 
 
 const PropertyCard = (props) => {
-    const [noimage, setNoImage] = useState('https://nosnow-news-pdfs.s3.us-west-2.amazonaws.com/defaultproperty.webp')
+    const [noimage] = useState('https://nosnow-news-pdfs.s3.us-west-2.amazonaws.com/defaultproperty.webp')
     var {
         LivingArea, 
         YearBuilt, 

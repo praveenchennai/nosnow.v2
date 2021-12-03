@@ -12,13 +12,11 @@ const SearchMain = () => {
     const classes = useStyles();
     const [value, setValue] = useState(0);
     const tabChange = (event, newValue) => {
+        console.log(event)
         setValue(newValue);
     };
 
-    const headerClass = () =>{
 
-        return classes.fixed
-    }
       
     const onSearch = () =>{
         console.log('reached')

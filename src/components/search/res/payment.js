@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { makeStyles } from '@mui/styles';
 import { listingCss } from 'common/style/style';
-import {Grid, Typography, FormControl, InputLabel, Select, ListItemText, MenuItem} from '@mui/material';
+import {Grid, Typography, FormControl,  Select, ListItemText, MenuItem} from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux'
 import {setMonthlyPayment} from 'api/res';
 

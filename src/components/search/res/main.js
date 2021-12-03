@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@mui/styles';
 import { listingCss } from 'common/style/style';
-import {Container, Grid, Typography} from '@mui/material';
+import {Container, Grid} from '@mui/material';
 import KeywordSearch from './keyword'; 
 import FieldSearch from './field-search'; 
 import TypeSearch from './type-search';

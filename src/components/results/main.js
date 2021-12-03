@@ -1,18 +1,13 @@
 import React, { useEffect, useState} from 'react';
-import { makeStyles } from '@mui/styles';
 import { useHistory, useParams } from "react-router-dom";
-import {TableContainer, IconButton, Typography, Grid, Paper} from '@mui/material';
+import {TableContainer, IconButton, Typography, Grid} from '@mui/material';
 import PropertyCard from '../property/card';
 import LotCard from '../lot/card';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
-import { listingCss } from 'common/style/style';
 import {useMultipleCustomQuery} from 'services/bridge-api'
 import { useSelector } from 'react-redux';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import FilterListIcon from '@mui/icons-material/FilterList';
-
-
-const useStyles = makeStyles(listingCss());
 
 var orderFlowRes = [
     {id: 1, query:'&PropertyType=Residential&ListAgentMlsId=505199&MlsStatus=Active&sortBy=ListPrice&order=desc'},
@@ -34,7 +29,6 @@ var params = undefined;
 var query = ''
 const ResultsMain = () => {
     const navi = useHistory();
-    const classes = useStyles();
     const { type } = useParams();
     const {
         PropertySubType, 
@@ -139,7 +133,7 @@ const ResultsMain = () => {
         }
     });
 
-    console.log(properties)
+    console.log(properties, total, pStatus, pIsLoading, pError)
 
     const onBack = () =>{
         navi.goBack()
