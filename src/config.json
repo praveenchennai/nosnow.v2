@@ -1,0 +1,16 @@
+{
+    "dataSet": {
+        "prod": "nabor",
+        "dev": "nabor"
+    },
+    "api": {
+        "clientId": "k2sa6UnfIekErm4PQIlY",
+        "clientSecret": "BETNoFwPG0rHamdQLl0ftrnwrbJKngJAtOiKkRa8",
+        "serverToken": "ae13665c856618147065afe8237a0f61",
+        "browserToken": "e84a669c4e19bed167fa72fef8982002",
+        "google": "AIzaSyAu9YSUxN7d9yrV8KVM84Gpss34PRZtXow",
+        "apiUrl": "https://api.bridgedataoutput.com/api/v2/",
+        "username": "rick@nosnownaples.com",
+        "password": "calltoPRAVEEN"
+    }
+}
