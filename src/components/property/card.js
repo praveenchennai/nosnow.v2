@@ -1,6 +1,6 @@
 import React, { useState} from 'react';
 import { makeStyles } from '@mui/styles';
-import {Chip, Divider, Grid, Grow, Paper, ListItem, List, CardMedia, Card, CardContent, Typography} from '@mui/material';
+import {Chip, Divider, Grid, Grow, Paper,  CardMedia, Card, Typography} from '@mui/material';
 import { listingCss } from 'common/style/style';
 
 import BedIcon from '@mui/icons-material/Bed';

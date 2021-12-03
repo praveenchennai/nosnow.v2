@@ -41,7 +41,7 @@ const ResultsMain = () => {
         golfAccess,
         waterFrontView,
         guestHouse,
-        newConstruction,
+        //newConstruction,
     } = useSelector(state=>state.res);
     const [skip, setSkip] = useState(true)
 

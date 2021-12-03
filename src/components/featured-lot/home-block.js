@@ -19,7 +19,10 @@ var maxListing = 20;
 
 const FeaturedLotHomeBlock = () => {
 
-    const {properties, total, pStatus, pIsLoading, pError} = useMultipleCustomQuery(orderFlow, {
+    const {properties, total, pStatus, pIsLoading, pError} = useMultipleCustomQuery({
+        url: orderFlow,
+        search: ''
+    }, {
         selectFromResult: ({ data, status, isLoading, error, originalArgs }) => {
             return {
                 properties: data?.properties || [],
@@ -31,7 +34,6 @@ const FeaturedLotHomeBlock = () => {
         }
     });
 
-    console.log(properties, total, pStatus, pIsLoading, pError)
     
     return (
         <Grid container item maxWidth="false" md={12} 

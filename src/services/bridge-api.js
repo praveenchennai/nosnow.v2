@@ -35,11 +35,13 @@ export const bridgeAPI = createApi({
     endpoints: (builder) => ({
         multipleCustom: builder.query({
           async queryFn(_arg, _queryApi, _extraOptions, baseQuery) {
+            
             if(!_arg){
               return {data: [], total: 0}
             }
             var resTotal = 0;
             const promises = _arg.url?.map(async arg=>{
+              console.log(arg)
               const randomResult = await baseQuery({
                 url: `${arg.query}&${_arg.search}`,
                 method: 'get'
@@ -60,7 +62,6 @@ export const bridgeAPI = createApi({
               res.push(...r.properties);
               total = total+r.total;
               totalP = totalP+r.properties.length;
-              return null;
             })
             return {data:{properties:res.reverse().slice(totalP-10).reverse(), total: total}}
           }
