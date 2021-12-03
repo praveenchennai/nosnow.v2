@@ -17,8 +17,11 @@ var maxListing = 20;
 
 const FeaturedResHomeBlock = () => {
 
-    const {properties, total, pStatus, pIsLoading, pError} = useMultipleCustomQuery(orderFlow, {
-        selectFromResult: ({ data, status, isLoading, error, originalArgs }) => {
+    const {properties, total, pStatus, pIsLoading, pError} = useMultipleCustomQuery({
+        url: orderFlow,
+        search: ''
+    }, {
+        selectFromResult: ({ data, status, isLoading, error }) => {
             return {
                 properties: data?.properties || [],
                 total: data?.total || [],
@@ -29,7 +32,6 @@ const FeaturedResHomeBlock = () => {
         }
     });
 
-    console.log(properties, total, pStatus, pIsLoading, pError)
     
     return (
         <Grid container item maxWidth="false" md={12} 
