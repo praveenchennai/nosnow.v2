@@ -41,7 +41,6 @@ export const bridgeAPI = createApi({
             }
             var resTotal = 0;
             const promises = _arg.url?.map(async arg=>{
-              console.log(arg)
               const randomResult = await baseQuery({
                 url: `${arg.query}&${_arg.search}`,
                 method: 'get'
