@@ -13,7 +13,6 @@ var orderFlow = [
     {id: 3, query:'&PropertyType=Residential&ListAgentMlsId=505199&MlsStatus=Pending With Contingencies&sortBy=ListPrice&order=desc'},
     {id: 4, query:'&PropertyType=Residential&ListAgentMlsId=505199&MlsStatus=Sold&sortBy=CloseDate&order=desc'},
 ]
-var maxListing = 20;
 
 const FeaturedResHomeBlock = () => {
 
