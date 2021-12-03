@@ -17,7 +17,7 @@ jobs:
         npm install
     - name: Production Build
       run: |
-        npm run test --if-present
+        npm run build
       env: 
         CI: false
     - name: Deploy to S3
