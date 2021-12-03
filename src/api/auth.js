@@ -71,7 +71,6 @@ export const AuthDb = createSlice({
                 userPoolId:'',
                 appClientId:''
             }
-
         }
     },
 })
