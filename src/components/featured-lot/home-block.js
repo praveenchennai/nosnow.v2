@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Typography, Container} from '@mui/material';
+import { Grid, Typography} from '@mui/material';
 import { createTheme } from "@mui/material/styles";
 import InsertLinkIcon from '@mui/icons-material/InsertLink';
 import LotCard from '../lot/card'
@@ -31,7 +31,7 @@ const FeaturedLotHomeBlock = () => {
         }
     });
 
-    console.log(properties)
+    console.log(properties, total, pStatus, pIsLoading, pError)
     
     return (
         <Grid container item maxWidth="false" md={12} 

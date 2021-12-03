@@ -2,9 +2,6 @@ import React from 'react';
 import { useSelector } from 'react-redux'
 import {FormControlLabel, Switch, Grid} from '@mui/material';
 
-
-
-
 const CheckFields = () => {
     const golfAccess = useSelector(state=>state.lot.golfAccess);
     const waterFrontView = useSelector(state=>state.lot.waterFrontView);

@@ -1,4 +1,4 @@
-import { createApi, fetchBaseQuery  } from '@reduxjs/toolkit/query/react';
+import { createApi  } from '@reduxjs/toolkit/query/react';
 import Config from '../config.json';
 import axios from 'axios'
 
@@ -59,7 +59,8 @@ export const bridgeAPI = createApi({
             results.map(r=>{
               res.push(...r.properties);
               total = total+r.total;
-              totalP = totalP+r.properties.length
+              totalP = totalP+r.properties.length;
+              return null;
             })
             return {data:{properties:res.reverse().slice(totalP-10).reverse(), total: total}}
           }

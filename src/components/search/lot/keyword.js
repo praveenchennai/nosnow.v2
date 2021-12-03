@@ -1,6 +1,6 @@
-import React, { useContext} from 'react';
+import React from 'react';
 import {Grid, TextField} from '@mui/material';
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 const KeywordSearch = () => {
     const keyword = useSelector(state=>state.res.keyword);

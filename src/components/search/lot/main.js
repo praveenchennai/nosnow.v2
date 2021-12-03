@@ -1,14 +1,14 @@
 import React from 'react';
 import { makeStyles } from '@mui/styles';
 import { listingCss } from 'common/style/style';
-import {Container, Grid} from '@mui/material';
-import Keyword from './keyword'; 
-import FieldSearch from './field-search'; 
-import PriceRange from './price-range';
-import Fee from './fee';
-import Acres from './acres';
-import Others from './others';
-import CheckFields from './check-fields';
+import {Container} from '@mui/material';
+// import Keyword from './keyword'; 
+// import FieldSearch from './field-search'; 
+// import PriceRange from './price-range';
+// import Fee from './fee';
+// import Acres from './acres';
+// import Others from './others';
+// import CheckFields from './check-fields';
 
 const useStyles = makeStyles(listingCss());
 

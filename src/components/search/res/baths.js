@@ -1,7 +1,7 @@
 import React, { useState} from 'react';
 import { makeStyles } from '@mui/styles';
 import { listingCss } from 'common/style/style';
-import {Grid, Typography, FormControl, InputLabel, Select, MenuItem, ListItemText} from '@mui/material';
+import {Grid, Typography, FormControl, Select, MenuItem, ListItemText} from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux'
 import {setBaths} from 'api/res';
 const useStyles = makeStyles(listingCss());
