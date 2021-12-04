@@ -20,10 +20,10 @@ const LeftMenu = (anchor) => {
             admin: true, 
             icon: 'add_circle',
             subMenu: [
-                {title: 'Featured Residential', secTitle: '', onclick: 'https://www.nosnownaples.com/search/residential/featured'},
-                {title: 'Featured Lands & Lots', secTitle: '', onclick: 'https://www.nosnownaples.com/search/lot-land/featured' },
-                {title: 'Upcoming Open House', secTitle: '', onclick: 'https://www.nosnownaples.com/search/residential/openhouse'},
-                {title: 'New Construction Southwest FL', secTitle: '', onclick: 'https://www.nosnownaples.com/search/residential/newconstructionyn_true'},
+                {title: 'Featured Residential', secTitle: '', onclick: 'https://old.nosnownaples.com/search/residential/featured'},
+                {title: 'Featured Lands & Lots', secTitle: '', onclick: 'https://old.nosnownaples.com/search/lot-land/featured' },
+                {title: 'Upcoming Open House', secTitle: '', onclick: 'https://old.nosnownaples.com/search/residential/openhouse'},
+                {title: 'New Construction Southwest FL', secTitle: '', onclick: 'https://old.nosnownaples.com/search/residential/newconstructionyn_true'},
             ]
         },
         {
@@ -34,14 +34,14 @@ const LeftMenu = (anchor) => {
             admin: true, 
             icon: 'add_circle',
             subMenu: [
-                {title: 'View All Communities', secTitle: '', onclick: 'https://www.nosnownaples.com/#community'},
-                {title: 'Ave Maria', secTitle: '', onclick: 'https://www.nosnownaples.com/community/ave-maria' },
-                {title: 'Verona Walk', secTitle: '', onclick: 'https://www.nosnownaples.com/community/verona-walkt'},
-                {title: 'Imperial Golf Estates', secTitle: '', onclick: 'https://www.nosnownaples.com/community/imperial-golf-estates'},
-                {title: 'Orange Blossom Ranch', secTitle: '', onclick: 'https://www.nosnownaples.com/community/orange-blossom-ranch'},
-                {title: 'Indigo Lakes', secTitle: '', onclick: 'https://www.nosnownaples.com/community/indigo-lakes'  },
-                {title: 'Golden Gate Lakes', secTitle: '', onclick: 'https://www.nosnownaples.com/community/golden-gate-estates'  },
-                {title: 'Naples Farm Sites', secTitle: '', onclick: 'https://www.nosnownaples.com/community/naples-farm-sites'}
+                {title: 'View All Communities', secTitle: '', onclick: 'https://old.nosnownaples.com/#community'},
+                {title: 'Ave Maria', secTitle: '', onclick: 'https://old.nosnownaples.com/community/ave-maria' },
+                {title: 'Verona Walk', secTitle: '', onclick: 'https://old.nosnownaples.com/community/verona-walkt'},
+                {title: 'Imperial Golf Estates', secTitle: '', onclick: 'https://old.nosnownaples.com/community/imperial-golf-estates'},
+                {title: 'Orange Blossom Ranch', secTitle: '', onclick: 'https://old.nosnownaples.com/community/orange-blossom-ranch'},
+                {title: 'Indigo Lakes', secTitle: '', onclick: 'https://old.nosnownaples.com/community/indigo-lakes'  },
+                {title: 'Golden Gate Lakes', secTitle: '', onclick: 'https://old.nosnownaples.com/community/golden-gate-estates'  },
+                {title: 'Naples Farm Sites', secTitle: '', onclick: 'https://old.nosnownaples.com/community/naples-farm-sites'}
             ]
         },
         {
@@ -52,12 +52,12 @@ const LeftMenu = (anchor) => {
             admin: true, 
             icon: 'add_circle',
             subMenu: [
-                {title: 'Gates Communities', secTitle: '', onclick: 'https://www.nosnownaples.com/community/group/naples-bonita-springs-estero-gated-communities'},
-                {title: 'Non-Gates Communities', secTitle: '', onclick: 'https://www.nosnownaples.com/community/group/naples-bonita-springs-estero-non-gated-communities' },
-                {title: 'Golf Communities', secTitle: '', onclick: 'https://www.nosnownaples.com/community/group/golf-communities-naples-real-estate'},
-                {title: 'Beach Front Condos', secTitle: '', onclick: 'https://www.nosnownaples.com/community/group/beach-front-condo-sunset-water-views-naples-real-estate'},
-                {title: 'Estate Homes', secTitle: '', onclick: 'https://www.nosnownaples.com/community/group/estate-homes-are-for-more-space-naples-real-estate'},
-                {title: 'More Community Lifestyle', secTitle: '', onclick: '/https://www.nosnownaples.com/community/group'}
+                {title: 'Gates Communities', secTitle: '', onclick: 'https://old.nosnownaples.com/community/group/naples-bonita-springs-estero-gated-communities'},
+                {title: 'Non-Gates Communities', secTitle: '', onclick: 'https://old.nosnownaples.com/community/group/naples-bonita-springs-estero-non-gated-communities' },
+                {title: 'Golf Communities', secTitle: '', onclick: 'https://old.nosnownaples.com/community/group/golf-communities-naples-real-estate'},
+                {title: 'Beach Front Condos', secTitle: '', onclick: 'https://old.nosnownaples.com/community/group/beach-front-condo-sunset-water-views-naples-real-estate'},
+                {title: 'Estate Homes', secTitle: '', onclick: 'https://old.nosnownaples.com/community/group/estate-homes-are-for-more-space-naples-real-estate'},
+                {title: 'More Community Lifestyle', secTitle: '', onclick: '/https://old.nosnownaples.com/community/group'}
             ]
         },
         {
@@ -68,12 +68,12 @@ const LeftMenu = (anchor) => {
             admin: true, 
             icon: 'add_circle',
             subMenu: [
-                {title: 'About the Parlante Gro', secTitle: '', onclick: 'https://www.nosnownaples.com/content/about'},
-                {title: 'Parlante Group Video', secTitle: '', onclick: 'https://www.nosnownaples.com/content/parlante-video' },
-                {title: 'Messege on COVID-19', secTitle: '', onclick: 'https://www.nosnownaples.com/content/covid19'},
-                {title: 'Real Estate Special Report', secTitle: '', onclick: '/https://www.nosnownaples.com/content/news'},
+                {title: 'About the Parlante Gro', secTitle: '', onclick: 'https://old.nosnownaples.com/content/about'},
+                {title: 'Parlante Group Video', secTitle: '', onclick: 'https://old.nosnownaples.com/content/parlante-video' },
+                {title: 'Messege on COVID-19', secTitle: '', onclick: 'https://old.nosnownaples.com/content/covid19'},
+                {title: 'Real Estate Special Report', secTitle: '', onclick: '/https://old.nosnownaples.com/content/news'},
                 {title: 'Whats Your Home Worth?', secTitle: '', onclick: 'http://www.nosnowevalue.com/'},
-                {title: 'Mortgage Calculator', secTitle: '', onclick: '/https://www.nosnownaples.com/content/tcalc'}
+                {title: 'Mortgage Calculator', secTitle: '', onclick: '/https://old.nosnownaples.com/content/tcalc'}
             ]
         },
     ])

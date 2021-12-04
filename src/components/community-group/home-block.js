@@ -78,10 +78,17 @@ const CommunityGroupHomeBlock = () => {
                         <Grid container item direction="row" alignContent="center" justifyContent="flex-start"
                             key={index}
                             sx={{
-                                width:"20%"
+                                width:{
+                                    xs:"100%",
+                                    md: "50%",
+                                    lg: "25%",
+                                    xl:"20%"
+                                }
                             }}
                         >
-                            <CommunityGroupCard  {...g} />
+                            <CommunityGroupCard  {...g} 
+                            
+                            />
                         </Grid>
                     )
                 

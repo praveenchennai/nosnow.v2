@@ -42,9 +42,10 @@ const LotCard = (props) => {
             onMouseOver={()=>hoverChange('in')}
             onMouseOut={()=>hoverChange('out')}
             sx={{
-                position: 'relative'
+                position: 'relative',
+                cursor: "pointer"
             }}
-
+            onClick={() => window.open(`https://nosnownaples.com/lot-land/${ListingId}/${UnparsedAddress}`)}
         >
             <Grid container item md={12} display="flex"
                 sx={{
