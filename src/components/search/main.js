@@ -26,7 +26,9 @@ const SearchMain = () => {
         navi.push('/result/res')
     }
     return ( 
-        <Container component="main" maxWidth="lg">
+        <Container component="main" maxWidth="lg"
+
+        >
             <AppBar position="sticky" elevation={0} className={classes.transparent}>
                 <Toolbar>
                     <Tabs value={value || 0} onChange={tabChange} sx={{ flexGrow: 1 }}>

@@ -1,13 +1,12 @@
 import React, { useEffect, useState} from 'react';
 import { useHistory, useParams } from "react-router-dom";
-import {TableContainer, IconButton, Typography, Grid} from '@mui/material';
+import {TableContainer, IconButton, Typography, Box, Grid} from '@mui/material';
 import PropertyCard from '../property/card';
 import LotCard from '../lot/card';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import {useMultipleCustomQuery} from 'services/bridge-api'
 import { useSelector } from 'react-redux';
-import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
-import FilterListIcon from '@mui/icons-material/FilterList';
+
 
 var orderFlowRes = [
     {id: 1, query:'&PropertyType=Residential&ListAgentMlsId=505199&MlsStatus=Active&sortBy=ListPrice&order=desc'},
@@ -133,58 +132,68 @@ const ResultsMain = () => {
         }
     });
 
-    console.log(properties, total, pStatus, pIsLoading, pError)
-
-    const onBack = () =>{
-        navi.goBack()
-    }
-
     return ( 
 
-    <Grid container item display="flex" justify="space-between" sx={{maxHeight:"calc(100vh)"}}>
-        <Grid container item md={5} display="flex" justify="space-between">
-            <TableContainer sx={{ maxHeight: "calc(100vh - 65px)", width: "100%"}}>
-            <Grid  container item md={12} sx={{
-                    background: "#fff",
-                    padding: "10px",
-               }}
-            >
-                <Grid container item md={6}>
-                    <IconButton color="primary" aria-label="upload picture" component="span" onClick={()=>onBack()}>
-                        <KeyboardBackspaceIcon />
-                    </IconButton>
-                </Grid>
-                <Grid container item md={6} display="flex" justifyContent="flex-end">
-                    <IconButton color="primary" aria-label="upload picture" component="span">
-                        <FilterListIcon />
-                    </IconButton>
-                </Grid>
-            </Grid>
-                <Grid container item md={12} display="flex" justify="space-between">
-                    {properties.map((row, i) => 
-                        <Grid container item md={6} key={i} >
-                            {type==='res'?<PropertyCard {...row}/>:<LotCard {...row}/>}
-                        </Grid>
-                    )}
-                </Grid>
-            </TableContainer>
-        </Grid>
-        <Grid container  item md={7}>
-            <MapContainer center={[26.295073, -81.630814]} zoom={10} scrollWheelZoom={true}>
-                <TileLayer attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                />
-                {properties.map((row, i) =>
-                    <Marker position={[row.Coordinates ? row.Coordinates[1] : 26.295073, row.Coordinates ? row.Coordinates[0] : -81.630814]} key={i}>
-                        <Popup>
-                            <Typography sx={{fontSize: "16px", fontWeight: "600"}}>{row.UnparsedAddress || ''}</Typography>
-                        </Popup>
-                    </Marker>
+    //
+    //     <Grid container item md={5} display="flex" justify="space-between">
+    //         <TableContainer 
+    //             sx={{ 
+    //                 maxHeight: "50%",
+    //                 height: "50%",
+    //                 width: "100%"
+    //             }}
+    //         >
+    //             <Grid container item md={12} display="flex" justify="space-between">
+    //                 {properties.map((row, i) => 
+    //                     <Grid container item md={6} key={i} >
+    //                         {type==='res'?<PropertyCard {...row}/>:<LotCard {...row}/>}
+    //                     </Grid>
+    //                 )}
+    //             </Grid>
+    //         </TableContainer>
+    //     </Grid>
+    //     <Grid container item md={7}
+            
+    //     >
+            
+    //     </Grid>
+    <Box display="flex" justify="space-between" 
+        sx={{ 
+            height: "calc(100vh - 65px)",
+            width: "100%"
+        }}
+    >
+        <TableContainer 
+            sx={{ 
+                height: "calc(100vh - 65px)",
+                maxHeight: "calc(100vh - 65px)",
+                width: "70vw"
+            }}
+        >
+            <Grid container item md={12} display="flex" justify="space-between">
+                {properties.map((row, i) => 
+                    <Grid container item md={6} key={i} >
+                        {type==='res'?<PropertyCard {...row}/>:<LotCard {...row}/>}
+                    </Grid>
                 )}
-            </MapContainer>
-        </Grid>
-    </Grid>
-
+            </Grid>
+        </TableContainer>
+        <MapContainer 
+            center={[26.295073, -81.630814]} 
+            zoom={10} scrollWheelZoom={true}
+        >
+            <TileLayer attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            {properties.map((row, i) =>
+                <Marker position={[row.Coordinates ? row.Coordinates[1] : 26.295073, row.Coordinates ? row.Coordinates[0] : -81.630814]} key={i}>
+                    <Popup>
+                        <Typography sx={{fontSize: "16px", fontWeight: "600"}}>{row.UnparsedAddress || ''}</Typography>
+                    </Popup>
+                </Marker>
+            )}
+        </MapContainer>
+    </Box>
     );
 }
 

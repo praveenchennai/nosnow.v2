@@ -9,6 +9,9 @@ import Drawer from '@mui/material/Drawer';
 import { makeStyles } from '@mui/styles';
 import LeftMenu from '../layout/leftmenu'
 import { useTheme } from '@mui/material/styles';
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
+import FilterListIcon from '@mui/icons-material/FilterList';
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles({
     root: {
@@ -24,16 +27,25 @@ const useStyles = makeStyles({
 
 
 const Header = (props) => {
+    const navi = useHistory();
     const [state, setState] = React.useState(false);
     const classes = useStyles();
     const theme = useTheme();
     const bottom = useMediaQuery(theme.breakpoints.down('md'));
+
+    const onBack = () =>{
+        navi.goBack()
+    }
+
     return (
         <React.Fragment>
             <AppBar position="sticky" className={classes.root} elevation={0}>
                 <Toolbar>
                     <IconButton onClick={()=>setState(true)} size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
                         <MenuIcon />
+                    </IconButton>
+                    <IconButton onClick={()=>onBack(true)} size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
+                        <KeyboardBackspaceIcon />
                     </IconButton>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}></Typography>
                         <IconButton color="inherit" size="large"><Link color="inherit" target="_blank" href="https://www.facebook.com/NoSnowNaples/"><FacebookIcon /></Link></IconButton>
