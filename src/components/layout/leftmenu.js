@@ -5,8 +5,10 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import { useHistory, useParams } from "react-router-dom";
 
 const LeftMenu = (anchor) => {
+    const navi = useHistory();
     const toggleDrawer = (anchor, a) =>{}
     const [open, setOpen] = useState(false)
     const [menus] = useState([
@@ -76,6 +78,13 @@ const LeftMenu = (anchor) => {
         },
     ])
 
+    const onHome = () =>{
+        navi.push('/')
+    }
+    const onSearch = () =>{
+        navi.push('/search')
+    }
+
     const [menu2] = useState([
         {
             id: '1',
@@ -92,12 +101,17 @@ const LeftMenu = (anchor) => {
     
     return (
         <Box role="presentation" onClick={toggleDrawer(anchor, false)} onKeyDown={toggleDrawer(anchor, false)}>
-            <List sx={{ paddingLeft: 2 }} onClick={() => window.open('https://search.nosnownaples.com')}>
-                <img
+            <List> 
+                <ListItemButton 
+                        sx={{ height: 56 }}  
+                        onClick={()=>onHome()}
+                    >
+                        <img
                     src={`https://nosnow-news-pdfs.s3.us-west-2.amazonaws.com/nosnowlogo.webp`}
                     alt="Nosnownaples logo"
                     loading="lazy"
                 />
+                    </ListItemButton >
             </List>
             <Divider sx={{borderColor: "rgba(255, 255, 255, 0.2)"}}/>
             <List>
@@ -171,7 +185,7 @@ const LeftMenu = (anchor) => {
             </List>
             <List>
                 {['Property Search'].map((text, index) => (
-                <ListItemButton key={index} sx={{backgroundColor: "#0174f5"}} onClick={() => window.open("https://www.nosnownaples.com/search", '_blank')}>
+                <ListItemButton key={index} sx={{backgroundColor: "#0174f5"}} onClick={()=>onSearch()}>
                     <ListItemIcon sx={{color:"#fff", minWidth:40}}>
                         <AddIcon />
                     </ListItemIcon>

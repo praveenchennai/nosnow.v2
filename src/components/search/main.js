@@ -7,10 +7,13 @@ import { makeStyles } from '@mui/styles';
 import { listingCss } from 'common/style/style';
 
 const useStyles = makeStyles(listingCss());
+
 const SearchMain = () => {
+    console.log('search main reached')
     const navi = useHistory();
     const classes = useStyles();
     const [value, setValue] = useState(0);
+
     const tabChange = (event, newValue) => {
         console.log(event)
         setValue(newValue);

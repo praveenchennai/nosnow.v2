@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import { Paper, Tabs, Tab, Button, Box, TextField, Grid,  Typography} from '@mui/material';
 import { createTheme } from "@mui/material/styles";
-import SwipeableViews from 'react-swipeable-views';
 
 const theme = createTheme();
 
@@ -123,57 +122,50 @@ const Box2 = () => {
                         <Tab label="Residential" />
                         <Tab label="Lots & Land" />
                     </Tabs>
-                    <SwipeableViews
-                        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-                        index={value}
-                        onChangeIndex={handleChangeIndex}
-                    >
-                        <TabPanel value={value} index={0} dir={theme.direction}>
-                            <TextField fullWidth placeholder="Enter Either MLS#, Address, Community, Sub Division, Zip, City or Any keyword" variant="outlined" />
-                            <Grid container item
-                                direction="column" 
-                                justifyContent="center" 
-                                alignItems="center" 
+                    <TabPanel value={value} index={0} dir={theme.direction}>
+                        <TextField fullWidth placeholder="Enter Either MLS#, Address, Community, Sub Division, Zip, City or Any keyword" variant="outlined" />
+                        <Grid container item
+                            direction="column" 
+                            justifyContent="center" 
+                            alignItems="center" 
+                            sx={{
+                                padding: "10px"
+                            }}
+                        >
+                            <Button 
+                                variant="contained"
                                 sx={{
-                                    padding: "10px"
+                                    backgroundColor: "#ff5722",
+                                    color: "#fff",
+                                    fontSize: "15px"
                                 }}
                             >
-                                <Button 
-                                    variant="contained"
-                                    sx={{
-                                        backgroundColor: "#ff5722",
-                                        color: "#fff",
-                                        fontSize: "15px"
-                                    }}
-                                >
-                                    Search
-                                </Button>
-                            </Grid>
-                        </TabPanel>
-                        <TabPanel value={value} index={1} dir={theme.direction}>
-                            <TextField fullWidth placeholder="Enter Either MLS#, Address, Community, Sub Division, Zip, City or Any keyword" variant="outlined" />
-                            <Grid container item
-                                direction="column" 
-                                justifyContent="center" 
-                                alignItems="center" 
+                                Search
+                            </Button>
+                        </Grid>
+                    </TabPanel>
+                    <TabPanel value={value} index={1} dir={theme.direction}>
+                        <TextField fullWidth placeholder="Enter Either MLS#, Address, Community, Sub Division, Zip, City or Any keyword" variant="outlined" />
+                        <Grid container item
+                            direction="column" 
+                            justifyContent="center" 
+                            alignItems="center" 
+                            sx={{
+                                padding: "10px"
+                            }}
+                        >
+                            <Button 
+                                variant="contained"
                                 sx={{
-                                    padding: "10px"
+                                    backgroundColor: "#ff5722",
+                                    color: "#fff",
+                                    fontSize: "15px"
                                 }}
                             >
-                                <Button 
-                                    variant="contained"
-                                    sx={{
-                                        backgroundColor: "#ff5722",
-                                        color: "#fff",
-                                        fontSize: "15px"
-                                    }}
-                                >
-                                    Search
-                                </Button>
-                            </Grid>
-                        </TabPanel>
-                  </SwipeableViews>
-                    
+                                Search
+                            </Button>
+                        </Grid>
+                    </TabPanel>     
                 </Grid>
                 
             </Paper>

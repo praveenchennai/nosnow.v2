@@ -9,7 +9,6 @@ const addCityOptions = (state, action) =>{
     var cityOptions = action.payload;
   return {
       ...state,
-      //routes: routes,
       cityOptions: cityOptions
     }
 }

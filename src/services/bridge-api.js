@@ -15,8 +15,10 @@ const getBaseUrl=()=>{
 const axiosBaseQuery =
   ({ baseUrl } = { baseUrl: '' }) =>
   async ({ url, method, data }) => {
+    
     try {
       const result = await axios({ url: baseUrl + url, method, data })
+      console.log(result.headers)
       return { data: result.data }
     } catch (axiosError) {
       let err = axiosError
