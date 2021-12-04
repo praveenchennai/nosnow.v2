@@ -14,11 +14,10 @@ return (
 <Grid container display="flex" justify="space-between" spacing={2}>
     <Grid xs={12} item>
         <TextField 
-            disabled
             variant="outlined" 
             type="text" fullWidth 
             margin="normal" 
-            label="Keyword Search" 
+            label="Enter Address" 
             name="keyword" 
             onChange={handleChange}
             value={keyword?keyword:''} 

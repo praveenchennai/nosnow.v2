@@ -30,6 +30,7 @@ const ResultsMain = () => {
     const navi = useHistory();
     const { type } = useParams();
     const {
+        keyword,
         PropertySubType, 
         CommunityFeatures,
         AttachedGarageYN,
@@ -51,6 +52,9 @@ const ResultsMain = () => {
             params = orderFlowRes;
         }
         query = '';
+        if(keyword.length>0){
+            query = query + `&UnparsedAddress.in=${keyword || ''}`
+        }
         if(PropertySubType.length>0){
             query = query + `&ArchitecturalStyle.in=${PropertySubType.join(", ") || ''}`
         }

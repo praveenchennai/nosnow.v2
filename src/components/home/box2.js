@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import { useHistory, useParams } from "react-router-dom";
 import { Paper, Tabs, Tab, Button, Box, TextField, Grid,  Typography} from '@mui/material';
 import { createTheme } from "@mui/material/styles";
 
@@ -42,8 +42,12 @@ function TabPanel(props) {
 
 
 const Box2 = () => {
-
+    const navi = useHistory();
     const [value, setValue] = React.useState(0);
+
+    const onSearch = () =>{
+        navi.push('/search')
+    }
 
     const handleChange = (event, newValue) => {
       setValue(newValue);
@@ -123,7 +127,7 @@ const Box2 = () => {
                         <Tab label="Lots & Land" />
                     </Tabs>
                     <TabPanel value={value} index={0} dir={theme.direction}>
-                        <TextField fullWidth placeholder="Enter Either MLS#, Address, Community, Sub Division, Zip, City or Any keyword" variant="outlined" />
+                        <TextField fullWidth placeholder="Enter Address," variant="outlined" />
                         <Grid container item
                             direction="column" 
                             justifyContent="center" 
@@ -139,13 +143,14 @@ const Box2 = () => {
                                     color: "#fff",
                                     fontSize: "15px"
                                 }}
+                                onClick={()=>onSearch()}
                             >
                                 Search
                             </Button>
                         </Grid>
                     </TabPanel>
                     <TabPanel value={value} index={1} dir={theme.direction}>
-                        <TextField fullWidth placeholder="Enter Either MLS#, Address, Community, Sub Division, Zip, City or Any keyword" variant="outlined" />
+                        <TextField fullWidth placeholder="Enter Address" variant="outlined" />
                         <Grid container item
                             direction="column" 
                             justifyContent="center" 
@@ -161,6 +166,7 @@ const Box2 = () => {
                                     color: "#fff",
                                     fontSize: "15px"
                                 }}
+                                onClick={()=>onSearch()}
                             >
                                 Search
                             </Button>
