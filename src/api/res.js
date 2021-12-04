@@ -168,7 +168,7 @@ export const ResSearchFields = createSlice({
         waterFrontView: false,
         guestHouse: false,
         newConstruction: false,
-        dropDownAPI: 'https://old.nosnownaples.com/api/property/dropdown/res/City/'
+        dropDownAPI: 'https://nosnownaples.com/api/property/dropdown/res/City/'
     },
     reducers: {
         setKeyword: (state, action) => {
