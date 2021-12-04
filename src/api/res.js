@@ -206,12 +206,12 @@ export const ResSearchFields = createSlice({
             
         },
         setCommunityFeatures: (state, action) => {
-            if(action.payload==='Non-Gated'){
-                return{
-                    ...state,
-                    CommunityFeaturesExclude:action.payload
-                }  
-            }
+            // if(action.payload==='Non-Gated'){
+            //     return{
+            //         ...state,
+            //         CommunityFeaturesExclude:action.payload
+            //     }  
+            // }
             return{
                 ...state,
                 CommunityFeatures:action.payload

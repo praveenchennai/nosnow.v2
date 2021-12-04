@@ -133,30 +133,6 @@ const ResultsMain = () => {
     });
 
     return ( 
-
-    //
-    //     <Grid container item md={5} display="flex" justify="space-between">
-    //         <TableContainer 
-    //             sx={{ 
-    //                 maxHeight: "50%",
-    //                 height: "50%",
-    //                 width: "100%"
-    //             }}
-    //         >
-    //             <Grid container item md={12} display="flex" justify="space-between">
-    //                 {properties.map((row, i) => 
-    //                     <Grid container item md={6} key={i} >
-    //                         {type==='res'?<PropertyCard {...row}/>:<LotCard {...row}/>}
-    //                     </Grid>
-    //                 )}
-    //             </Grid>
-    //         </TableContainer>
-    //     </Grid>
-    //     <Grid container item md={7}
-            
-    //     >
-            
-    //     </Grid>
     <Box display="flex" justify="space-between" 
         sx={{ 
             height: "calc(100vh - 65px)",
@@ -182,6 +158,9 @@ const ResultsMain = () => {
             center={[26.295073, -81.630814]} 
             zoom={10} scrollWheelZoom={true}
         >
+            {/* <TileLayer attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}"
+            /> */}
             <TileLayer attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />

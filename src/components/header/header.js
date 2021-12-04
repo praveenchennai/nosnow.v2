@@ -47,6 +47,9 @@ const Header = (props) => {
                     <IconButton onClick={()=>onBack(true)} size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
                         <KeyboardBackspaceIcon />
                     </IconButton>
+                    <IconButton onClick={()=>onBack(true)} size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
+                        <FilterListIcon />
+                    </IconButton>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}></Typography>
                         <IconButton color="inherit" size="large"><Link color="inherit" target="_blank" href="https://www.facebook.com/NoSnowNaples/"><FacebookIcon /></Link></IconButton>
                         <IconButton color="inherit" size="large"><Link color="inherit" target="_blank" href="https://twitter.com/nosnownaples/"><TwitterIcon /></Link></IconButton>
