@@ -19,12 +19,10 @@ const SearchMain = () => {
         setValue(newValue);
     };
 
-
-      
     const onSearch = () =>{
-        console.log('reached')
         navi.push('/result/res')
     }
+    
     return ( 
         <Container component="main" maxWidth="lg"
 

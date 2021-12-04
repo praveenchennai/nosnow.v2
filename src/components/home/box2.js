@@ -3,8 +3,11 @@ import PropTypes from 'prop-types';
 import { useHistory, useParams } from "react-router-dom";
 import { Paper, Tabs, Tab, Button, Box, TextField, Grid,  Typography} from '@mui/material';
 import { createTheme } from "@mui/material/styles";
+import { useSelector, useDispatch } from 'react-redux'
+import {setKeyword} from 'api/res';
 
 const theme = createTheme();
+
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -43,14 +46,15 @@ function TabPanel(props) {
 
 const Box2 = () => {
     const navi = useHistory();
+    const dispatch = useDispatch();
     const [value, setValue] = React.useState(0);
-
+    const keyword = useSelector(state=>state.res.keyword);
     const onSearch = () =>{
-        navi.push('/search')
+        navi.push('/result/res')
     }
 
-    const handleChange = (event, newValue) => {
-      setValue(newValue);
+    const handleChange=(event)=>{
+        dispatch(setKeyword(event.target.value))
     };
 
     const handleChangeIndex = (index) => {
@@ -127,7 +131,17 @@ const Box2 = () => {
                         <Tab label="Lots & Land" />
                     </Tabs>
                     <TabPanel value={value} index={0} dir={theme.direction}>
-                        <TextField fullWidth placeholder="Enter Address," variant="outlined" />
+                        <TextField 
+                            fullWidth 
+                            placeholder="Enter Address," 
+                            variant="outlined" 
+                            type="text" 
+                            margin="normal" 
+                            label="Enter Address" 
+                            name="keyword" 
+                            onChange={handleChange}
+                            value={keyword?keyword:''} 
+                        />
                         <Grid container item
                             direction="column" 
                             justifyContent="center" 
