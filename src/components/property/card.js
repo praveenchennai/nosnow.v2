@@ -48,6 +48,7 @@ const PropertyCard = (props) => {
                     position: 'relative',
                     cursor: "pointer"
                 }}
+                onClick={() => window.open(`https://nosnownaples.com/residential/${ListingId}/${UnparsedAddress}`)}
 
             >
                 <Grid container item md={12} display="flex"
