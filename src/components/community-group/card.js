@@ -38,6 +38,10 @@ const CommunityGroupCard = (props) => {
                 elevation={eli}
                 onMouseOver={()=>hoverChange('in')}
                 onMouseOut={()=>hoverChange('out')}
+                sx={{
+                    cursor: "pointer"
+                }}
+                onClick={() => window.open(url)}
             >
                 <Grid container item md={12} display="flex" direction="column"
                     sx={{

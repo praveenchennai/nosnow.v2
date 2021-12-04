@@ -45,7 +45,8 @@ const PropertyCard = (props) => {
                 onMouseOver={()=>hoverChange('in')}
                 onMouseOut={()=>hoverChange('out')}
                 sx={{
-                    position: 'relative'
+                    position: 'relative',
+                    cursor: "pointer"
                 }}
 
             >
