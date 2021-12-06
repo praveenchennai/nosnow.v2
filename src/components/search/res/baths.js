@@ -50,7 +50,11 @@ return (
             <Typography variant="body1" component="h2">Baths</Typography>
             <Slider
                 sx={{
-                    color: "#56516b"
+                    color: "#56516b",
+                    '& .MuiSlider-thumb': {
+                        backgroundColor: '#FE8200'
+                    },
+                    
                 }}
                 value={[min, max]}
                 onChange={handleChange}
