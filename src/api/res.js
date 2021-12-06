@@ -2677,18 +2677,10 @@ export const ResSearchFields = createSlice({
             {id: 3500, value: '$3,500'}
         ],
         beds: {
-            min: 0, max: 0
+            min: 0, max: 5
         },
-        bbOptions:[
-            {id: 1, value: '1+'},
-            {id: 2, value: '2+'},
-            {id: 3, value: '3+'},
-            {id: 4, value: '4+'},
-            {id: 5, value: '5+'},
-            {id: 0, value: 'Any'},
-        ],
         baths: {
-            min: 0, max: 0
+            min: 0, max: 5
         },
         recurringFee: {
             min: 0, max: 0
@@ -2818,24 +2810,25 @@ export const ResSearchFields = createSlice({
             
         },
         setBeds: (state, action) => {
+            var params = {
+                min: action.payload[0],
+                max: action.payload[1]
+            }
             return{
                 ...state,
-                beds:{
-                    ...state.beds,
-                    [action.payload.key]: action.payload.value,
-                }
+                beds:params
             }
             
         },
         setBaths: (state, action) => {
+            var params = {
+                min: action.payload[0],
+                max: action.payload[1]
+            }
             return{
                 ...state,
-                baths:{
-                    ...state.baths,
-                    [action.payload.key]: action.payload.value,
-                }
-            }
-            
+                baths:params
+            } 
         },
         setRecurringFee: (state, action) => {
             return{

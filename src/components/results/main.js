@@ -74,28 +74,28 @@ const ResultsMain = () => {
             query = query + `&ListPrice.lte=${priceRange.max}`
         }
         if(beds.min>0){
-            query = query + `&BedroomsTotal.gte=${priceRange.min}`   
+            query = query + `&BedroomsTotal.gte=${beds.min}`   
         }
-        if(beds.max>0){
-            query = query + `&BedroomsTotal.lte=${priceRange.max}`   
+        if(beds.max<5){
+            query = query + `&BedroomsTotal.lte=${beds.max}`   
         }
         if(baths.min>0){
-            query = query + `&BathroomsTotalDecimal.gte=${priceRange.min}`   
+            query = query + `&BathroomsTotalDecimal.gte=${baths.min}`   
         }
-        if(baths.max>0){
-            query = query + `&BathroomsTotalDecimal.lte=${priceRange.max}`   
+        if(baths.max<5){
+            query = query + `&BathroomsTotalDecimal.lte=${baths.max}`   
         }
         if(sqft.min>0){
-            query = query + `&LivingArea.gte=${priceRange.min}`
+            query = query + `&LivingArea.gte=${sqft.min}`
         }
         if(sqft.max>0){
-            query = query + `&LivingArea.lte=${priceRange.max}`
+            query = query + `&LivingArea.lte=${sqft.max}`
         }
         if(yearBuilt.min>0){
-            query = query + `&YearBuilt.gte=${priceRange.min}`
+            query = query + `&YearBuilt.gte=${yearBuilt.min}`
         }
         if(yearBuilt.max>0){
-            query = query + `&YearBuilt.lte=${priceRange.max}`
+            query = query + `&YearBuilt.lte=${yearBuilt.max}`
         }
         if(WaterfrontFeatures.length>0){
             query = query + `&WaterfrontFeatures.in=${WaterfrontFeatures.join(", ") || ''}`

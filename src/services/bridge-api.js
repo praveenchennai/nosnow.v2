@@ -18,7 +18,6 @@ const axiosBaseQuery =
     
     try {
       const result = await axios({ url: baseUrl + url, method, data })
-      console.log(result.headers)
       return { data: result.data }
     } catch (axiosError) {
       let err = axiosError
