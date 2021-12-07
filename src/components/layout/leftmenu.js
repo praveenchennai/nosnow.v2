@@ -21,7 +21,7 @@ const LeftMenu = (anchor) => {
             icon: 'add_circle',
             subMenu: [
                 {title: 'Featured Residential', secTitle: '', onclick: 'https://nosnownaples.com/search/residential/featured'},
-                {title: 'Featured Lands & Lots', secTitle: '', onclick: 'https://nosnownaples.com/search/lot-land/featured' },
+                {title: 'Featured Land & Lots', secTitle: '', onclick: 'https://nosnownaples.com/search/lot-land/featured' },
                 {title: 'Upcoming Open House', secTitle: '', onclick: 'https://nosnownaples.com/search/residential/openhouse'},
                 {title: 'New Construction Southwest FL', secTitle: '', onclick: 'https://nosnownaples.com/search/residential/newconstructionyn_true'},
             ]
@@ -52,12 +52,12 @@ const LeftMenu = (anchor) => {
             admin: true, 
             icon: 'add_circle',
             subMenu: [
-                {title: 'Gates Communities', secTitle: '', onclick: 'https://nosnownaples.com/community/group/naples-bonita-springs-estero-gated-communities'},
-                {title: 'Non-Gates Communities', secTitle: '', onclick: 'https://nosnownaples.com/community/group/naples-bonita-springs-estero-non-gated-communities' },
+                {title: 'Gated Communities', secTitle: '', onclick: 'https://nosnownaples.com/community/group/naples-bonita-springs-estero-gated-communities'},
+                {title: 'Non-Gated Communities', secTitle: '', onclick: 'https://nosnownaples.com/community/group/naples-bonita-springs-estero-non-gated-communities' },
                 {title: 'Golf Communities', secTitle: '', onclick: 'https://nosnownaples.com/community/group/golf-communities-naples-real-estate'},
                 {title: 'Beach Front Condos', secTitle: '', onclick: 'https://nosnownaples.com/community/group/beach-front-condo-sunset-water-views-naples-real-estate'},
                 {title: 'Estate Homes', secTitle: '', onclick: 'https://nosnownaples.com/community/group/estate-homes-are-for-more-space-naples-real-estate'},
-                {title: 'More Community Lifestyle', secTitle: '', onclick: '/https://nosnownaples.com/community/group'}
+                {title: 'Community Lifestyle', secTitle: '', onclick: '/https://nosnownaples.com/community/group'}
             ]
         },
         {
@@ -68,7 +68,7 @@ const LeftMenu = (anchor) => {
             admin: true, 
             icon: 'add_circle',
             subMenu: [
-                {title: 'About the Parlante Gro', secTitle: '', onclick: 'https://nosnownaples.com/content/about'},
+                {title: 'About the Parlante Group', secTitle: '', onclick: 'https://nosnownaples.com/content/about'},
                 {title: 'Parlante Group Video', secTitle: '', onclick: 'https://nosnownaples.com/content/parlante-video' },
                 {title: 'Messege on COVID-19', secTitle: '', onclick: 'https://nosnownaples.com/content/covid19'},
                 {title: 'Real Estate Special Report', secTitle: '', onclick: '/https://nosnownaples.com/content/news'},
@@ -94,6 +94,11 @@ const LeftMenu = (anchor) => {
         {
             id: '2',
             title: 'News', 
+            onclick: 'https://news.nosnownaples.com', 
+        },
+        {
+            id: '3',
+            title: 'News Archives', 
             onclick: 'https://news.nosnownaples.com', 
         }
 

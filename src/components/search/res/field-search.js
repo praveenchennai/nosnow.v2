@@ -121,7 +121,8 @@ return (
                     variant="outlined" 
                     type="text" 
                     margin="normal" 
-                    label="Filter City"
+                    label="Type in the first few letters of the City."
+                    placeholder="Type in the first few letters of the City."
                     name="citySearch" 
                     onChange={handleCitySearch}
                     value={citySearch || ''} 
@@ -140,6 +141,7 @@ return (
                         <ListItemText primary={pt} />
                     </MenuItem>                  
                 )}
+                <Divider />
                 {cityOptions.filter(f=>f.startsWith(citySearch.toUpperCase()) && city.indexOf(f) === -1).slice(0,15).map((pt, index)=>
                     <MenuItem value={pt} key={index}
                     onClick={()=>handleCityChange(pt)}
@@ -167,7 +169,7 @@ return (
                             fontWeight: "600",
                             color: "#56516b"
                         }}
-                    >Commnity Types</Typography>
+                    >Commnity / Development Name</Typography>
                     <Typography 
                         sx={{
                             fontSize: "12px",
@@ -191,7 +193,7 @@ return (
                                     color: "#fff",
                                     flexGrow: 1
                                 }}
-                            >Community Types</Typography>
+                            >Community Name</Typography>
                             <Button 
                                 variant="contained" 
                                 className={[classes.btn_orange, classes.mt10].join(' ')}
@@ -206,7 +208,8 @@ return (
                     variant="outlined" 
                     type="text" 
                     margin="normal" 
-                    label="Filter Community"
+                    label="Type in the first few letters of the community."
+                    placeholder="Type in the first few letters of the community."
                     name="communitySearch" 
                     onChange={handleCommunitySearch}
                     value={communitySearch || ''} 
@@ -228,6 +231,7 @@ return (
                         <ListItemText primary={pt} />
                     </MenuItem>                  
                 )}
+                <Divider />
                 {communityOptions.filter(f=>f.startsWith(communitySearch.toUpperCase()) && community.indexOf(f) === -1).slice(0,15).map((pt, index)=>
                     <MenuItem value={pt} key={index}
                     onClick={()=>handleCommunityChange(pt)}
@@ -255,7 +259,7 @@ return (
                             fontWeight: "600",
                             color: "#56516b"
                         }}
-                    >SubCondo Types</Typography>
+                    >Subdivision / Condo</Typography>
                     <Typography 
                         sx={{
                             fontSize: "12px",
@@ -279,7 +283,7 @@ return (
                                     color: "#fff",
                                     flexGrow: 1
                                 }}
-                            >Sub Condo Types</Typography>
+                            >Subdivision</Typography>
                             <Button 
                                 variant="contained" 
                                 className={[classes.btn_orange, classes.mt10].join(' ')}
@@ -294,7 +298,8 @@ return (
                     variant="outlined" 
                     type="text" 
                     margin="normal" 
-                    label="Filter SubCondo"
+                    label="Type in the first few letters of the Subdivision."
+                    placeholder="Type in the first few letters of the Subdivision."
                     name="subcondo" 
                     onChange={handleSubCondoSearch}
                     value={subCondoSearch || ''} 
