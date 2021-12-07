@@ -28,7 +28,6 @@ const useStyles = makeStyles({
 });
 
 const Footer = (props) => {
-    console.log(props)
     const classes = useStyles();
     return (
         <React.Fragment>

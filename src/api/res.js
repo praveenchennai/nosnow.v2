@@ -138,7 +138,7 @@ export const ResSearchFields = createSlice({
             "TRENTON",
             "MYAKKA CITY",
             "OSPREY"
-        ],
+        ].sort(),
         community: '',
         communityOptions: [
             "VANDERBILT LAKES",
@@ -1088,7 +1088,7 @@ export const ResSearchFields = createSlice({
             "CAPE GARDENS CONDO",
             "LAKE ARROWHEAD MOB VILLAGE",
             "CYPRESS PRESERVE"
-        ],
+        ].sort(),
         subCondo: '',
         subCondoOptions: [
             "VANDERBILT LAKES",
@@ -2585,7 +2585,7 @@ export const ResSearchFields = createSlice({
             "ABBEY AT BERKSHIRE VILLAGE",
             "MARINA MANOR",
             "JASMINE BAY SOUTH"
-        ],
+        ].sort(),
         PropertySubType: [],
                 
         PropertySubTypeOptions: [

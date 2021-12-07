@@ -53,8 +53,7 @@ return (
                     color: "#56516b",
                     '& .MuiSlider-thumb': {
                         backgroundColor: '#FE8200'
-                    },
-                    
+                    }
                 }}
                 value={[min, max]}
                 onChange={handleChange}

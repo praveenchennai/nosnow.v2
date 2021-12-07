@@ -31,6 +31,9 @@ const ResultsMain = () => {
     const { type } = useParams();
     const {
         keyword,
+        city,
+        community,
+        subCondo,
         PropertySubType, 
         CommunityFeatures,
         AttachedGarageYN,
@@ -54,6 +57,15 @@ const ResultsMain = () => {
         query = '';
         if(keyword.length>0){
             query = query + `&UnparsedAddress.in=${keyword || ''}`
+        }
+        if(city.length>0){
+            query = query + `&City.in=${city.join(", ") || ''}`
+        }
+        if(community.length>0){
+            query = query + `&ParkName.in=${community.join(", ") || ''}`
+        }
+        if(subCondo.length>0){
+            query = query + `&SubdivisionName.in=${subCondo.join(", ") || ''}`
         }
         if(PropertySubType.length>0){
             query = query + `&ArchitecturalStyle.in=${PropertySubType.join(", ") || ''}`
@@ -112,11 +124,13 @@ const ResultsMain = () => {
         if(guestHouse){
             query = query + `&NABOR_GuestHouseLivingArea.ne=null`;
         }
+        if(guestHouse){
+            query = query + `&NABOR_GuestHouseLivingArea.ne=null`;
+        }
         // if(!newConstruction){
         //     query = query + `&BuildingFeatures.nin=['DSL/Cable Available', 'Elevator', 'Concierge Service]`;
         // }
         setSkip(false)
-        console.log(params, query)
     }, [params])
 
 

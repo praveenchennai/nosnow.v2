@@ -9,7 +9,6 @@ import { listingCss } from 'common/style/style';
 const useStyles = makeStyles(listingCss());
 
 const SearchMain = () => {
-    console.log('search main reached')
     const navi = useHistory();
     const classes = useStyles();
     const [value, setValue] = useState(0);
