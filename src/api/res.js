@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-
+import * as cities from './cities'
 export const fetchCity = createAsyncThunk('res/fetchCity', (id) => {
     console.log("reached", id)
     return [];
@@ -16,129 +16,26 @@ const addCityOptions = (state, action) =>{
 export const ResSearchFields = createSlice({
     name: 'res',
     initialState: {
+        previousPages: [
+            {page:0, start:0, index:0}
+        ],
         page: 0,
+        limit: 10,
         order: 'desc',
         sortBy: 'ModificationTimestamp',
         keyword: '',
         PropertyType: ['Residential', 'Residential Income', 'Commercial Sale'],
         city: '',
         cityOptions: [
-            "CAPE CORAL",
-            "FORT MYERS",
-            "ESTERO",
-            "SANIBEL",
             "NAPLES",
-            "PUNTA GORDA",
-            "MARCO ISLAND",
-            "LEHIGH ACRES",
             "BONITA SPRINGS",
-            "NORTH FORT MYERS",
-            "ALVA",
-            "Babcock Ranch",
-            "EVERGLADES CITY",
-            "LABELLE",
-            "PORT CHARLOTTE",
-            "FORT DENAUD",
-            "ST. JAMES CITY",
-            "MIROMAR LAKES",
-            "PLACIDA",
-            "BOKEELIA",
-            "VENUS",
-            "DE LAND",
-            "DAVENPORT",
-            "MOORE HAVEN",
-            "MIAMI",
-            "CLEWISTON",
-            "TITUSVILLE",
-            "CAPTIVA",
-            "CITRUS SPRINGS",
-            "NORTH PORT",
-            "Upper Captiva",
-            "ROTONDA WEST",
-            "FORT MYERS BEACH",
-            "WEBSTER",
-            "ENGLEWOOD",
-            "OTHER",
-            "INDIAN LAKE ESTATES",
-            "FOUNTAIN",
-            "OCALA",
-            "MONTURA RANCHES",
-            "ARCADIA",
-            "USEPPA ISLAND",
-            "SUMMERFIELD",
-            "NEW PORT RICHEY",
-            "DORAL",
-            "OUT OF AREA",
-            "AVON PARK",
-            "LAKE PLACID",
-            "SEBRING",
-            "ALFORD",
-            "MATLACHA",
-            "IMMOKALEE",
-            "PANAMA CITY",
-            "AVE MARIA",
-            "OCKLAWAHA",
-            "PENSACOLA",
-            "INTERLACHEN",
-            "FLORAHOME",
-            "CRESTVIEW",
-            "SILVER SPRINGS",
-            "PALATKA",
-            "SATSUMA",
-            "CRYSTAL RIVER",
-            "HUDSON",
-            "DAYTONA BEACH",
-            "MARIANNA",
-            "TALLAHASSEE",
-            "LIVE OAK",
-            "LAKE CITY",
-            "QUINCY",
-            "SAN MATEO",
-            "MILTON",
-            "LAKE WALES",
-            "OKEECHOBEE",
-            "APOPKA",
-            "HAWTHORNE",
-            "DUNNELLON",
-            "FELDA",
-            "PALM COAST",
-            "KEY LARGO",
-            "GOODLAND",
-            "MATLACHA ISLES",
-            "SARASOTA",
-            "BRADENTON",
-            "KEY WEST",
-            "PALM BAY",
-            "BELLEVIEW",
-            "LAKE SUZY",
-            "Cayo Costa",
-            "WILLISTON",
-            "GULF BREEZE",
-            "POLK CITY",
-            "GRANT",
-            "KISSIMMEE",
-            "MELBOURNE",
-            "DUNEDIN",
-            "CHATTAHOOCHEE",
-            "HAVANA",
-            "HERNANDO",
-            "OLD TOWN",
-            "BEVERLY HILLS",
-            "JACKSONVILLE",
-            "PORT ST. LUCIE",
-            "LAKELAND",
-            "GREEN COVE SPRINGS",
-            "LECANTO",
-            "WELAKA",
-            "WEWAHITCHKA",
-            "LAWTEY",
-            "HOMOSASSA",
-            "BASCOM",
-            "CITRA",
-            "TRENTON",
-            "MYAKKA CITY",
-            "OSPREY"
-        ].sort(),
+            "ESTERO",
+            "MARCO ISLAND",
+            "CAPE CORAL",
+            "LEHIGH ACRES",
+            "FORT MYERS",
+            ...cities.cities()
+        ],
         community: '',
         communityOptions: [
             "VANDERBILT LAKES",
@@ -2724,6 +2621,30 @@ export const ResSearchFields = createSlice({
         dropDownAPI: 'https://nosnownaples.com/api/property/dropdown/res/City/'
     },
     reducers: {
+        setPreviousPages: (state, action)=>{
+            return{
+                ...state,
+                previousPages:[...state.previousPages, action.payload]
+            }
+        },
+        resetPreviousPages: (state, action)=>{
+            return {
+                ...state,
+                previousPages: [{page: 0, index: 0, start:0}]
+            }
+        },
+        setPage: (state, action) =>{
+            return{
+                ...state,
+                page:action.payload
+            }
+        },
+        setLimit: (state, action) =>{
+            return{
+                ...state,
+                limit:action.payload
+            }
+        },
         setKeyword: (state, action) => {
             return{
                 ...state,
@@ -2911,6 +2832,10 @@ export const ResSearchFields = createSlice({
 })
 
 export const { 
+    setLimit,
+    setPage,
+    setPreviousPages,
+    resetPreviousPages,
     setKeyword,
     setCity,
     setCommunity,

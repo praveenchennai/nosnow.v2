@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppBar, Link, IconButton, Toolbar, Typography } from '@mui/material';
+import { AppBar, Link, Grid, Tooltip, IconButton, Toolbar, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -10,6 +10,8 @@ import { makeStyles } from '@mui/styles';
 import LeftMenu from '../layout/leftmenu'
 import { useTheme } from '@mui/material/styles';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { useHistory } from "react-router-dom";
 
@@ -44,17 +46,11 @@ const Header = (props) => {
                     <IconButton onClick={()=>setState(true)} size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
                         <MenuIcon />
                     </IconButton>
-                    <IconButton onClick={()=>onBack(true)} size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
-                        <KeyboardBackspaceIcon />
-                    </IconButton>
-                    <IconButton onClick={()=>onBack(true)} size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
-                        <FilterListIcon />
-                    </IconButton>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}></Typography>
-                        <IconButton color="inherit" size="large"><Link color="inherit" target="_blank" href="https://www.facebook.com/NoSnowNaples/"><FacebookIcon /></Link></IconButton>
-                        <IconButton color="inherit" size="large"><Link color="inherit" target="_blank" href="https://twitter.com/nosnownaples/"><TwitterIcon /></Link></IconButton>
-                        <IconButton color="inherit" size="large"><Link color="inherit" target="_blank" href="https://www.instagram.com/nosnownaples/"><InstagramIcon /></Link></IconButton>
-                    </Toolbar>
+                    <IconButton color="inherit" size="large"><Link color="inherit" target="_blank" href="https://www.facebook.com/NoSnowNaples/"><FacebookIcon /></Link></IconButton>
+                    <IconButton color="inherit" size="large"><Link color="inherit" target="_blank" href="https://twitter.com/nosnownaples/"><TwitterIcon /></Link></IconButton>
+                    <IconButton color="inherit" size="large"><Link color="inherit" target="_blank" href="https://www.instagram.com/nosnownaples/"><InstagramIcon /></Link></IconButton>
+                </Toolbar>
             </AppBar>
             <Drawer anchor={bottom?"bottom":"left"} open={state} onClose={()=>setState(false)} 
               PaperProps={{

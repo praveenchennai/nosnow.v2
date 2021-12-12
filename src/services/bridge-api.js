@@ -36,35 +36,56 @@ export const bridgeAPI = createApi({
     endpoints: (builder) => ({
         multipleCustom: builder.query({
           async queryFn(_arg, _queryApi, _extraOptions, baseQuery) {
-            
+            //Exit if no arg array.
             if(!_arg){
-              return {data: [], total: 0}
+              return {data:{
+                properties:[], 
+                total: 0,
+                id: 1
+              }}
             }
-            var resTotal = 0;
-            const promises = _arg.url?.map(async arg=>{
-              console.log(`${arg.query}&${_arg.search}`)
-              const randomResult = await baseQuery({
-                url: `${arg.query}&${_arg.search}`,
+
+            //Assign Index, arg, 
+            var index = _arg.index;
+            var arg = _arg.url[index];
+            var res = [];
+            var limit = _arg.limit;
+            var start = _arg.start;
+
+            while(index<_arg.url.length){
+              console.log(index, _arg.url.length)
+              var randomResult = await baseQuery({
+                url: `${arg.query}&${_arg.search}&offset=${start}`,
                 method: 'get'
               })
               if (randomResult.error) throw randomResult.error;
-              resTotal = resTotal + randomResult.data.total;
-              
-              return {
-                properties: randomResult.data.bundle,
-                total: randomResult.data.total
+              var start = 1
+              randomResult.data.bundle.map(r=>{
+                if(res.length<limit){
+                  res.push(r);
+                  start++
+                } 
+              })
+              if(res.length===limit){
+                console.log('reached limit')
+                return {data:{
+                  properties:res, 
+                  index: arg.id,
+                  start: start
+                }}
               }
-            });
-            const results = await Promise.all(promises);
-            var res = []
-            var total = 0;
-            var totalP = 0;
-            results.map(r=>{
-              res.push(...r.properties);
-              total = total+r.total;
-              totalP = totalP+r.properties.length;
-            })
-            return {data:{properties:res.reverse().slice(totalP-10).reverse(), total: total}}
+              index++;
+              
+              var temp = arg
+              arg = _arg.url[index];
+              if(!arg){
+                return {data:{
+                  properties:res, 
+                  index: temp.id,
+                  start: start
+                }}
+              }
+            }
           }
         })
     })
