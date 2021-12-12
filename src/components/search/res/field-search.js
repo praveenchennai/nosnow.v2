@@ -1,16 +1,19 @@
 import React, {useState} from 'react';
 import { makeStyles } from '@mui/styles';
 import { listingCss } from 'common/style/style';
-import {Grid, TextField, Paper , Drawer, Divider, Toolbar , MenuItem , Checkbox , ListItemText , AppBar, Button, Typography } from '@mui/material';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
+import {Grid, TextField, Paper, Tooltip, Dialog, Drawer, Divider, Toolbar , MenuItem , Checkbox , ListItemText , AppBar, Button, Typography } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux'
 import {setCity, setCommunity, setSubCondo} from 'api/res';
+import CityPopUp from './city'
 const useStyles = makeStyles(listingCss());
 
 const FieldSearch = () => { 
+    const theme = useTheme();
     const classes = useStyles();
     const dispatch = useDispatch();
-    const city = useSelector(state=>state.res.city);
-    const cityOptions = useSelector(state=>state.res.cityOptions);
+    const city = useSelector(state=>state.res.city) || [];
     const community = useSelector(state=>state.res.community);
     const communityOptions = useSelector(state=>state.res.communityOptions);
     const subCondo = useSelector(state=>state.res.subCondo);
@@ -18,13 +21,10 @@ const FieldSearch = () => {
     const [cdra, setcDra] = useState(false)
     const [cmdra, setcmDra] = useState(false)
     const [scdra, setscDra] = useState(false)
-    const [citySearch, setCitySearch] = useState("")
     const [communitySearch, setCommunitySearch] = useState("")
     const [subCondoSearch, setSubCondoSearch] = useState("")
-
-    const handleCitySearch=(event)=>{
-        setCitySearch(event.target.value)
-    };
+    
+    const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
     const handleCommunitySearch=(event)=>{
         setCommunitySearch(event.target.value)
@@ -72,9 +72,12 @@ return (
                 fullWidth
                 onClick={()=>setcDra(true)}
                 sx={{
-                    height: "100%"
+                    height: "100%",
+                    color: '#56516b',
+                    border: "1px solid"
                 }}
             >
+                <Tooltip title={city?.join(', ') || ''}>
                 <Grid container item display="flex" direction="column">
                     <Typography variant="h6"
                         sx={{
@@ -91,67 +94,16 @@ return (
                         }}
                     >{city?.length} - Selected</Typography>
                 </Grid>
+                </Tooltip>
             </Button>
-            <Drawer
-                anchor={'bottom'}
+            <Dialog 
+                onClose={()=>setcDra(false)} 
                 open={cdra}
-                onClose={()=>setcDra(false)}
+                fullScreen={fullScreen}
+                scroll={"body"}
             >
-                <AppBar position="sticky" elevation={0} className={classes.appbar_site}>
-                    <Toolbar>
-                            <Typography variant="h6"
-                                sx={{
-                                    fontSize: "14px",
-                                    fontWeight: "600",
-                                    color: "#fff",
-                                    flexGrow: 1
-                                }}
-                            >City</Typography>
-                            <Button 
-                                variant="contained" 
-                                className={[classes.btn_orange, classes.mt10].join(' ')}
-                                onClick={()=>{
-                                    setcDra(false);
-                                    setCitySearch('')
-                                }}
-                            >Close</Button>
-                    </Toolbar>
-                </AppBar>
-                <TextField 
-                    variant="outlined" 
-                    type="text" 
-                    margin="normal" 
-                    label="Type in the first few letters of the City."
-                    placeholder="Type in the first few letters of the City."
-                    name="citySearch" 
-                    onChange={handleCitySearch}
-                    value={citySearch || ''} 
-                    sx={{
-                        marginLeft: "20px"
-                    }}
-                />
-                <Paper sx={{
-                    minHeight: "100vh"
-                }}>
-                {cityOptions.filter(f=>city.indexOf(f) > -1).map((pt, index)=>
-                    <MenuItem value={pt} key={index}
-                    onClick={()=>handleCityChange(pt)}
-                    >
-                        <Checkbox checked={city.indexOf(pt) > -1}/>
-                        <ListItemText primary={pt} />
-                    </MenuItem>                  
-                )}
-                <Divider />
-                {cityOptions.filter(f=>f.startsWith(citySearch.toUpperCase()) && city.indexOf(f) === -1).slice(0,15).map((pt, index)=>
-                    <MenuItem value={pt} key={index}
-                    onClick={()=>handleCityChange(pt)}
-                    >
-                        <Checkbox checked={city.indexOf(pt) > -1}/>
-                        <ListItemText primary={pt} />
-                    </MenuItem>                  
-                )}
-                </Paper>
-            </Drawer>
+                <CityPopUp {...{cdra, setcDra}}/>
+            </Dialog>
         </Grid>
         <Grid sm={4} xs={12} item>
             <Button 
