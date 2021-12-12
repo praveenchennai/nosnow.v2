@@ -1,7 +1,7 @@
 import React, { useEffect, useState} from 'react';
 import { useHistory, useParams } from "react-router-dom";
 import { makeStyles } from '@mui/styles';
-import {TableContainer, Typography, Box, Grid} from '@mui/material';
+import {TableContainer, Container, Typography, Box, Grid, Button } from '@mui/material';
 import PropertyCard from '../property/card';
 import LoadingPropertyCard from '../property/loading-card';
 import LotCard from '../lot/card';
@@ -197,9 +197,6 @@ const ResultsMain = () => {
                 start: returnStart
             }));
         }
-        if(pStatus==='pending'){
-
-        }
     }, [pStatus])
 
     return ( 
@@ -226,22 +223,59 @@ const ResultsMain = () => {
                         )}
                     </Grid>
                 :
-                    <Grid container item md={12} display="flex" justify="space-between">
-                        {properties.map((row, i) => 
-                            <Grid container item md={6} key={i} >
-                                {type==='res'?<PropertyCard {...row}/>:<LotCard {...row}/>}
+                    <React.Fragment>
+                        {properties.length===0 ?
+
+                            <Grid 
+                                container
+                                maxWidth="false" 
+                                direction="column" 
+                                alignItems="center"
+                                sx={{
+                                    mt:15
+                                }}
+                            > 
+                                <Typography variant='body1' align='center'
+                                    sx={{
+                                        fontWeight: "600"
+                                    }}
+                                >
+                                    No Properties found. 
+                                </Typography>
+                                <Button variant="contained"
+                                    className={classes.btn_orange}
+                                sx={{
+                                    mt:5,
+                                    background: "#FE8200",
+                                    color: "#fff",
+                                    fontWeight: "bolder",
+                                    '&:hover': {
+                                        background: "#FE8200"
+                                    }
+                                }}
+                                onClick={()=>navi.goBack()}
+                                >Refine Your Search</Button>
                             </Grid>
-                        )}
-                    </Grid>
+                            
+                        : 
+
+                            <Grid container item md={12} display="flex" justify="space-between">
+                                {properties.map((row, i) => 
+                                    <Grid container item md={6} key={i} >
+                                        {type==='res'?<PropertyCard {...row}/>:<LotCard {...row}/>}
+                                    </Grid>
+                                )}
+                            </Grid>
+                        
+                        }
+                    </React.Fragment>
                 }
+
             </TableContainer>
             <MapContainer 
                 center={[26.295073, -81.630814]} 
                 zoom={11} scrollWheelZoom={true}
             >
-                {/* <TileLayer attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                url="http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}"
-                /> */}
                 <TileLayer attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />

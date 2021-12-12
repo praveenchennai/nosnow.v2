@@ -53,6 +53,7 @@ export const bridgeAPI = createApi({
             var start = _arg.start;
 
             while(index<_arg.url.length){
+              console.log(index, _arg.url.length)
               var randomResult = await baseQuery({
                 url: `${arg.query}&${_arg.search}&offset=${start}`,
                 method: 'get'
@@ -66,6 +67,7 @@ export const bridgeAPI = createApi({
                 } 
               })
               if(res.length===limit){
+                console.log('reached limit')
                 return {data:{
                   properties:res, 
                   index: arg.id,
@@ -73,9 +75,15 @@ export const bridgeAPI = createApi({
                 }}
               }
               index++;
+              
+              var temp = arg
               arg = _arg.url[index];
               if(!arg){
-                index--;
+                return {data:{
+                  properties:res, 
+                  index: temp.id,
+                  start: start
+                }}
               }
             }
           }
