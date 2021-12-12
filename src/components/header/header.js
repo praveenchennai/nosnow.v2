@@ -41,49 +41,11 @@ const Header = (props) => {
 
     return (
         <React.Fragment>
-                    <AppBar position="fixed" elevation={0}  className={classes.root} >
-            <Toolbar>
-                <Grid container item md={12} display="flex" justifyContent="space-between">
-                    <Grid container item md={5} display="flex" justifyContent="space-between">
-                        <Grid container item md={6} display="flex" justifyContent="flex-start">
-                            <IconButton onClick={()=>setState(true)} size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
-                                <MenuIcon />
-                            </IconButton>
-                            <IconButton onClick={()=>onBack(true)} size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
-                                <KeyboardBackspaceIcon />
-                            </IconButton>
-                        </Grid>
-                        <Grid container item md={6} display="flex" justifyContent="flex-end">
-                            <IconButton onClick={()=>setState(true)} size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
-                                <Tooltip title="Previous"><ArrowBackIosIcon fontSize="small"/></Tooltip>
-                            </IconButton>
-                            <IconButton onClick={()=>onBack(true)} size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
-                                <Tooltip title="Next"><ArrowForwardIosIcon fontSize="small"/></Tooltip>
-                            </IconButton>
-                            <IconButton onClick={()=>onBack(true)} size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
-                                <Tooltip title="Filter"><FilterListIcon fontSize="small"/></Tooltip>
-                            </IconButton> 
-                        </Grid> 
-                    </Grid>
-                    <Grid container item md={7} display="flex" justifyContent="flex-end">
-                        <IconButton color="inherit" size="large"><Link color="inherit" target="_blank" href="https://www.facebook.com/NoSnowNaples/"><FacebookIcon /></Link></IconButton>
-                        <IconButton color="inherit" size="large"><Link color="inherit" target="_blank" href="https://twitter.com/nosnownaples/"><TwitterIcon /></Link></IconButton>
-                        <IconButton color="inherit" size="large"><Link color="inherit" target="_blank" href="https://www.instagram.com/nosnownaples/"><InstagramIcon /></Link></IconButton>
-                    </Grid>
-                </Grid>
-            </Toolbar>
-        </AppBar>
             <AppBar position="sticky" className={classes.root} elevation={0}>
                 <Toolbar>
                     <IconButton onClick={()=>setState(true)} size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
                         <MenuIcon />
                     </IconButton>
-                    {/* <IconButton onClick={()=>onBack(true)} size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
-                        <KeyboardBackspaceIcon />
-                    </IconButton>
-                    <IconButton onClick={()=>onBack(true)} size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
-                        <FilterListIcon />
-                    </IconButton> */}
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}></Typography>
                     <IconButton color="inherit" size="large"><Link color="inherit" target="_blank" href="https://www.facebook.com/NoSnowNaples/"><FacebookIcon /></Link></IconButton>
                     <IconButton color="inherit" size="large"><Link color="inherit" target="_blank" href="https://twitter.com/nosnownaples/"><TwitterIcon /></Link></IconButton>

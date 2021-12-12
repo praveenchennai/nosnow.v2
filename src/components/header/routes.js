@@ -9,6 +9,7 @@ const HeaderRoutes = (props) => {
             {   
                 props?.location?.pathname==='/'?
                     <HeaderHome />
+                    
                 : 
                     props?.location?.pathname.startsWith('/result')?
                         <HeaderSearch />
