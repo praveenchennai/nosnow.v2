@@ -1,81 +1,47 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { makeStyles } from '@mui/styles';
 import { listingCss } from 'common/style/style';
-import {Grid, Typography, FormControl,  Select, ListItemText, MenuItem} from '@mui/material';
+import {Grid, Typography, Slider} from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux'
 import {setPriceRange} from 'api/res';
 
 const useStyles = makeStyles(listingCss());
 
 const PriceRange = () => {
-    const classes = useStyles();
     const dispatch = useDispatch();
-    const dropDownOptions = useSelector(state=>state.res.priceRangeOptions);
-
-    const [minOptions, setMinOptions] = useState(dropDownOptions);
-    const [maxOptions, setMaxOptions] = useState(dropDownOptions);
-
-
-    const handleMinChange=(event)=>{
-        var params = {key: 'min', value: event.target.value};
-        dispatch(setPriceRange(params));
-        if(event.target.value!==0){
-            var newValues = dropDownOptions.filter(f=>f.id>event.target.value);
-            if(!newValues.find(n=>n.id===0)){
-                newValues.push({id: 0, value: "Any"});
-            }
-            setMaxOptions(newValues);
-        } else {
-            setMaxOptions(dropDownOptions);
-        }
-    };
-
-    const handleMaxChange=(event)=>{
-        var params = {key: 'max', value: event.target.value};
-        dispatch(setPriceRange(params));
-        if(event.target.value!==0){
-            var newValues = dropDownOptions.filter(f=>f.id<event.target.value);
-            if(!newValues.find(n=>n.id===0)){
-                newValues.push({id: 0, value: "Any"})
-            }
-            setMinOptions(newValues);
-        } else {
-            setMaxOptions(dropDownOptions);
-        }
+    const min = useSelector(state=>state.res.priceRange.min);
+    const max = useSelector(state=>state.res.priceRange.max);
+    const marks = useSelector(state=>state.res.priceRangeOptions);
+    const handleChange = (event, newValue) => {
+        dispatch(setPriceRange(newValue));
     };
 
 return ( 
     <React.Fragment>
-        <Grid sm={3} xs={6} item>
-            <Typography variant="body1" component="h2">Price Range - Min</Typography>
-            <FormControl variant="outlined" className={classes.formControl} fullWidth>
-                <Select
-                    renderValue={(min)=>(<Typography>{min}</Typography>)}
-                    onChange={handleMinChange}
-                >
-                    {minOptions.map(pt=>
-                        <MenuItem value={pt.id} key={pt.id}>
-                            <ListItemText primary={pt.value} />
-                        </MenuItem>
-                    )}
-                </Select>
-            </FormControl>
+        <Grid sm={1} xs={12} item />
+        <Grid sm={4} xs={12} item>
+            <Typography variant="body1" component="h2"
+                sx={{
+                    marginBottom: "30px"
+                }}
+            >Price Range</Typography>
+            <Slider
+                sx={{
+                    color: "#56516b",
+                    '& .MuiSlider-thumb': {
+                        backgroundColor: '#FE8200'
+                    }
+                }}
+                value={[min, max]}
+                onChange={handleChange}
+                step={1}
+                max={17}
+                valueLabelDisplay="on"
+                valueLabelFormat={value=>marks?.find(m=>m.value===value)?.label || '$2,000,000'}
+                //marks={marks}
+            />
         </Grid>
-        <Grid sm={3} xs={6} item>
-        <Typography variant="body1" component="h2">Price Range - Max</Typography>
-            <FormControl variant="outlined" className={classes.formControl} fullWidth>
-                <Select
-                renderValue={(max)=>(<Typography >{max}</Typography>)}
-                onChange={handleMaxChange}
-                >
-                    {maxOptions.map(pt=>
-                        <MenuItem value={pt.id} key={pt.id}>
-                            <ListItemText primary={pt.value} />
-                        </MenuItem>
-                    )}
-                </Select>
-            </FormControl>
-        </Grid>
+        <Grid sm={1} xs={12} item />
     </React.Fragment>
 
 )}

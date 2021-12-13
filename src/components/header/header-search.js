@@ -31,6 +31,7 @@ const useStyles = makeStyles({
 
 
 const HeaderSearch = (props) => {
+    console.log('reached')
     const navi = useHistory();
     const dispatch = useDispatch();
     const [state, setState] = React.useState(false);
@@ -48,8 +49,8 @@ const HeaderSearch = (props) => {
             <AppBar position="sticky" elevation={0}  className={classes.root} >
                 <Toolbar>
                     <Grid container item md={12} display="flex" justifyContent="space-between">
-                        <Grid container item md={5} display="flex" justifyContent="space-between">
-                            <Grid container item md={6} display="flex" justifyContent="flex-start">
+                        <Grid container item xs={12} md={5} display="flex" justifyContent="space-between">
+                            <Grid container item xs={6} display="flex" justifyContent="flex-start">
                                 <IconButton onClick={()=>setState(true)} size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
                                     <MenuIcon />
                                 </IconButton>
@@ -57,7 +58,7 @@ const HeaderSearch = (props) => {
                                     <KeyboardBackspaceIcon />
                                 </IconButton>
                             </Grid>
-                            <Grid container item md={6} display="flex" justifyContent="flex-end">
+                            <Grid container item xs={6} display="flex" justifyContent="flex-end">
                                 <IconButton onClick={()=>dispatch(setPage(page===0?0:page-1))} size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
                                     <Tooltip title="Previous"><ArrowBackIosIcon fontSize="small"/></Tooltip>
                                 </IconButton>
@@ -69,7 +70,14 @@ const HeaderSearch = (props) => {
                                 </IconButton> 
                             </Grid> 
                         </Grid>
-                        <Grid container item md={7} display="flex" justifyContent="flex-end">
+                        <Grid container item md={7} justifyContent="flex-end"
+                            sx={{
+                                display: {
+                                    xs: "none", 
+                                    md: "flex"
+                                }
+                            }}
+                        >
                             <IconButton color="inherit" size="large"><Link color="inherit" target="_blank" href="https://www.facebook.com/NoSnowNaples/"><FacebookIcon /></Link></IconButton>
                             <IconButton color="inherit" size="large"><Link color="inherit" target="_blank" href="https://twitter.com/nosnownaples/"><TwitterIcon /></Link></IconButton>
                             <IconButton color="inherit" size="large"><Link color="inherit" target="_blank" href="https://www.instagram.com/nosnownaples/"><InstagramIcon /></Link></IconButton>
