@@ -1,15 +1,19 @@
 import React, {useState} from 'react';
 import { makeStyles } from '@mui/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 import { listingCss } from 'common/style/style';
-import {Grid, AppBar, FormControl, Select,Toolbar, MenuItem, Checkbox, ListItemText, Typography, Button, Drawer } from '@mui/material';
+import {Grid, AppBar, Dialog, Select,Toolbar, MenuItem, Checkbox, ListItemText, Typography, Button, Drawer } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux'
 import {setPropertySubType, setCommunityFeatures} from 'api/res';
 
 const useStyles = makeStyles(listingCss());
 
 const TypeSearch = () => {
+    const theme = useTheme();
     const classes = useStyles();
     const dispatch = useDispatch();
+    const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
     const PropertySubTypeOptions = useSelector(state=>state.res.PropertySubTypeOptions);
     const PropertySubType = useSelector(state=>state.res.PropertySubType);
     const CommunityFeatures = useSelector(state=>state.res.CommunityFeatures);
@@ -44,7 +48,9 @@ return (
                 fullWidth
                 onClick={()=>setpDra(true)}
                 sx={{
-                    height: "100%"
+                    height: "100%",
+                    color: '#56516b',
+                    border: "1px solid"
                 }}
             >
                 <Grid container item display="flex" direction="column">
@@ -71,7 +77,9 @@ return (
                 fullWidth
                 onClick={()=>setcDra(true)}
                 sx={{
-                    height: "100%"
+                    height: "100%",
+                    color: '#56516b',
+                    border: "1px solid"
                 }}
             >
                 <Grid container item display="flex" direction="column">
@@ -92,13 +100,18 @@ return (
                 </Grid>
             </Button>
         </Grid>
-
-        <Drawer
-            anchor={'bottom'}
+        <Dialog 
+            onClose={()=>setpDra(false)} 
             open={pdra}
-            onClose={()=>setpDra(false)}
+            fullScreen={fullScreen}
+            scroll={"body"}
+           
         >
-            <AppBar position="sticky" elevation={0} className={classes.appbar_site}>
+            <AppBar position="sticky" elevation={0} className={classes.appbar_site}
+                sx={{
+                    minWidth: "400px"
+                }}
+            >
                 <Toolbar>
                         <Typography variant="h6"
                             sx={{
@@ -116,20 +129,24 @@ return (
                 </Toolbar>
             </AppBar>
             {PropertySubTypeOptions.map(pt=>
-                <MenuItem value={pt.id} key={pt.id}
-                 onClick={()=>handlePropertyChange(pt.id)}
-                >
+                <MenuItem value={pt.id} key={pt.id} onClick={()=>handlePropertyChange(pt.id)}>
                     <Checkbox checked={PropertySubType.indexOf(pt.id) > -1}/>
                     <ListItemText primary={pt.value} />
                 </MenuItem>                  
             )}
-        </Drawer>
-        <Drawer
-            anchor={'bottom'}
+        </Dialog>
+        <Dialog 
+            onClose={()=>setcDra(false)} 
             open={cdra}
-            onClose={()=>setcDra(false)}
+            fullScreen={fullScreen}
+            scroll={"body"}
+           
         >
-            <AppBar position="sticky" elevation={0} className={classes.appbar_site}>
+            <AppBar position="sticky" elevation={0} className={classes.appbar_site}
+                sx={{
+                    minWidth: "400px"
+                }}
+            >
                 <Toolbar>
                         <Typography variant="h6"
                             sx={{
@@ -147,7 +164,6 @@ return (
                 </Toolbar>
             </AppBar>
             {CommunityFeaturesOptions.map(pt=>
-
                 <MenuItem value={pt.id} key={pt.id}
                     onClick={()=>handleCommunityChange(pt.id)}
                 >
@@ -155,7 +171,7 @@ return (
                     <ListItemText primary={pt.value} />
                 </MenuItem>
             )}
-        </Drawer>
+        </Dialog>
     </React.Fragment>
 
 )}

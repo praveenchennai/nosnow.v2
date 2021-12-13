@@ -1,7 +1,7 @@
 import React, { useEffect, useState} from 'react';
 import { useHistory, useParams } from "react-router-dom";
 import { makeStyles } from '@mui/styles';
-import {TableContainer, Container, Typography, Box, Grid, Button } from '@mui/material';
+import {TableContainer, Typography, Box, Grid, Button } from '@mui/material';
 import PropertyCard from '../property/card';
 import LoadingPropertyCard from '../property/loading-card';
 import LotCard from '../lot/card';
@@ -18,8 +18,7 @@ const useStyles = makeStyles({
     paper: {
       backgroundColor: "#002C5D",
       color: "#fff",
-  },
-
+  }
 });
 
 var orderFlowRes = [
@@ -50,6 +49,7 @@ const ResultsMain = () => {
     const classes = useStyles();
     const dispatch = useDispatch()
     const previousPages = useSelector(state=>state.res.previousPages);
+    const priceRangeOptions = useSelector(state=>state.res.priceRangeOptions);
     const page = useSelector(state=>state.res.page);
     const limit = useSelector(state=>state.res.limit);
     const { type } = useParams();
@@ -104,10 +104,12 @@ const ResultsMain = () => {
             query = query + `&GarageSpaces.gte=${GarageSpaces}`
         }
         if(priceRange.min>0){
-            query = query + `&ListPrice.gte=${priceRange.min}`
+            var m = priceRangeOptions.find(p=>p.value===priceRange.min).v
+            query = query + `&ListPrice.gte=${m}`
         }
         if(priceRange.max>0){
-            query = query + `&ListPrice.lte=${priceRange.max}`
+            var m = priceRangeOptions.find(p=>p.value===priceRange.max).v
+            query = query + `&ListPrice.lte=${m}`
         }
         if(beds.min>0){
             query = query + `&BedroomsTotal.gte=${beds.min}`   
@@ -211,7 +213,9 @@ const ResultsMain = () => {
                 sx={{ 
                     height: "calc(100vh - 65px)",
                     maxHeight: "calc(100vh - 65px)",
-                    width: "70vw"
+                    width: {
+                        sx: "100vw",
+                        md:"70vw"}
                 }}
             > 
                 {pStatus==='pending'?
@@ -259,9 +263,9 @@ const ResultsMain = () => {
                             
                         : 
 
-                            <Grid container item md={12} display="flex" justify="space-between">
+                            <Grid container item columns={12} display="flex" justify="space-between">
                                 {properties.map((row, i) => 
-                                    <Grid container item md={6} key={i} >
+                                    <Grid container item xs={12} sm={6} md={12} lg={6} key={i} >
                                         {type==='res'?<PropertyCard {...row}/>:<LotCard {...row}/>}
                                     </Grid>
                                 )}
@@ -270,8 +274,15 @@ const ResultsMain = () => {
                         }
                     </React.Fragment>
                 }
-
             </TableContainer>
+            <TableContainer
+            sx={{
+                display: {
+                    xs: "none", 
+                    md: "flex"
+                }
+            }}
+            >
             <MapContainer 
                 center={[26.295073, -81.630814]} 
                 zoom={11} scrollWheelZoom={true}
@@ -287,6 +298,7 @@ const ResultsMain = () => {
                     </Marker>
                 )}
             </MapContainer>
+            </TableContainer>
         </Box>
     </React.Fragment>
     
