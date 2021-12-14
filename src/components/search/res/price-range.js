@@ -1,11 +1,7 @@
 import React from 'react';
-import { makeStyles } from '@mui/styles';
-import { listingCss } from 'common/style/style';
 import {Grid, Typography, Slider} from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux'
 import {setPriceRange} from 'api/res';
-
-const useStyles = makeStyles(listingCss());
 
 const PriceRange = () => {
     const dispatch = useDispatch();
@@ -35,9 +31,9 @@ return (
                 value={[min, max]}
                 onChange={handleChange}
                 step={1}
-                max={17}
+                max={26}
                 valueLabelDisplay="on"
-                valueLabelFormat={value=>marks?.find(m=>m.value===value)?.label || '$2,000,000'}
+                valueLabelFormat={value=>marks?.find(m=>m.value===value)?.label || '$30,000,000'}
                 //marks={marks}
             />
         </Grid>

@@ -80,7 +80,7 @@ const ResultsMain = () => {
         }
         query = '';
         if(keyword.length>0){
-            query = query + `&UnparsedAddress.in=${keyword || ''}`
+            query = query + `ListingId=${keyword || ''}`
         }
         if(city.length>0){
             query = query + `&City.in=${city.join(", ") || ''}`
@@ -107,7 +107,7 @@ const ResultsMain = () => {
             var m = priceRangeOptions.find(p=>p.value===priceRange.min).v
             query = query + `&ListPrice.gte=${m}`
         }
-        if(priceRange.max>0){
+        if(priceRange.max<17){
             var m = priceRangeOptions.find(p=>p.value===priceRange.max).v
             query = query + `&ListPrice.lte=${m}`
         }
@@ -187,10 +187,11 @@ const ResultsMain = () => {
         }
     });
 
+    console.log(JSON.stringify(properties));
+
 
 
     useEffect(()=>{
-        console.log(pStatus)
         if(pStatus==='fulfilled'){
             setSkip(true);
             dispatch(setPreviousPages({
