@@ -54,6 +54,7 @@ const ResultsMain = () => {
     const limit = useSelector(state=>state.res.limit);
     const { type } = useParams();
     const {
+        mls,
         keyword,
         city,
         community,
@@ -80,7 +81,10 @@ const ResultsMain = () => {
         }
         query = '';
         if(keyword.length>0){
-            query = query + `ListingId=${keyword || ''}`
+            query = query + `&UnparsedAddress.in=${keyword || ''}`
+        }
+        if(mls.length>0){
+            query = query + `&ListingId=${mls || ''}`
         }
         if(city.length>0){
             query = query + `&City.in=${city.join(", ") || ''}`
@@ -186,8 +190,6 @@ const ResultsMain = () => {
             }
         }
     });
-
-    console.log(JSON.stringify(properties));
 
 
 

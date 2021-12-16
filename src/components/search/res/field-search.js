@@ -19,7 +19,7 @@ const FieldSearch = () => {
 
 return ( 
     <React.Fragment>
-        <Grid sm={4} xs={12} item>
+        <Grid md={4} sm={6} xs={12} item>
             <Button 
                 variant="outlined" 
                 fullWidth
@@ -58,7 +58,7 @@ return (
                 <CityPopUp {...{cdra, setcDra}}/>
             </Dialog>
         </Grid>
-        <Grid sm={4} xs={12} item>
+        <Grid md={4} sm={6} xs={12} item>
             <Button 
                 variant="outlined" 
                 fullWidth
@@ -97,7 +97,7 @@ return (
                 <CommunityPopUp {...{cmdra, setcmDra}}/>
             </Dialog>
         </Grid>
-        <Grid sm={4} xs={12} item>
+        <Grid md={4} sm={6} xs={12} item>
             <Button 
                 variant="outlined" 
                 fullWidth

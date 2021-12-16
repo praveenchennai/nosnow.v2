@@ -42,7 +42,7 @@ const TypeSearch = () => {
 
 return ( 
     <React.Fragment>
-        <Grid md={3} sm={6} xs={12} item>
+        <Grid md={4} sm={6} xs={12}  item>
             <Button 
                 variant="outlined" 
                 fullWidth
@@ -71,7 +71,7 @@ return (
                 </Grid>
             </Button>
         </Grid>
-        <Grid md={3} sm={6} xs={12} item>
+        <Grid md={4} sm={6} xs={12}  item>
             <Button 
                 variant="outlined" 
                 fullWidth

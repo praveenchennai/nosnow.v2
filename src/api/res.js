@@ -26,6 +26,7 @@ export const ResSearchFields = createSlice({
         order: 'desc',
         sortBy: 'ModificationTimestamp',
         keyword: '',
+        mls: '',
         PropertyType: ['Residential', 'Residential Income', 'Commercial Sale'],
         city: '',
         cityOptions: [
@@ -88,15 +89,15 @@ export const ResSearchFields = createSlice({
             {id: 'Attached', value: 'Attached'},
             {id: 'Detached', value: 'Detached'}
         ],
-        GarageSpaces: 'Any',
+        GarageSpaces: 0,
         GarageSpacesOptions: [
-            {id: 0, value: 'Any'},
-            {id: 1, value: '1+'},
-            {id: 2, value: '2+'},
-            {id: 3, value: '3+'},
-            {id: 4, value: '4+'},
-            {id: 5, value: '5+'},
-            {id: 6, value: '6+'}
+            {value: 0, label: 'Any', v: 0},
+            {value: 1, label: '1+', v: 1},
+            {value: 2, label: '2+', v: 2},
+            {value: 3, label: '3+', v: 3},
+            {value: 4, label: '4+', v: 4},
+            {value: 5, label: '5+', v: 5},
+            {value: 6, label: '6+', v: 6}
         ],
         priceRange: {
             min: 0, max: 26
@@ -220,6 +221,12 @@ export const ResSearchFields = createSlice({
             return{
                 ...state,
                 keyword:action.payload
+            }
+        },
+        setMls: (state, action) => {
+            return{
+                ...state,
+                mls:action.payload
             }
         },
         setCity: (state, action) => {
@@ -408,6 +415,7 @@ export const {
     setPreviousPages,
     resetPreviousPages,
     setKeyword,
+    setMls,
     setCity,
     setCommunity,
     setSubCondo,
