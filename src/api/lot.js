@@ -1,18 +1,39 @@
 import { createSlice } from '@reduxjs/toolkit';
+import * as cities from './cities'
+import * as communities from './communities'
+import * as subDivision from './subdivision'
 
 export const LotSearchFields = createSlice({
     name: 'lot',
     initialState: {
-        keyword: '',
-        city: '',
-        community: '',
-        subCondo: '',
+        lmls: '',
+        lkeyword: '',
+        lcity: '',
+        cityOptions: [
+            "NAPLES",
+            "BONITA SPRINGS",
+            "ESTERO",
+            "MARCO ISLAND",
+            "CAPE CORAL",
+            "LEHIGH ACRES",
+            "FORT MYERS",
+            ...cities.cities()
+        ],
+        lcommunity: '',
+        communityOptions: [
+            ...communities.Communities()
+        ].sort(),
+        lsubCondo: '',
+        subCondoOptions: [
+            ...subDivision.subDivisions()
+        ].sort(),
         priceRange: {
             min: 0, max: 0
         },
         acres: {
             min: 0, max: 0
         },
+
         totalFee: {
             min: 0, max: 0
         },
@@ -25,28 +46,34 @@ export const LotSearchFields = createSlice({
         setKeyword: (state, action) => {
             return{
                 ...state,
-                keyword:action.payload
+                lkeyword:action.payload
             }
             
+        },
+        setMls: (state, action) => {
+            return{
+                ...state,
+                lmls:action.payload
+            }
         },
         setCity: (state, action) => {
             return{
                 ...state,
-                city:action.payload
+                lcity:action.payload
             }
             
         },
         setCommunity: (state, action) => {
             return{
                 ...state,
-                community:action.payload
+                lcommunity:action.payload
             }
             
         },
         setSubCondo: (state, action) => {
             return{
                 ...state,
-                subCondo:action.payload
+                lsubCondo:action.payload
             }
             
         },
@@ -113,6 +140,7 @@ export const LotSearchFields = createSlice({
 
 export const { 
     setKeyword,
+    setMls,
     setCity,
     setCommunity,
     setSubCondo,

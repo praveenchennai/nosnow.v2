@@ -3,28 +3,29 @@ import { makeStyles } from '@mui/styles';
 import { listingCss } from 'common/style/style';
 import { TextField, Paper , Divider, Toolbar , MenuItem , Checkbox , ListItemText , AppBar, Button, Typography } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux'
-import {setSubCondo} from 'api/res';
+import {setCommunity} from 'api/lot';
 const useStyles = makeStyles(listingCss());
 
-const GaragePopUp = (props) => { 
+const CommunityPopUp = (props) => { 
     const classes = useStyles();
     const dispatch = useDispatch();
-    const AttachedGarageYN = useSelector(state=>state.res.AttachedGarageYN);
-    const GarageSpaces = useSelector(state=>state.res.GarageSpaces);
-    const GarageSpacesOptions = useSelector(state=>state.res.GarageSpacesOptions);
+    const community = useSelector(state=>state.lot.lcommunity);
+    const communityOptions = useSelector(state=>state.lot.communityOptions);
+    const [communitySearch, setCommunitySearch] = useState("")
+    const {cmdra, setcmDra} = props
 
-    const handleSubCondoSearch=(event)=>{
-        setSubCondoSearch(event.target.value)
+    const handleCommunitySearch=(event)=>{
+        setCommunitySearch(event.target.value)
     };
 
-    const handleSubCondoChange=(event)=>{
-        var value =[...subCondo];
-        if(subCondo.indexOf(event) > -1){
+    const handleCommunityChange=(event)=>{
+        var value =[...community];
+        if(community.indexOf(event) > -1){
             value = value.filter(v=>v!==event)
         } else {
             value.push(event)
         }
-        dispatch(setSubCondo(value))
+        dispatch(setCommunity(value))
     };
 
 
@@ -39,13 +40,13 @@ return (
                         color: "#fff",
                         flexGrow: 1
                     }}
-                >Subdivision / Condo</Typography>
+                >Commnity / Development Name</Typography>
                 <Button 
                     variant="contained" 
                     className={[classes.btn_orange, classes.mt10].join(' ')}
                     onClick={()=>{
-                        setscDra(false);
-                        setSubCondoSearch('')
+                        setcmDra(false);
+                        setCommunitySearch('')
                     }}
                 >Close</Button>
             </Toolbar>
@@ -54,11 +55,11 @@ return (
             variant="outlined" 
             type="text" 
             margin="normal" 
-            label="Type in the first few letters of the SubDivision / Condo."
-            placeholder="Type in the first few letters of the SubDivision / Condo."
-            name="subCondoSearch" 
-            onChange={handleSubCondoSearch}
-            value={subCondoSearch || ''} 
+            label="Type in the first few letters of the Community / Development Name."
+            placeholder="Type in the first few letters of the Community / Development Name."
+            name="communitySearch" 
+            onChange={handleCommunitySearch}
+            value={communitySearch || ''} 
             sx={{
                 marginLeft: "20px",
                 marginRight: "20px",
@@ -68,11 +69,11 @@ return (
         <Paper 
             elevation={0}
         >
-            {subCondoOptions.filter(f=>subCondo.indexOf(f) > -1).map((pt, index)=>
+            {communityOptions.filter(f=>community.indexOf(f) > -1).map((pt, index)=>
                 <MenuItem value={pt} key={index}
-                onClick={()=>handleSubCondoChange(pt)}
+                onClick={()=>handleCommunityChange(pt)}
                 >
-                    <Checkbox checked={subCondo.indexOf(pt) > -1}
+                    <Checkbox checked={community.indexOf(pt) > -1}
                         sx={{
                             color: "#56516b",
                             '&.Mui-checked': {
@@ -84,11 +85,11 @@ return (
                 </MenuItem>                  
             )}
             <Divider />
-            {subCondoOptions.filter(f=>f.startsWith(subCondoSearch.toUpperCase()) && subCondo.indexOf(f) === -1).slice(0,10).map((pt, index)=>
+            {communityOptions.filter(f=>f.startsWith(communitySearch.toUpperCase()) && community.indexOf(f) === -1).slice(0,10).map((pt, index)=>
                 <MenuItem value={pt} key={index}
-                onClick={()=>handleSubCondoChange(pt)}
+                onClick={()=>handleCommunityChange(pt)}
                 >
-                    <Checkbox checked={subCondo.indexOf(pt) > -1}
+                    <Checkbox checked={community.indexOf(pt) > -1}
                         sx={{
                             color: "#56516b",
                             '&.Mui-checked': {
@@ -104,4 +105,4 @@ return (
 
 )}
 
-export default GaragePopUp;
+export default CommunityPopUp;
