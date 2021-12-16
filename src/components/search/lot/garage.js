@@ -5,7 +5,7 @@ import { listingCss } from 'common/style/style';
 import { useTheme } from '@mui/material/styles';
 import {Grid, Slider, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, Dialog, Button, AppBar, Toolbar, Checkbox, MenuItem, Typography, ListItemText} from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux'
-import {setAttachedGarageYN, setGarageSpaces} from 'api/res';
+import {setAttachedGarageYN, setGarageSpaces} from 'api/lot';
 
 const useStyles = makeStyles(listingCss());
 
@@ -15,10 +15,10 @@ const Garage = () => {
     const [gdra, setgDra] = useState(false)
     const dispatch = useDispatch();
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
-    const AttachedGarageYNOptions = useSelector(state=>state.res.AttachedGarageYNOptions);
-    const AttachedGarageYN = useSelector(state=>state.res.AttachedGarageYN);
-    const GarageSpaces = useSelector(state=>state.res.GarageSpaces);
-    const GarageSpacesOptions = useSelector(state=>state.res.GarageSpacesOptions);
+    const AttachedGarageYNOptions = useSelector(state=>state.lot.AttachedGarageYNOptions);
+    const AttachedGarageYN = useSelector(state=>state.lot.AttachedGarageYN);
+    const GarageSpaces = useSelector(state=>state.lot.GarageSpaces);
+    const GarageSpacesOptions = useSelector(state=>state.lot.GarageSpacesOptions);
 
     const handleRadioChange=(event)=>{
         console.log(event.target.value)

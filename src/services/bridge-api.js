@@ -36,6 +36,7 @@ export const bridgeAPI = createApi({
     endpoints: (builder) => ({
         multipleCustom: builder.query({
           async queryFn(_arg, _queryApi, _extraOptions, baseQuery) {
+
             //Exit if no arg array.
             if(!_arg){
               return {data:{
@@ -53,9 +54,9 @@ export const bridgeAPI = createApi({
             var start = _arg.start;
 
             while(index<_arg.url.length){
-              console.log(index, _arg.url.length)
+              console.log(`${arg.query}&${_arg.search}&offset=${start}`)
               var randomResult = await baseQuery({
-                url: `${arg.query}&${_arg.search}&offset=${start}`,
+                url: `${arg.query}&${_arg.search}&offset=0`,
                 method: 'get'
               })
               if (randomResult.error) throw randomResult.error;
@@ -67,7 +68,6 @@ export const bridgeAPI = createApi({
                 } 
               })
               if(res.length===limit){
-                console.log('reached limit')
                 return {data:{
                   properties:res, 
                   index: arg.id,

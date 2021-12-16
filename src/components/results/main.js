@@ -34,9 +34,13 @@ var orderFlowRes = [
 
 var orderFlowLot = [
     {id: 1, query:'&PropertyType=Land&ListAgentMlsId=505199&MlsStatus=Active&sortBy=ListPrice&order=desc'},
-    {id: 2, query:'&PropertyType=Land&ListAgentMlsId=505199&MlsStatus.in=Pending&sortBy=ListPrice&order=desc'},
-    {id: 3, query:'&PropertyType=Land&ListAgentMlsId=505199&MlsStatus=Pending With Contingencies&sortBy=ListPrice&order=desc'},
-    {id: 4, query:'&PropertyType=Land&ListAgentMlsId=505199&MlsStatus=Sold&sortBy=CloseDate&order=desc'},
+    {id: 2, query:'&PropertyType=Land&MlsStatus=Active&sortBy=ListPrice&order=desc'},
+    {id: 3, query:'&PropertyType=Land&ListAgentMlsId=505199&MlsStatus.in=Pending&sortBy=ListPrice&order=desc'},
+    {id: 4, query:'&PropertyType=Land&MlsStatus.in=Pending&sortBy=ListPrice&order=desc'},
+    {id: 5, query:'&PropertyType=Land&ListAgentMlsId=505199&MlsStatus=Pending With Contingencies&sortBy=ListPrice&order=desc'},
+    {id: 6, query:'&PropertyType=Land&MlsStatus=Pending With Contingencies&sortBy=ListPrice&order=desc'},
+    {id: 7, query:'&PropertyType=Land&ListAgentMlsId=505199&MlsStatus=Sold&sortBy=CloseDate&order=desc'},
+    {id: 8, query:'&PropertyType=Land&MlsStatus=Sold&sortBy=CloseDate&order=desc'}
 ]
 
 var params = undefined;
@@ -54,6 +58,7 @@ const ResultsMain = () => {
     const limit = useSelector(state=>state.res.limit);
     const { type } = useParams();
     const {
+        mls,
         keyword,
         city,
         community,
@@ -70,92 +75,119 @@ const ResultsMain = () => {
         guestHouse,
         //newConstruction,
     } = useSelector(state=>state.res);
+    const {
+        lmls,
+        lkeyword,
+        lcity,
+        lcommunity,
+        lsubCondo
+    } = useSelector(state=>state.lot);
     const [skip, setSkip] = useState(true)
 
     useEffect(()=>{
-        if(type==='land'){
+        query = '';
+        if(type==='lot-land'){
             params = orderFlowLot;
+            if(lkeyword.length>0){
+                query = query + `&UnparsedAddress.in=${keyword || ''}`
+            }
+            if(lmls.length>0){
+                query = query + `&ListingId=${mls || ''}`
+            }
+            if(lcity.length>0){
+                query = query + `&City.in=${lcity.join(", ") || ''}`
+            }
+            if(lcommunity.length>0){
+                query = query + `&ParkName.in=${lcommunity.join(", ") || ''}`
+            }
+            if(lsubCondo.length>0){
+                query = query + `&SubdivisionName.in=${lsubCondo.join(", ") || ''}`
+            }
         } else if(type==='res'){
             params = orderFlowRes;
+            if(keyword.length>0){
+                query = query + `&UnparsedAddress.in=${keyword || ''}`
+            }
+            if(mls.length>0){
+                query = query + `&ListingId=${mls || ''}`
+            }
+            if(city.length>0){
+                query = query + `&City.in=${city.join(", ") || ''}`
+            }
+            if(community.length>0){
+                query = query + `&ParkName.in=${community.join(", ") || ''}`
+            }
+            if(subCondo.length>0){
+                query = query + `&SubdivisionName.in=${subCondo.join(", ") || ''}`
+            }
+            if(PropertySubType.length>0){
+                query = query + `&ArchitecturalStyle.in=${PropertySubType.join(", ") || ''}`
+            }
+            if(CommunityFeatures.length>0){
+                query = query + `&CommunityFeatures.in=${CommunityFeatures.join(", ") || ''}`
+            }
+            if(AttachedGarageYN!=='Any'){
+                query = query + `&AttachedGarageYN=${AttachedGarageYN==='Attached'?true:false}`
+            }
+            if(GarageSpaces!==0){
+                query = query + `&GarageSpaces.gte=${GarageSpaces}`
+            }
+            if(priceRange.min>0){
+                var m = priceRangeOptions.find(p=>p.value===priceRange.min).v
+                query = query + `&ListPrice.gte=${m}`
+            }
+            if(priceRange.max<17){
+                var m = priceRangeOptions.find(p=>p.value===priceRange.max).v
+                query = query + `&ListPrice.lte=${m}`
+            }
+            if(beds.min>0){
+                query = query + `&BedroomsTotal.gte=${beds.min}`   
+            }
+            if(beds.max<5){
+                query = query + `&BedroomsTotal.lte=${beds.max}`   
+            }
+            if(baths.min>0){
+                query = query + `&BathroomsTotalDecimal.gte=${baths.min}`   
+            }
+            if(baths.max<5){
+                query = query + `&BathroomsTotalDecimal.lte=${baths.max}`   
+            }
+            if(sqft.min>0){
+                query = query + `&LivingArea.gte=${sqft.min}`
+            }
+            if(sqft.max>0){
+                query = query + `&LivingArea.lte=${sqft.max}`
+            }
+            if(yearBuilt.min>0){
+                query = query + `&YearBuilt.gte=${yearBuilt.min}`
+            }
+            if(yearBuilt.max>0){
+                query = query + `&YearBuilt.lte=${yearBuilt.max}`
+            }
+            if(WaterfrontFeatures.length>0){
+                query = query + `&WaterfrontFeatures.in=${WaterfrontFeatures.join(", ") || ''}`
+            }
+            if(NABOR_PetsLimitMaxNumber==='Not Allowed'){
+                query = query + `&NABOR_PetsLimitMaxNumber=0`;
+            }
+            if(golfAccess){
+                query = query + `&NABOR_GulfAccessYN=true`;
+            }
+            if(waterFrontView){
+                query = query + `&WaterfrontYN=true`;
+            }
+            if(guestHouse){
+                query = query + `&NABOR_GuestHouseLivingArea.ne=null`;
+            }
+            if(guestHouse){
+                query = query + `&NABOR_GuestHouseLivingArea.ne=null`;
+            }
+            // if(!newConstruction){
+            //     query = query + `&BuildingFeatures.nin=['DSL/Cable Available', 'Elevator', 'Concierge Service]`;
+            // }
         }
-        query = '';
-        if(keyword.length>0){
-            query = query + `&UnparsedAddress.in=${keyword || ''}`
-        }
-        if(city.length>0){
-            query = query + `&City.in=${city.join(", ") || ''}`
-        }
-        if(community.length>0){
-            query = query + `&ParkName.in=${community.join(", ") || ''}`
-        }
-        if(subCondo.length>0){
-            query = query + `&SubdivisionName.in=${subCondo.join(", ") || ''}`
-        }
-        if(PropertySubType.length>0){
-            query = query + `&ArchitecturalStyle.in=${PropertySubType.join(", ") || ''}`
-        }
-        if(CommunityFeatures.length>0){
-            query = query + `&CommunityFeatures.in=${CommunityFeatures.join(", ") || ''}`
-        }
-        if(AttachedGarageYN!=='Any'){
-            query = query + `&AttachedGarageYN=${AttachedGarageYN==='Attached'?true:false}`
-        }
-        if(GarageSpaces!=='Any'){
-            query = query + `&GarageSpaces.gte=${GarageSpaces}`
-        }
-        if(priceRange.min>0){
-            var m = priceRangeOptions.find(p=>p.value===priceRange.min).v
-            query = query + `&ListPrice.gte=${m}`
-        }
-        if(priceRange.max>0){
-            var m = priceRangeOptions.find(p=>p.value===priceRange.max).v
-            query = query + `&ListPrice.lte=${m}`
-        }
-        if(beds.min>0){
-            query = query + `&BedroomsTotal.gte=${beds.min}`   
-        }
-        if(beds.max<5){
-            query = query + `&BedroomsTotal.lte=${beds.max}`   
-        }
-        if(baths.min>0){
-            query = query + `&BathroomsTotalDecimal.gte=${baths.min}`   
-        }
-        if(baths.max<5){
-            query = query + `&BathroomsTotalDecimal.lte=${baths.max}`   
-        }
-        if(sqft.min>0){
-            query = query + `&LivingArea.gte=${sqft.min}`
-        }
-        if(sqft.max>0){
-            query = query + `&LivingArea.lte=${sqft.max}`
-        }
-        if(yearBuilt.min>0){
-            query = query + `&YearBuilt.gte=${yearBuilt.min}`
-        }
-        if(yearBuilt.max>0){
-            query = query + `&YearBuilt.lte=${yearBuilt.max}`
-        }
-        if(WaterfrontFeatures.length>0){
-            query = query + `&WaterfrontFeatures.in=${WaterfrontFeatures.join(", ") || ''}`
-        }
-        if(NABOR_PetsLimitMaxNumber==='Not Allowed'){
-            query = query + `&NABOR_PetsLimitMaxNumber=0`;
-        }
-        if(golfAccess){
-            query = query + `&NABOR_GulfAccessYN=true`;
-        }
-        if(waterFrontView){
-            query = query + `&WaterfrontYN=true`;
-        }
-        if(guestHouse){
-            query = query + `&NABOR_GuestHouseLivingArea.ne=null`;
-        }
-        if(guestHouse){
-            query = query + `&NABOR_GuestHouseLivingArea.ne=null`;
-        }
-        // if(!newConstruction){
-        //     query = query + `&BuildingFeatures.nin=['DSL/Cable Available', 'Elevator', 'Concierge Service]`;
-        // }
+        
+        
         dispatch(resetPreviousPages(0));
         dispatch(setPage(0));
     }, [params])
@@ -190,7 +222,6 @@ const ResultsMain = () => {
 
 
     useEffect(()=>{
-        console.log(pStatus)
         if(pStatus==='fulfilled'){
             setSkip(true);
             dispatch(setPreviousPages({

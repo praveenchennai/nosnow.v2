@@ -31,7 +31,6 @@ const useStyles = makeStyles({
 
 
 const HeaderSearch = (props) => {
-    console.log('reached')
     const navi = useHistory();
     const dispatch = useDispatch();
     const [state, setState] = React.useState(false);

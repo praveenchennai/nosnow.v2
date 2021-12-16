@@ -26,6 +26,7 @@ export const ResSearchFields = createSlice({
         order: 'desc',
         sortBy: 'ModificationTimestamp',
         keyword: '',
+        mls: '',
         PropertyType: ['Residential', 'Residential Income', 'Commercial Sale'],
         city: '',
         cityOptions: [
@@ -88,18 +89,18 @@ export const ResSearchFields = createSlice({
             {id: 'Attached', value: 'Attached'},
             {id: 'Detached', value: 'Detached'}
         ],
-        GarageSpaces: 'Any',
+        GarageSpaces: 0,
         GarageSpacesOptions: [
-            {id: 0, value: 'Any'},
-            {id: 1, value: '1+'},
-            {id: 2, value: '2+'},
-            {id: 3, value: '3+'},
-            {id: 4, value: '4+'},
-            {id: 5, value: '5+'},
-            {id: 6, value: '6+'}
+            {value: 0, label: 'Any', v: 0},
+            {value: 1, label: '1+', v: 1},
+            {value: 2, label: '2+', v: 2},
+            {value: 3, label: '3+', v: 3},
+            {value: 4, label: '4+', v: 4},
+            {value: 5, label: '5+', v: 5},
+            {value: 6, label: '6+', v: 6}
         ],
         priceRange: {
-            min: 0, max: 17
+            min: 0, max: 26
         },
         priceRangeOptions: [
             {value: 0, label: 'Any', v: 0},
@@ -119,21 +120,30 @@ export const ResSearchFields = createSlice({
             {value: 14, label: '$1,250,000', v: 1250000},
             {value: 15, label: '$1,500,000', v: 1500000},
             {value: 16, label: '$1,750,000', v: 1750000},
-            {value: 17, label: '$2,000,000', v: 2000000}
+            {value: 17, label: '$2,000,000', v: 2000000},
+            {value: 18, label: '$2,250,000', v: 2250000},
+            {value: 19, label: '$2,500,000', v: 2500000},
+            {value: 20, label: '$3,000,000', v: 3000000},
+            {value: 21, label: '$4,000,000', v: 4000000},
+            {value: 22, label: '$5,000,000', v: 5000000},
+            {value: 23, label: '$7,500,000', v: 7500000},
+            {value: 24, label: '$10,000,000', v: 10000000},
+            {value: 25, label: '$20,000,000', v: 20000000},
+            {value: 26, label: '$30,000,000', v: 30000000}
         ],
         monthlyPayment: {
-            min: 0, max: 0
+            min: 0, max: 8
         },
         monthlyPaymentOptions: [
-            {id: 0, value: 'Any'},
-            {id: 1000, value: 'less $1000'},
-            {id: 1250, value: '$1,250'},
-            {id: 1500, value: '$1,500'},
-            {id: 1750, value: '$1,750'},
-            {id: 2000, value: '$2,000'},
-            {id: 2500, value: '$2,500'},
-            {id: 3000, value: '$3,000'},
-            {id: 3500, value: '$3,500'}
+            {value: 0, label: 'Any', v: 0},
+            {value: 1, label: '$1000', v: 1000},
+            {value: 2, label: '$1,250', v: 1250},
+            {value: 3, label: '$1,500', v: 1500},
+            {value: 4, label: '$1,750', v: 1750},
+            {value: 5, label: '$2,000', v: 2000},
+            {value: 6, label: '$2,500', v: 2500},
+            {value: 7, label: '$3,000', v: 3000},
+            {value: 8, label: '$3,500', v: 3500}
         ],
         beds: {
             min: 0, max: 5
@@ -213,6 +223,12 @@ export const ResSearchFields = createSlice({
                 keyword:action.payload
             }
         },
+        setMls: (state, action) => {
+            return{
+                ...state,
+                mls:action.payload
+            }
+        },
         setCity: (state, action) => {
             return{
                 ...state,
@@ -275,7 +291,6 @@ export const ResSearchFields = createSlice({
                 min: action.payload[0],
                 max: action.payload[1]
             }
-            console.log(params)
             return{
                 ...state,
                 priceRange  :params
@@ -400,6 +415,7 @@ export const {
     setPreviousPages,
     resetPreviousPages,
     setKeyword,
+    setMls,
     setCity,
     setCommunity,
     setSubCondo,
