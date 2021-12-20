@@ -22,17 +22,18 @@ const LotMain = () => {
             <Grid container justify="space-between" spacing={2} className={classes.mt10}>
                 <FieldSearch />
             </Grid>
-            {/* <Grid container display="flex" justify="space-between" spacing={2} className={classes.mt25}>
+            <Grid container display="flex" justify="space-between"  spacing={2} className={classes.mt10}>
                 <PriceRange />
                 <Acres />
+                <Fee />
             </Grid>
             <Grid container display="flex" justify="space-between" spacing={2} className={classes.mt25}>
-                <Fee />
+                
                 <Others />
             </Grid>
             <Grid container display="flex" justify="flex-start" spacing={2} className={classes.mt25}>
                 <CheckFields />
-            </Grid>  */}
+            </Grid> 
             
         </Container>
     );
