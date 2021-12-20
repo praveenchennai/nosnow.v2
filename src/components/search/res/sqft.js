@@ -1,44 +1,43 @@
 import React from 'react';
-import {Grid, Typography, TextField} from '@mui/material';
+import { Grid, Typography, Slider, } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { setSqft } from 'api/res'
 
 const Sqft = () => {
     const dispatch = useDispatch();
-    const sqft = useSelector(state=>state.res.sqft);
-    const handleChangeMin=(event)=>{
-        dispatch(setSqft({min: event.target.value, max: sqft.max}))
-    };
-    const handleChangeMax=(event)=>{
-        dispatch(setSqft({min: sqft.min, max: event.target.value}))
+    const min = useSelector(state=>state.res.sqft.min);
+    const max = useSelector(state=>state.res.sqft.max);
+    const marks = useSelector(state=>state.res.sqftOptions);
+    const handleChange = (event, newValue) => {
+        dispatch(setSqft(newValue));
     };
 
 return ( 
     <React.Fragment>
-        <Grid sm={3} xs={6} item>
-            <Typography variant="body1" component="h2">Sq. Ft - Min</Typography>
-            <TextField 
-                variant="outlined" 
-                type="number" fullWidth 
-                margin="normal" 
-                label="Min" 
-                name="min" 
-                onChange={handleChangeMin}
-                value={sqft?.min || ''} 
+        <Grid sm={1} xs={12} item />
+        <Grid sm={4} xs={12} item>
+            <Typography variant="body1" component="h2"
+                sx={{
+                    marginBottom: "30px"
+                }}
+            >Sqft</Typography>
+            <Slider
+                sx={{
+                    color: "#56516b",
+                    '& .MuiSlider-thumb': {
+                        backgroundColor: '#FE8200'
+                    }
+                }}
+                value={[min, max]}
+                onChange={handleChange}
+                step={1}
+                max={15}
+                valueLabelDisplay="on"
+                valueLabelFormat={value=>marks?.find(m=>m.value===value)?.label || '7500'}
+                //marks={marks}
             />
         </Grid>
-        <Grid sm={3} xs={6} item>
-            <Typography variant="body1" component="h2">Sq. Ft - Max</Typography>
-            <TextField 
-                variant="outlined" 
-                type="number" fullWidth 
-                margin="normal" 
-                label="Max" 
-                name="max" 
-                onChange={handleChangeMax}
-                value={sqft?.max || ''} 
-            />
-        </Grid>
+        <Grid sm={1} xs={12} item />
     </React.Fragment>
 )}
 

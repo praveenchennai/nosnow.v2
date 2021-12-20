@@ -1,56 +1,44 @@
 import React from 'react';
-import { makeStyles } from '@mui/styles';
-import { listingCss } from '../../../common/style/style';
-import { useSelector } from 'react-redux'
-import {Grid, Typography, FormControl, InputLabel, Select, MenuItem} from '@mui/material';
+import {Grid, Typography, Slider} from '@mui/material';
+import { useSelector, useDispatch } from 'react-redux'
+import {setPriceRange} from 'api/lot';
 
-const useStyles = makeStyles(listingCss());
 
 const PriceRange = () => {
-    const classes = useStyles();
-    const pmin = useSelector(state=>state.lot.priceRange.min);
-    const pmax = useSelector(state=>state.lot.priceRange.max);
-
-    const handleChange=()=>{};
+    const dispatch = useDispatch();
+    const min  = useSelector(state=>state.lot.priceRange.min);
+    const max = useSelector(state=>state.lot.priceRange.max);
+    const marks = useSelector(state=>state.lot.priceRangeOptions);
+    const handleChange=(event, newValue)=>{
+        dispatch(setPriceRange(newValue));
+    };
 
 return ( 
     <React.Fragment>
-        <Grid sm={3} xs={6} item>
-            <Typography variant="body1" component="h2">Price Range - Min</Typography>
-            <FormControl variant="outlined" className={classes.formControl} fullWidth>
-                <InputLabel >Min Range</InputLabel>
-                <Select
-                value={pmin}
+        <Grid sm={1} xs={12} item />
+        <Grid sm={4} xs={12} item>
+            <Typography variant="body1" component="h2"
+                sx={{
+                    marginBottom: "30px"
+                }}
+            >Price Range</Typography>
+            <Slider
+                sx={{
+                    color: "#56516b",
+                    '& .MuiSlider-thumb': {
+                        backgroundColor: '#FE8200'
+                    }
+                }}
+                value={[min, max]}
                 onChange={handleChange}
-                label="Age"
-                >
-                    <MenuItem value="">
-                        <em>None</em>
-                    </MenuItem>
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
-                </Select>
-            </FormControl>
+                step={1}
+                max={26}
+                valueLabelDisplay="on"
+                valueLabelFormat={value=>marks?.find(m=>m.value===value)?.label || '$30,000,000'}
+                //marks={marks}
+            />
         </Grid>
-
-        <Grid sm={3} xs={6} item>
-            <FormControl variant="outlined" className={classes.formControl} fullWidth>
-                <InputLabel>Max Range</InputLabel>
-                <Select
-                value={pmax}
-                onChange={handleChange}
-                label="Age"
-                >
-                    <MenuItem value="">
-                        <em>None</em>
-                    </MenuItem>
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
-                </Select>
-            </FormControl>
-        </Grid>
+        <Grid sm={1} xs={12} item />
     </React.Fragment>
 
 )}

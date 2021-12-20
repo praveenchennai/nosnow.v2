@@ -151,12 +151,45 @@ export const ResSearchFields = createSlice({
         baths: {
             min: 0, max: 5
         },
-        recurringFee: {
-            min: 0, max: 0
+        fee: {
+            min: 0, max: 12
         },
+        feeOptions: [
+            {value: 0, label: 'Any', v: 0},
+            {value: 1, label: 'No Fee', v: 0},
+            {value: 2, label: '$50', v: 50},
+            {value: 3, label: '$100', v: 100},
+            {value: 4, label: '$200', v: 200},
+            {value: 5, label: '$300', v: 300},
+            {value: 6, label: '$400', v: 400},
+            {value: 7, label: '$500', v: 500},
+            {value: 8, label: '$600', v: 600},
+            {value: 9, label: '$700', v: 700},
+            {value: 10, label: '$800', v: 800},
+            {value: 11, label: '$900', v: 900},
+            {value: 12, label: '$1000', v: 1000}
+        ],
         sqft: {
-            min: 0, max: 0
+            min: 0, max: 15
         },
+        sqftOptions: [
+            {value: 0, label: 'Any', v: 0},
+            {value: 1, label: '500', v: 500},
+            {value: 2, label: '750', v: 750},
+            {value: 3, label: '1000', v: 1000},
+            {value: 4, label: '1250', v: 1250},
+            {value: 5, label: '1500', v: 1500},
+            {value: 6, label: '1750', v: 1750},
+            {value: 7, label: '2000', v: 2000},
+            {value: 8, label: '2250', v: 2250},
+            {value: 9, label: '2500', v: 2500},
+            {value: 10, label: '2750', v: 2750},
+            {value: 11, label: '3000', v: 3000},
+            {value: 12, label: '3500', v: 3500},
+            {value: 13, label: '4000', v: 4000},
+            {value: 14, label: '5000', v: 5000},
+            {value: 15, label: '7500', v: 7500}
+        ],
         yearBuilt: {
             min: 0, max: 0
         },
@@ -329,25 +362,25 @@ export const ResSearchFields = createSlice({
                 baths:params
             } 
         },
-        setRecurringFee: (state, action) => {
+        setFee: (state, action) => {
+            var params = {
+                min: action.payload[0],
+                max: action.payload[1]
+            }
             return{
                 ...state,
-                recurringFee:{
-                    min: action.payload.min,
-                    max: action.payload.max
-                }
-            }
-            
+                fee:params
+            } 
         },
         setSqft: (state, action) => {
+            var params = {
+                min: action.payload[0],
+                max: action.payload[1]
+            }
             return{
                 ...state,
-                sqft:{
-                    min: action.payload.min,
-                    max: action.payload.max
-                }
-            }
-            
+                sqft:params
+            } 
         },
         setYearBuilt: (state, action) => {
             return{
@@ -427,7 +460,7 @@ export const {
     setMonthlyPayment,
     setBeds,
     setBaths,
-    setRecurringFee,
+    setFee,
     setSqft,
     setYearBuilt,
     setWaterfrontFeatures,
