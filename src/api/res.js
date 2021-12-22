@@ -1,3 +1,4 @@
+import { AccessAlarm } from '@mui/icons-material';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import * as cities from './cities'
 import * as communities from './communities'
@@ -191,29 +192,123 @@ export const ResSearchFields = createSlice({
             {value: 15, label: '7500', v: 7500}
         ],
         yearBuilt: {
-            min: 0, max: 0
+            min: 0, max: 23
         },
+        yearBuiltOptions: [
+            {value: 0, label: '1960', v: 1960},
+            {value: 1, label: '1960', v: 1965},
+            {value: 2, label: '1965', v: 1970},
+            {value: 3, label: '1970', v: 1975},
+            {value: 4, label: '1975', v: 1980},
+            {value: 5, label: '1980', v: 1985},
+            {value: 6, label: '1985', v: 1990},
+            {value: 7, label: '1990', v: 1995},
+            {value: 8, label: '1995', v: 2000},
+            {value: 9, label: '2000', v: 2005},
+            {value: 10, label: '2010', v: 2010},
+            {value: 11, label: '2011', v: 2011},
+            {value: 12, label: '2012', v: 2012},
+            {value: 13, label: '2013', v: 2013},
+            {value: 14, label: '2014', v: 2014},
+            {value: 15, label: '2015', v: 2015},
+            {value: 16, label: '2016', v: 2016},
+            {value: 17, label: '2017', v: 2017},
+            {value: 18, label: '2018', v: 2018},
+            {value: 19, label: '2019', v: 2019},
+            {value: 20, label: '2020', v: 2020},
+            {value: 21, label: '2021', v: 2021},
+            {value: 22, label: '2022', v: 2022},
+            {value: 23, label: '2023', v: 2023}
+        ],
         WaterfrontFeatures: [],
         WaterfrontFeaturesOptions: [
-            {id: 'Basin', value: 'Basin'},
-            {id: 'Bay', value: 'Bay'},
-            {id: 'Canal Front', value: 'Canal Front'},
-            {id: 'Creek', value: 'Creek'},
-            {id: 'Fresh Water', value: 'Fresh Water'},
-            {id: 'Gulf Frontage', value: 'Gulf Frontage'},
-            {id: 'Intersecting Canal', value: 'Intersecting Canal'},
-            {id: 'Lagoon', value: 'Lagoon'},
-            {id: 'Lake', value: 'Lake'},
-            {id: 'Mangrove', value: 'Mangrove'},
-            {id: 'Navigable', value: 'Navigable'},
-            {id: 'No Gulf Access', value: 'No Gulf Access'},
-            {id: 'On the Gulf Beach', value: 'On the Gulf Beach'},
-            {id: 'Rip Rap', value: 'Rip Rap'},
-            {id: 'River Front', value: 'River Front'},
-            {id: 'Salt Water', value: 'Salt Water'},
-            {id: 'Seawall', value: 'Seawall'},
-            {id: 'None', value: 'None'},
+            "BAY",
+            "LAKE",
+            "BASIN",
+            "CANAL FRONT",
+            "CREEK",
+            "FRESH WATER",
+            "GULF FRONTAGE",
+            "INTERSECTING CANEL",
+            "LAGOON",
+            "MANGROVE",
+            "NAVIGABLE",
+            "NO GULF Access",
+            "ON THE GULF BEACH",
+            "RIP RAP",
+            "RIVER FRONT",
+            "SALT WATER",
+            "SEAWALL",
+            "NONE"
         ],
+        Amenities: [],
+        AmenitiesOptions: [
+            "None",
+            "Sauna",
+            "Cabana",
+            "Marina",
+            "Library",
+            "Theater",
+            "Dog Park",
+            "Shopping",
+            "Sidewalk",
+            "Billiard Room",
+            "Clubhouse",
+            "Horses OK",
+            "Play Area",
+            "Basketball Court",
+            "Guest Room",
+            "Hobby Room",
+            "Pickleball",
+            "Restaurant",
+            "Volleyball",
+            "Bocce Court",
+            "Golf Course",
+            "Streetlight",
+            "Trash Chute",
+            "Barbecue",
+            "Beach Access",
+            "Beauty Salon",
+            "Bike Storage",
+            "Boat Storage",
+            "Fishing Pier",
+            "Racquetball",
+            "Shuffleboard Court",
+            "Tennis Court(s)",
+            "Water Skiing",
+            "Fitness Center",
+            "Storage",
+            "Putting Green",
+            "Common Laundry",
+            "Park",
+            "Pool",
+            "Community Room",
+            "Stable(s)",
+            "Beach - Private",
+            "Business Center",
+            "Internet Access",
+            "Lakefront Beach",
+            "Full Service Spa",
+            "Bike And Jog Path",
+            "Car Wash Area",
+            "Concierge",
+            "Private Membership",
+            "Beach Club Included",
+            "Community Boat Dock",
+            "Community Boat Lift",
+            "Community Boat Ramp",
+            "Community Boat Slip",
+            "Underground Utility",
+            "Beach Club Available",
+            "Spa/Hot Tub",
+            "Fish Cleaning Station",
+            "Private Beach Pavilion",
+            "Fitness Center",
+            "Assisted Living Available",
+            "Electric Vehicle Charging",
+            "Community Gulf Boat Access"
+        ].sort(),
+
         NABOR_PetsLimitMaxNumber: '',
         NABOR_PetsLimitMaxNumberOptions: [
             {id: 'Allowed', value: 'Allowed'},
@@ -383,14 +478,14 @@ export const ResSearchFields = createSlice({
             } 
         },
         setYearBuilt: (state, action) => {
+            var params = {
+                min: action.payload[0],
+                max: action.payload[1]
+            }
             return{
                 ...state,
-                yearBuilt:{
-                    min: action.payload.min,
-                    max: action.payload.max
-                }
-            }
-            
+                yearBuilt:params
+            } 
         },
         setWaterfrontFeatures: (state, action) => {
             return{
@@ -398,7 +493,13 @@ export const ResSearchFields = createSlice({
                 WaterfrontFeatures:action.payload
             }
             
-        },        
+        },   
+        setAmenitiesFeatures: (state, action) => {
+            return{
+                ...state,
+                Amenities:action.payload
+            }
+        },      
         setNABOR_PetsLimitMaxNumber: (state, action) => {
             return{
                 ...state,
@@ -464,6 +565,7 @@ export const {
     setSqft,
     setYearBuilt,
     setWaterfrontFeatures,
+    setAmenitiesFeatures,
     setNABOR_PetsLimitMaxNumber,
     setGolfAccess,
     setWaterFrontView,

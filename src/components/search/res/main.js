@@ -31,6 +31,10 @@ const ResMain = () => {
                 <Garage />
             </Grid>
 
+            <Grid container justify="space-between" spacing={2} className={classes.mt10}>
+                <Others />            
+            </Grid>
+
            <Grid  container justify="space-between" spacing={2} className={classes.mt10}>
                 <PriceRange />
                 {/* <Grid sm={2} xs={12} container item justify="center" alignItems="center">
@@ -46,14 +50,13 @@ const ResMain = () => {
 
             
             <Grid container justify="space-between" spacing={2} className={classes.mt10}>
-                <Fee />
+                {/* <Fee /> */}
+                <Year />
                 <Sqft />             
             </Grid>
-            
-            <Grid container justify="space-between" spacing={2} className={classes.mt10}>
-                <Year />
-                <Others />            
-            </Grid>
+
+           
+
 
             <Grid container justify="space-between" spacing={2} className={classes.mt10}>
                 <CheckFields />

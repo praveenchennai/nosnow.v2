@@ -25,15 +25,15 @@ const LotMain = () => {
             <Grid container display="flex" justify="space-between"  spacing={2} className={classes.mt10}>
                 <PriceRange />
                 <Acres />
-                <Fee />
+                {/* <Fee /> */}
             </Grid>
-            <Grid container display="flex" justify="space-between" spacing={2} className={classes.mt25}>
+            {/* <Grid container display="flex" justify="space-between" spacing={2} className={classes.mt25}>
                 
                 <Others />
             </Grid>
             <Grid container display="flex" justify="flex-start" spacing={2} className={classes.mt25}>
                 <CheckFields />
-            </Grid> 
+            </Grid>  */}
             
         </Container>
     );

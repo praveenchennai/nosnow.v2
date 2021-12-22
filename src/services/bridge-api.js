@@ -54,7 +54,7 @@ export const bridgeAPI = createApi({
             var start = _arg.start;
 
             while(index<_arg.url.length){
-              console.log(`${arg.query}&${_arg.search}&offset=${start}`)
+              console.log(`${_arg.search}`)
               var randomResult = await baseQuery({
                 url: `${arg.query}&${_arg.search}&offset=0`,
                 method: 'get'

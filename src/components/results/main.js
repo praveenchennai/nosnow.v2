@@ -155,13 +155,13 @@ const ResultsMain = () => {
             if(sqft.min>0){
                 query = query + `&LivingArea.gte=${sqft.min}`
             }
-            if(sqft.max>0){
+            if(sqft.max>7500){
                 query = query + `&LivingArea.lte=${sqft.max}`
             }
-            if(yearBuilt.min>0){
+            if(yearBuilt.min>1959){
                 query = query + `&YearBuilt.gte=${yearBuilt.min}`
             }
-            if(yearBuilt.max>0){
+            if(yearBuilt.max>2023){
                 query = query + `&YearBuilt.lte=${yearBuilt.max}`
             }
             if(WaterfrontFeatures.length>0){
