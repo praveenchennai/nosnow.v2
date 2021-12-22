@@ -51,7 +51,7 @@ export const ResSearchFields = createSlice({
         PropertySubType: [],
                 
         PropertySubTypeOptions: [
-            {id: 'Single Family Residence', value: 'Single Family'},
+            {id: 'Single Family', value: 'Single Family'},
             {id: 'Low Rise (1-3)', value: 'Low Rise (1-3)'},
             {id: 'Mid Rise (4-7)', value: 'Mid Rise (4-7)'},
             {id: 'High Rise (8+)', value: 'High Rise (8+)'},
@@ -60,8 +60,8 @@ export const ResSearchFields = createSlice({
             {id: 'Townhouse', value: 'Town House'},
             {id: 'Multi Family', value: 'Multi Family'},
             {id: 'Duplex', value: 'Duplex'},
-            {id: 'tx', value: 'Triplex'},
-            {id: 'qx', value: 'Quadraplex'},
+            {id: 'Triplex', value: 'Triplex'},
+            {id: 'Quadraplex', value: 'Quadraplex'},
             {id: 'Manufactured Home', value: 'Manufactured'}
         ],
         CommunityFeatures: [],

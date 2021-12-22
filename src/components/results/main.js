@@ -68,12 +68,12 @@ const ResultsMain = () => {
         AttachedGarageYN,
         priceRange,
         beds, baths, sqft,yearBuilt,
-        GarageSpaces, WaterfrontFeatures,
+        GarageSpaces, WaterfrontFeatures, Amenities,
         NABOR_PetsLimitMaxNumber,
         golfAccess,
         waterFrontView,
         guestHouse,
-        //newConstruction,
+        newConstruction,
     } = useSelector(state=>state.res);
     const {
         lmls,
@@ -136,7 +136,7 @@ const ResultsMain = () => {
                 var m = priceRangeOptions.find(p=>p.value===priceRange.min).v
                 query = query + `&ListPrice.gte=${m}`
             }
-            if(priceRange.max<17){
+            if(priceRange.max<26){
                 var m = priceRangeOptions.find(p=>p.value===priceRange.max).v
                 query = query + `&ListPrice.lte=${m}`
             }
@@ -167,6 +167,9 @@ const ResultsMain = () => {
             if(WaterfrontFeatures.length>0){
                 query = query + `&WaterfrontFeatures.in=${WaterfrontFeatures.join(", ") || ''}`
             }
+            if(Amenities.length>0){
+                query = query + `&AssociationAmenities.in=${Amenities.join(", ") || ''}`
+            }
             if(NABOR_PetsLimitMaxNumber==='Not Allowed'){
                 query = query + `&NABOR_PetsLimitMaxNumber=0`;
             }
@@ -182,9 +185,9 @@ const ResultsMain = () => {
             if(guestHouse){
                 query = query + `&NABOR_GuestHouseLivingArea.ne=null`;
             }
-            // if(!newConstruction){
-            //     query = query + `&BuildingFeatures.nin=['DSL/Cable Available', 'Elevator', 'Concierge Service]`;
-            // }
+            if(newConstruction){
+               query = query + `&NABOR_StatusType.ne=null`;
+            }
         }
         
         

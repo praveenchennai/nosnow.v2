@@ -129,7 +129,7 @@ return (
                 </Toolbar>
             </AppBar>
             {PropertySubTypeOptions.map(pt=>
-                <MenuItem value={pt.id} key={pt.id} onClick={()=>handlePropertyChange(pt.id)}>
+                <MenuItem value={pt.id} key={pt.id} onClick={()=>handlePropertyChange(pt.value)}>
                     <Checkbox checked={PropertySubType.indexOf(pt.id) > -1}/>
                     <ListItemText primary={pt.value} />
                 </MenuItem>                  
