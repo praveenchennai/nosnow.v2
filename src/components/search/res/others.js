@@ -100,7 +100,7 @@ return (
                                 fontWeight: "600",
                                 color: "#56516b"
                             }}
-                        >Amenities</Typography>
+                        >Association Amenities</Typography>
                         <Typography 
                             sx={{
                                 fontSize: "12px",
