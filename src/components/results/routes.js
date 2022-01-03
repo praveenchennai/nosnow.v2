@@ -1,7 +1,9 @@
 import React, { Suspense, lazy } from 'react';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 
-const ResultsRoutes = lazy(()=>import('components/results/main'));
+const ResultsMain = lazy(()=>import('components/results/main'));
+const SearchMain = lazy(()=>import('../search/main'));
+const PropertyMain = lazy(()=>import('../property/main'));
 
 const ResultRoutes = (props) => {
 
@@ -10,11 +12,10 @@ const ResultRoutes = (props) => {
             <BrowserRouter>
                 <Suspense fallback={<div />}>
                     <Switch>
-                        <Route path="/result/:type" render={()=> <ResultsRoutes />} />
-                        <Route path="/result/:type/:a" render={()=> <ResultsRoutes />} />
-                        <Route path="/result/:type/:b" render={()=> <ResultsRoutes />} />
-                        <Route path="/result/:type/:c" render={()=> <ResultsRoutes />} />
-                        <Route path="/search" render={()=> <ResultsRoutes />} />
+                        <Route path="/result/:type" render={()=> <ResultsMain />} />
+                        <Route path="/result/:type/:a" render={()=> <ResultsMain />} />
+                        <Route path="/details/:id" render={()=> <PropertyMain />} />
+                        <Route path="/search" render={()=> <SearchMain />} />
                     </Switch>
                 </Suspense>
             </BrowserRouter>
