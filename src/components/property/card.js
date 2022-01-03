@@ -1,15 +1,19 @@
 import React, { useState} from 'react';
 import { makeStyles } from '@mui/styles';
+import { useHistory, useParams } from "react-router-dom";
 import {Chip, Divider, Grid, Grow, Paper,  CardMedia, Card, Typography} from '@mui/material';
 import { listingCss } from 'common/style/style';
-
 import BedIcon from '@mui/icons-material/Bed';
 import BathtubIcon from '@mui/icons-material/Bathtub';
 
 const useStyles = makeStyles(listingCss());
 
-
 const PropertyCard = (props) => {
+    const navi = useHistory();
+    const onProperty = (property) =>{
+        navi.push(`/details/${property}`)
+    }
+
     const [noimage] = useState('https://nosnow-news-pdfs.s3.us-west-2.amazonaws.com/defaultproperty.webp')
     var {
         LivingArea, 
@@ -36,9 +40,6 @@ const PropertyCard = (props) => {
 
     return ( 
         <React.Fragment>
-
-            {/* <Grow in={true} style={{ transitionDelay: '50ms' }}> */}
-     
             <Card 
                 className={classes.propertyCard} 
                 elevation={1}
@@ -48,8 +49,7 @@ const PropertyCard = (props) => {
                     position: 'relative',
                     cursor: "pointer"
                 }}
-                onClick={() => window.open(`https://nosnownaples.com/residential/${ListingId}/${UnparsedAddress}`)}
-
+                onClick={() => onProperty(ListingId)}
             >
                 <Grid container item md={12} display="flex"
                     sx={{
@@ -202,17 +202,9 @@ const PropertyCard = (props) => {
                             <Typography sx={{fontSize: "12px", fontWeight: "400"}}>Year</Typography>
                             <Typography sx={{fontSize: "16px", fontWeight: "800"}}>{YearBuilt || '?'}</Typography>
                         </Grid>
-                        
-
                     </Grid>
                 </Paper>
-                {/* <CardActions>
-                    <AddAlertIcon />
-                    <PanoramaIcon />
-                    <ShareIcon />
-                </CardActions> */}
             </Card>
-            {/* </Grow> */}
         </React.Fragment>
     );
 }

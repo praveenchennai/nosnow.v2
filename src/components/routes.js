@@ -24,7 +24,7 @@ const Routes = (props) => {
                     <Switch>
                         <Route path="/" render = {()=><Home />} exact/>
                         <Route path="/search" render = {()=><Search />} exact/>
-                        <Route path="/property" render={()=> <PropertyMain />} />
+                        <Route path="/details/:id" render={()=> <PropertyMain />} />
                         <Route path="/result" render={()=> <ResultRoutes />} />
                     </Switch>
                 </Suspense>

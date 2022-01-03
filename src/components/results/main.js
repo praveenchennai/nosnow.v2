@@ -106,7 +106,12 @@ const ResultsMain = () => {
         } else if(type==='res'){
             params = orderFlowRes;
             if(keyword.length>0){
-                query = query + `&UnparsedAddress.in=${keyword || ''}`
+                var n = Number(keyword);
+                if(Number.isInteger(n) && keyword.length===9){
+                    query = query + `&ListingId=${keyword || ''}`
+                } else {
+                    query = query + `&UnparsedAddress.in=${keyword || ''}`
+                }
             }
             if(mls.length>0){
                 query = query + `&ListingId=${mls || ''}`
@@ -310,12 +315,12 @@ const ResultsMain = () => {
                 }
             </TableContainer>
             <TableContainer
-            sx={{
-                display: {
-                    xs: "none", 
-                    md: "flex"
-                }
-            }}
+                sx={{
+                    display: {
+                        xs: "none", 
+                        md: "flex"
+                    }
+                }}
             >
             <MapContainer 
                 center={[26.295073, -81.630814]} 

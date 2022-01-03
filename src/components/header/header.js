@@ -46,6 +46,22 @@ const Header = (props) => {
                     <IconButton onClick={()=>setState(true)} size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
                         <MenuIcon />
                     </IconButton>
+                    <IconButton 
+                        onClick={()=>setState(true)} size="large" 
+                        edge="start" color="inherit" aria-label="menu" 
+                        sx={{ 
+                            mr: 2,
+                            display: { xs: 'none', sm: 'block' },
+                            padding: "0px"
+                        }}>
+                        <img
+                            src={`https://nosnow-news-pdfs.s3.us-west-2.amazonaws.com/nosnowhomelogo.webp`}
+                            alt="Nosnownaples logo"
+                            loading="lazy"
+                            width="190px"
+                            height= "auto"
+                        />
+                    </IconButton>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}></Typography>
                     <IconButton color="inherit" size="large"><Link color="inherit" target="_blank" href="https://www.facebook.com/NoSnowNaples/"><FacebookIcon /></Link></IconButton>
                     <IconButton color="inherit" size="large"><Link color="inherit" target="_blank" href="https://twitter.com/nosnownaples/"><TwitterIcon /></Link></IconButton>
