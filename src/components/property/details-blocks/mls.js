@@ -23,7 +23,6 @@ const MlsDetails = (props) => {
         {name: 'Levels', value: Levels?.join(", ") || ''},
         {name: 'Living Area', value: `${LivingArea || ''} Sqft - Floor Plan Service`},
         {name: 'Total Area', value: `${LotSizeSquareFeet || ''} Sqft - Floor Plan Service`},
-        {name: 'Lot Size', value: LotSizeArea || ''},
         {name: 'Courtesy Of', value: CoListOfficeName || ''},
         {name: 'County', value: CountyOrParish || ''},
         {name: 'Property Type', value: PropertyType || ''},
