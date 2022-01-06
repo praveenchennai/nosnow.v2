@@ -91,7 +91,7 @@ const PropertyDetails = (props) => {
                         <CardMedia
                             component="img"
                             height="auto"
-                            image={Media ? Media[2] ? Media[1].MediaURL || noimage : noimage : noimage}
+                            image={Media ? Media[2] ? Media[2].MediaURL || noimage : noimage : noimage}
                             alt={UnparsedAddress}
                             onMouseOver={()=>hoverChange('in')}
                             onMouseOut={()=>hoverChange('out')}
@@ -101,7 +101,7 @@ const PropertyDetails = (props) => {
                         <CardMedia
                             component="img"
                             height="auto"
-                            image={Media ? Media[3] ? Media[1].MediaURL || noimage : noimage : noimage}
+                            image={Media ? Media[3] ? Media[3].MediaURL || noimage : noimage : noimage}
                             alt={UnparsedAddress}
                             onMouseOver={()=>hoverChange('in')}
                             onMouseOut={()=>hoverChange('out')}
