@@ -1,12 +1,16 @@
 import React, { useState} from 'react';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 import { makeStyles } from '@mui/styles';
-import {Chip, Grid, CardMedia, Typography} from '@mui/material';
+import {Chip, Grid, CardMedia, Typography, Dialog} from '@mui/material';
 import { listingCss } from 'common/style/style';
+import SlideShow from './slideshow';
 
 const useStyles = makeStyles(listingCss());
 
-
 const PropertyDetails = (props) => {
+    const theme = useTheme();
+    const [slide, setSlide] = useState(false);
     const [noimage] = useState('https://nosnow-news-pdfs.s3.us-west-2.amazonaws.com/defaultproperty.webp')
     var {
         PublicRemarks, Media, MlsStatus,
@@ -17,6 +21,7 @@ const PropertyDetails = (props) => {
     const classes = useStyles();
 
     const [eli, setEli] = useState(2);
+    const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
     const hoverChange = (params) =>{
         if(params==='in'){
@@ -24,7 +29,6 @@ const PropertyDetails = (props) => {
         } else {
             setEli(1)
         }
-        
     }
 
     return ( 
@@ -97,7 +101,8 @@ const PropertyDetails = (props) => {
                             onMouseOut={()=>hoverChange('out')}
                         >
                         </CardMedia>
-                    </Grid><Grid container item md={4}>
+                    </Grid>
+                    <Grid container item md={4}>
                         <CardMedia
                             component="img"
                             height="auto"
@@ -105,9 +110,18 @@ const PropertyDetails = (props) => {
                             alt={UnparsedAddress}
                             onMouseOver={()=>hoverChange('in')}
                             onMouseOut={()=>hoverChange('out')}
+                            onClick={()=>setSlide(true)}
                         >
                         </CardMedia>
                     </Grid>
+                    <Dialog 
+                        onClose={()=>setSlide(false)} 
+                        open={slide}
+                        fullScreen={fullScreen}
+                        scroll={"body"}
+                    >
+                        <SlideShow {...{slide, setSlide}}/>
+                    </Dialog>
                 </Grid>
                 <Chip  
                     variant="contained" 

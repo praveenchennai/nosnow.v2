@@ -29,6 +29,31 @@ const Garage = () => {
         dispatch(setGarageSpaces(newValue));
     };
 
+    const garageValue = () => {
+        if(AttachedGarageYN===undefined){
+            return 'Any'
+        }
+        if(AttachedGarageYN){
+            return 'Attached'
+        }
+        if(AttachedGarageYN===false){
+            return 'Detached'
+        }
+    };
+
+    const garageSpaceSelection = () =>{
+        var res = '';
+        if(AttachedGarageYN!=="Any"){
+            res = `${AttachedGarageYN}` 
+        } 
+        if(GarageSpaces>0){
+            res = res + ` ${GarageSpaces}+  Garages Selected`;
+        } else {
+            res = res + ``
+        }
+        return res
+    }
+
 return ( 
     <React.Fragment>
 
@@ -57,7 +82,7 @@ return (
                             fontWeight: "500",
                             color: "#56516b"
                         }}
-                    >{AttachedGarageYN!=='Any'?`${AttachedGarageYN} - ${GarageSpaces}+`:0} - Selected</Typography>
+                    >{garageSpaceSelection()}</Typography>
                 </Grid>
             </Button>
             <Dialog 
@@ -103,7 +128,7 @@ return (
                         fontWeight: "600"
                     }}
                     >Garage Type</Typography>
-                    <RadioGroup defaultValue="Any" name="radio-buttons-group" onChange={handleRadioChange}>
+                    <RadioGroup defaultValue={"Any"} value={AttachedGarageYN} name="radio-buttons-group" onChange={handleRadioChange}>
                         <FormControlLabel value="Any" control={<Radio />} label="Any" />
                         <FormControlLabel value="Attached" control={<Radio />} label="Attached" />
                         <FormControlLabel value="Detached" control={<Radio />} label="Detached" />
