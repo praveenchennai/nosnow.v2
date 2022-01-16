@@ -12,9 +12,9 @@ const FieldSearch = () => {
     const city = useSelector(state=>state.res.city) || [];
     const community = useSelector(state=>state.res.community) || [];
     const subCondo = useSelector(state=>state.res.subCondo) || [];
-    const [cdra, setcDra] = useState(false)
-    const [cmdra, setcmDra] = useState(false)
-    const [scdra, setscDra] = useState(false)
+    const [cdra, setcDra] = useState(false);
+    const [cmdra, setcmDra] = useState(false);
+    const [scdra, setscDra] = useState(false);
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
 return ( 

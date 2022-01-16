@@ -106,13 +106,15 @@ const ResultsMain = () => {
         } else if(type==='res'){
             params = orderFlowRes;
             if(keyword.length>0){
-                var n = Number(keyword);
-                if(Number.isInteger(n) && keyword.length===9){
+                var n = isNaN(keyword);
+                console.log("n", n)
+                if(!n && keyword.length===9){
                     query = query + `&ListingId=${keyword || ''}`
                 } else {
                     query = query + `&UnparsedAddress.in=${keyword || ''}`
                 }
             }
+            console.log(query)
             if(mls.length>0){
                 query = query + `&ListingId=${mls || ''}`
             }
@@ -195,7 +197,7 @@ const ResultsMain = () => {
             }
         }
         
-        
+        console.log(query)
         dispatch(resetPreviousPages(0));
         dispatch(setPage(0));
     }, [params])
