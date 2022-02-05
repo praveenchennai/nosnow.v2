@@ -51,12 +51,14 @@ export const bridgeAPI = createApi({
           method: 'get',
           data: 'property'
         })
+        console.log(response);
         return response
       }
     }),
     multipleCustom: builder.query({
       async queryFn(_arg, _queryApi, _extraOptions, baseQuery) {
         //Exit if no arg array.
+        console.log('REached', _arg)
         if(!_arg){
           return {data:{
             properties:[], 
@@ -66,18 +68,21 @@ export const bridgeAPI = createApi({
         }
         //Assign Index, arg, 
         var index = _arg.index;
+        console.log('index', index)
         var arg = _arg.url[index];
         var res = [];
         var limit = _arg.limit;
         var start = _arg.start;
 
         while(index<_arg.url.length){
+
           var randomResult = await baseQuery({
             url: `${arg.query}&${_arg.search}&offset=0`,
             method: 'get',
             data: 'search'
           })
           if (randomResult.error) throw randomResult.error;
+          console.log(randomResult)
           var start = 1
           randomResult.data.bundle.map(r=>{
             if(res.length<limit){

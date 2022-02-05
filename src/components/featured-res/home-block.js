@@ -22,7 +22,7 @@ const FeaturedResHomeBlock = () => {
     }, {
         selectFromResult: ({ data, status, isLoading, error }) => {
             return {
-                properties: data?.properties || [],
+                properties: data || [],
                 total: data?.total || [],
                 pStatus: status,
                 pIsLoading: isLoading,
@@ -30,6 +30,8 @@ const FeaturedResHomeBlock = () => {
             }
         }
     });
+
+    console.log(properties)
 
     
     return (

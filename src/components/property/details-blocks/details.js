@@ -11,7 +11,9 @@ const useStyles = makeStyles(listingCss());
 const PropertyDetails = (props) => {
     const theme = useTheme();
     const [slide, setSlide] = useState(false);
-    const [noimage] = useState('https://nosnow-news-pdfs.s3.us-west-2.amazonaws.com/defaultproperty.webp')
+    //const [noimage] = useState('https://nosnow-news-pdfs.s3.us-west-2.amazonaws.com/defaultproperty.webp')
+    const [noimage, setNoImage] = useState('https://dvvjkgh94f2v6.cloudfront.net/7487d661/46841388/83dcefb7.jpeg')
+    
     var {
         PublicRemarks, Media, MlsStatus,
         MLSAreaMajor, ListPrice, 
@@ -112,15 +114,22 @@ const PropertyDetails = (props) => {
                             onMouseOut={()=>hoverChange('out')}
                             onClick={()=>setSlide(true)}
                         >
+                            
                         </CardMedia>
+                        {/* <Typography sx={{position: "absolute", margin: "10%", color:"#fff", fontSize: "25px", fontWeight: "700"}}>{Media?.length}</Typography> */}
                     </Grid>
                     <Dialog 
                         onClose={()=>setSlide(false)} 
                         open={slide}
                         fullScreen={fullScreen}
-                        scroll={"body"}
+                        fullWidth={true}
+                        PaperProps={{
+                            sx:{
+                                maxWidth:"1000px"
+                            }
+                        }}
                     >
-                        <SlideShow {...{slide, setSlide}}/>
+                        <SlideShow {...{slide, setSlide, Media}}/>
                     </Dialog>
                 </Grid>
                 <Chip  
@@ -134,6 +143,21 @@ const PropertyDetails = (props) => {
                         //width:"30%"
                     }} 
                     label={MlsStatus} 
+                />
+                <Chip  
+                    variant="contained" 
+                    color="warning" 
+                    sx={{
+                        borderRadius: "5px",
+                        position: 'absolute',
+                        top: 80,
+                        right: 10,
+                        cursor: "pointer"
+                        //width:"30%"
+                        
+                    }} 
+                    onClick={()=>setSlide(true)}
+                    label={'View All Photos'} 
                 />
 
         </React.Fragment>
