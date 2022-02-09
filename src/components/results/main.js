@@ -107,16 +107,11 @@ const ResultsMain = () => {
             params = orderFlowRes;
             if(keyword.length>0){
                 var n = isNaN(keyword);
-                console.log("n", n)
                 if(!n && keyword.length===9){
                     query = query + `&ListingId=${keyword || ''}`
                 } else {
                     query = query + `&UnparsedAddress.in=${keyword || ''}`
                 }
-            }
-            console.log(query)
-            if(mls.length>0){
-                query = query + `&ListingId=${mls || ''}`
             }
             if(city.length>0){
                 query = query + `&City.in=${city.join(", ") || ''}`
@@ -196,8 +191,6 @@ const ResultsMain = () => {
                query = query + `&NABOR_StatusType.ne=null`;
             }
         }
-        
-        console.log(query)
         dispatch(resetPreviousPages(0));
         dispatch(setPage(0));
     }, [params])
