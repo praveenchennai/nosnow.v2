@@ -14,7 +14,7 @@ const ResultRoutes = (props) => {
                     <Switch>
                         <Route path="/result/:type" render={()=> <ResultsMain />} />
                         <Route path="/result/:type/:a" render={()=> <ResultsMain />} />
-                        <Route path="/details/:id" render={()=> <PropertyMain />} />
+                        {/* <Route path="/details/:id" render={()=> <PropertyMain />} /> */}
                         <Route path="/search" render={()=> <SearchMain />} />
                     </Switch>
                 </Suspense>

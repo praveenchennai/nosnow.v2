@@ -10,7 +10,6 @@ const THEME = createTheme(customStyle());
 
 const App = () => {
 
-  console.log('env is:', process.env.NODE_ENV)
 return (
     <React.Fragment>
       <ThemeProvider theme={THEME}>
