@@ -1,11 +1,12 @@
 import React from 'react';
 import {Grid, TextField} from '@mui/material';
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import {setKeyword, setMls} from 'api/lot';
 
 const KeywordSearch = () => {
-    const keyword = useSelector(state=>state.lot.keyword);
-    const mls = useSelector(state=>state.lot.mls);
+    const lkeyword = useSelector(state=>state.lot.lkeyword);
+    const lmls = useSelector(state=>state.lot.lmls);
+    const dispatch = useDispatch();
 
     const handleKeywordChange=(event)=>{
         dispatch(setKeyword(event.target.value))
@@ -22,9 +23,9 @@ return (
             type="text" fullWidth 
             margin="normal" 
             label="Enter MLS#" 
-            name="mls" 
+            name="lmls" 
             onChange={handleMlsChange}
-            value={mls?mls:''} 
+            value={lmls || ''} 
         />
     </Grid>
     <Grid xs={6} item>
@@ -33,9 +34,9 @@ return (
             type="text" fullWidth 
             margin="normal" 
             label="Enter Address" 
-            name="keyword" 
+            name="lkeyword" 
             onChange={handleKeywordChange}
-            value={keyword?keyword:''} 
+            value={lkeyword || ''} 
         />
     </Grid>
 </Grid>

@@ -81,57 +81,58 @@ const PropertyDetails = (props) => {
                     }}
                 >
                 </CardMedia>
-                <Grid container item md={12} display="flex" justifyContent="space-between" spacing={.2}>
-                    <Grid container item md={4}>
-                        <CardMedia
-                            component="img"
-                            height="auto"
-                            image={Media ? Media[1] ? Media[1].MediaURL || noimage : noimage : noimage}
-                            alt={UnparsedAddress}
-                            onMouseOver={()=>hoverChange('in')}
-                            onMouseOut={()=>hoverChange('out')}
-                        >
-                        </CardMedia>
+                {Media && Media[3]?
+                    <Grid container item md={12} display="flex" justifyContent="space-between" spacing={.2}>
+                        <Grid container item md={4}>
+                            <CardMedia
+                                component="img"
+                                height="auto"
+                                image={Media ? Media[1] ? Media[1].MediaURL || noimage : noimage : noimage}
+                                alt={UnparsedAddress}
+                                onMouseOver={()=>hoverChange('in')}
+                                onMouseOut={()=>hoverChange('out')}
+                                onClick={()=>setSlide(true)}
+                            />
+                        </Grid>
+
+                        <Grid container item md={4}>
+                            <CardMedia
+                                component="img"
+                                height="auto"
+                                image={Media ? Media[2] ? Media[2].MediaURL || noimage : noimage : noimage}
+                                alt={UnparsedAddress}
+                                onMouseOver={()=>hoverChange('in')}
+                                onMouseOut={()=>hoverChange('out')}
+                                onClick={()=>setSlide(true)}
+                            />
+                        </Grid>
+
+                        <Grid container item md={4}>
+                            <CardMedia
+                                component="img"
+                                height="auto"
+                                image={Media ? Media[3] ? Media[3].MediaURL || noimage : noimage : noimage}
+                                alt={UnparsedAddress}
+                                onMouseOver={()=>hoverChange('in')}
+                                onMouseOut={()=>hoverChange('out')}
+                                onClick={()=>setSlide(true)}
+                            />
+                        </Grid>
                     </Grid>
-                    <Grid container item md={4}>
-                        <CardMedia
-                            component="img"
-                            height="auto"
-                            image={Media ? Media[2] ? Media[2].MediaURL || noimage : noimage : noimage}
-                            alt={UnparsedAddress}
-                            onMouseOver={()=>hoverChange('in')}
-                            onMouseOut={()=>hoverChange('out')}
-                        >
-                        </CardMedia>
-                    </Grid>
-                    <Grid container item md={4}>
-                        <CardMedia
-                            component="img"
-                            height="auto"
-                            image={Media ? Media[3] ? Media[3].MediaURL || noimage : noimage : noimage}
-                            alt={UnparsedAddress}
-                            onMouseOver={()=>hoverChange('in')}
-                            onMouseOut={()=>hoverChange('out')}
-                            onClick={()=>setSlide(true)}
-                        >
-                            
-                        </CardMedia>
-                        {/* <Typography sx={{position: "absolute", margin: "10%", color:"#fff", fontSize: "25px", fontWeight: "700"}}>{Media?.length}</Typography> */}
-                    </Grid>
-                    <Dialog 
-                        onClose={()=>setSlide(false)} 
-                        open={slide}
-                        fullScreen={fullScreen}
-                        fullWidth={true}
-                        PaperProps={{
-                            sx:{
-                                maxWidth:"1000px"
-                            }
-                        }}
-                    >
-                        <SlideShow {...{slide, setSlide, Media}}/>
-                    </Dialog>
-                </Grid>
+                :''}
+                <Dialog 
+                    onClose={()=>setSlide(false)} 
+                    open={slide}
+                    fullScreen={fullScreen}
+                    fullWidth={true}
+                    PaperProps={{
+                        sx:{
+                            maxWidth:"1000px"
+                        }
+                    }}
+                >
+                    <SlideShow {...{slide, setSlide, Media}}/>
+                </Dialog>
                 <Chip  
                     variant="contained" 
                     color="warning" 
