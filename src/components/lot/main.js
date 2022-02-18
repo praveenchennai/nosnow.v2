@@ -8,7 +8,8 @@ import Remarks from './details-blocks/remark';
 import MlsDetails from './details-blocks/mls'
 import {useGetPropertyQuery} from 'services/bridge-api'
 
-const PropertyMain = () => {
+const LotMain = () => {
+    console.log('Reached LotMain')
     const {id} = useParams();
     const {property, lat, lng, status, isLoading, error} = useGetPropertyQuery(id, {
         skip: !id,
@@ -140,4 +141,4 @@ return (
 );
 }
 
-export default PropertyMain;
+export default LotMain;

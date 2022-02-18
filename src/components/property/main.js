@@ -27,7 +27,6 @@ const PropertyMain = () => {
             }
         }
     });
-    console.log(property)
 return ( 
     <React.Fragment>
         <Box display="flex" justify="space-between" 

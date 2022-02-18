@@ -79,9 +79,11 @@ const PropertyDetails = (props) => {
                     sx={{
                         marginBottom: '1px'
                     }}
+                    onClick={()=>setSlide(true)}
                 >
                 </CardMedia>
-                <Grid container item md={12} display="flex" justifyContent="space-between" spacing={.2}>
+                {Media && Media[3]?
+                <Grid container item md={12} display="flex" justifyContent="space-between" spacing={.2} onClick={()=>setSlide(true)}>
                     <Grid container item md={4}>
                         <CardMedia
                             component="img"
@@ -104,21 +106,22 @@ const PropertyDetails = (props) => {
                         >
                         </CardMedia>
                     </Grid>
-                    <Grid container item md={4}>
-                        <CardMedia
-                            component="img"
-                            height="auto"
-                            image={Media ? Media[3] ? Media[3].MediaURL || noimage : noimage : noimage}
-                            alt={UnparsedAddress}
-                            onMouseOver={()=>hoverChange('in')}
-                            onMouseOut={()=>hoverChange('out')}
-                            onClick={()=>setSlide(true)}
-                        >
-                            
-                        </CardMedia>
-                        {/* <Typography sx={{position: "absolute", margin: "10%", color:"#fff", fontSize: "25px", fontWeight: "700"}}>{Media?.length}</Typography> */}
-                    </Grid>
-                    <Dialog 
+                    
+                        <Grid container item md={4}>
+                            <CardMedia
+                                component="img"
+                                height="auto"
+                                image={Media ? Media[3] ? Media[3].MediaURL || noimage : noimage : noimage}
+                                alt={UnparsedAddress}
+                                onMouseOver={()=>hoverChange('in')}
+                                onMouseOut={()=>hoverChange('out')}
+                                onClick={()=>setSlide(true)}
+                            />
+                        </Grid>
+                    
+                </Grid>
+                :''}
+                <Dialog 
                         onClose={()=>setSlide(false)} 
                         open={slide}
                         fullScreen={fullScreen}
@@ -131,7 +134,6 @@ const PropertyDetails = (props) => {
                     >
                         <SlideShow {...{slide, setSlide, Media}}/>
                     </Dialog>
-                </Grid>
                 <Chip  
                     variant="contained" 
                     color="warning" 
