@@ -1,5 +1,5 @@
-import React  from 'react';
-import { Grid, Box, Card, TableContainer, Typography, } from '@mui/material';
+import React, {useState} from 'react';
+import { Grid, Box, Card, TableContainer, Typography } from '@mui/material';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { useParams } from "react-router-dom";
 import PropertyDetails from './details-blocks/details';
@@ -11,9 +11,12 @@ import RecurringFee from './details-blocks/recurring'
 import Exterior from './details-blocks/exterior'
 import Interior from './details-blocks/Interior'
 import {useGetPropertyQuery} from 'services/bridge-api'
+import ContactCard from './details-blocks/contact'
+
 
 const PropertyMain = () => {
     const {id} = useParams();
+    const [cdra, setcDra] = useState(false)
     const {property, lat, lng, status, isLoading, error} = useGetPropertyQuery(id, {
         skip: !id,
         selectFromResult: ({ data, status, isLoading, error, id, originalArgs }) => {
@@ -168,12 +171,13 @@ return (
                     />
                     <Marker position={[lat, lng]}>
                         <Popup>
-                            <Typography sx={{fontSize: "16px", fontWeight: "600"}}>{'test'}</Typography>
+                            <Typography sx={{fontSize: "16px", fontWeight: "600"}}></Typography>
                         </Popup>
                     </Marker>
                 </MapContainer>: ''}
-            </TableContainer>
+            </TableContainer>         
         </Box>
+        <ContactCard />
     </React.Fragment>
 );
 }

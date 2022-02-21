@@ -12,5 +12,18 @@
         "apiUrl": "https://api.bridgedataoutput.com/api/v2/",
         "username": "rick@nosnownaples.com",
         "password": "calltoPRAVEEN"
+    },
+    "nosnowUserPool": {
+        "REGION": "us-west-2",
+        "USER_POOL_ID": "us-west-2_w2gRpyNLi",
+        "APP_CLIENT_ID": "1eh9n33ul91hmafnf9o0if1u29",
+        "identityPoolId": "us-west-2:6be5f9df-3b38-4569-b20e-1322c0df8897",
+        "USER_POOL": "nosnownaples",
+        "IDENTITY_POOL": "nosnownaples"
+    },
+    "stage": {
+        "prod": [
+            { "type": "lambda", "service": "mail-service", "apiId": "odo6txvsg8", "region": "us-west-2" }   
+        ]
     }
 }

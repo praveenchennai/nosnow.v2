@@ -6,19 +6,20 @@ export const AuthDb = createSlice({
         isSignedIn: false,
         firstName: '',
         lastName: '',
-        id: '',
         email: '',
         phone: '',
         cognitoId: '',
         verify: false,
-        userPoolId: '',
-        appClientId: '',
-        api: {},
         apiUrl: '',
-        stage: '',
-        dataSet: '',
         loading: false,
-        amplify: {}
+        register: {
+            firstName: '',
+            lastName: '',
+            email: '',
+            phone_number: '',
+            phone: '',
+            password: 'nosnownaples'
+        }
     },
     reducers: {
         setLoading: (state, action) => {
@@ -27,6 +28,17 @@ export const AuthDb = createSlice({
                 loading:action.payload
             }
             
+        },
+        signIn: (state, action) =>{
+            return {
+                ...state,
+                firstName: action.payload.firstName,
+                lastName: action.payload.lastName,
+                email: action.payload.email,
+                phone: action.payload.phone,
+                cognitoId: action.payload.cognitoId,
+                verify: action.payload.verify
+            }
         },
         setAppValues: (state, action) => {
             var apiUrl = `${action.payload.api.apiUrl}${action.payload.dataSet}/listings?access_token=${action.payload.api.browserToken}&`;
@@ -38,43 +50,24 @@ export const AuthDb = createSlice({
                 apiUrl: apiUrl
             }
         },
-        signIn: (state, action) => {
-
-           return {
-                ...state,
-                isSignedIn:true,
-                firstName:action.payload.firstName,
-                lastName: action.payload.lastName,
-                id:action.payload.id,
-                email:action.payload.email,
-                phone:action.payload.phone,
-                cognitoId:action.payload.cognitoId,
-                verify:false,
-                userPoolId:action.payload.userPoolId,
-                appClientId:action.payload.appClientId,
-                unknownSession:action.payload.unknownSession
-            }
-        },
         signOut: (state, action) => {
             return {
+                ...initialState
+            }
+        },
+        setRegister: (state, action) =>{
+            var register = {
+                ...state.register,
+                ...action.payload
+            }
+            return {
                 ...state,
-                isSignedIn:false,
-                firstName:'',
-                lastName:'',
-                id:'',
-                email:'',
-                phone:'',
-                cognitoId:'',
-                verify:false,
-                unknownSession:false,
-                userType:'driver',
-                userPoolId:'',
-                appClientId:''
+                register: register
             }
         }
-    },
+    }
 })
 
-export const { signIn, signOut, setAppValues, setLoading } = AuthDb.actions
+export const { signIn, setRegister, signOut, setAppValues, setLoading } = AuthDb.actions
 
 export default AuthDb.reducer

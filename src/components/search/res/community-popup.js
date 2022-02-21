@@ -40,7 +40,7 @@ return (
                         color: "#fff",
                         flexGrow: 1
                     }}
-                >Commnity / Development Name</Typography>
+                >Community / Development Name</Typography>
                 <Button 
                     variant="contained" 
                     className={[classes.btn_orange, classes.mt10].join(' ')}
@@ -71,7 +71,7 @@ return (
         >
             {communityOptions.filter(f=>community.indexOf(f) > -1).map((pt, index)=>
                 <MenuItem value={pt} key={index}
-                onClick={()=>handleCommunityChange(pt)}
+                    onClick={()=>handleCommunityChange(pt)}
                 >
                     <Checkbox checked={community.indexOf(pt) > -1}
                         sx={{
@@ -87,7 +87,7 @@ return (
             <Divider />
             {communityOptions.filter(f=>f.startsWith(communitySearch.toUpperCase()) && community.indexOf(f) === -1).slice(0,10).map((pt, index)=>
                 <MenuItem value={pt} key={index}
-                onClick={()=>handleCommunityChange(pt)}
+                    onClick={()=>handleCommunityChange(pt)}
                 >
                     <Checkbox checked={community.indexOf(pt) > -1}
                         sx={{
