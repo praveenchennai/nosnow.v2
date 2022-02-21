@@ -7,9 +7,9 @@ import Facts from './details-blocks/facts';
 import Remarks from './details-blocks/remark';
 import MlsDetails from './details-blocks/mls'
 import {useGetPropertyQuery} from 'services/bridge-api'
+import ContactCard from '../contact/contact'
 
 const LotMain = () => {
-    console.log('Reached LotMain')
     const {id} = useParams();
     const {property, lat, lng, status, isLoading, error} = useGetPropertyQuery(id, {
         skip: !id,
@@ -137,6 +137,7 @@ return (
                 </MapContainer>: ''}
             </TableContainer>
         </Box>
+        <ContactCard />
     </React.Fragment>
 );
 }

@@ -9,6 +9,7 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import {useMultipleCustomQuery} from 'services/bridge-api'
 import { useDispatch, useSelector } from 'react-redux';
 import { setPage, setPreviousPages, resetPreviousPages } from 'api/res'
+import ContactCard from '../contact/contact'
 
 const useStyles = makeStyles({
     root: {
@@ -334,6 +335,7 @@ const ResultsMain = () => {
             </MapContainer>
             </TableContainer>
         </Box>
+        <ContactCard />
     </React.Fragment>
     
     );

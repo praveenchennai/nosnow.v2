@@ -64,15 +64,12 @@ export const register = async (reg) =>{
             phone_number: reg.phone_number || ''
         }
     }
-    console.log(signUpParams)
 
     return Auth.signUp(signUpParams)
     .then(user=>{
         return user;
     })
     .catch(error=>{
-        console.log(error.code)
-        
         throw error.code;
     })
 }
