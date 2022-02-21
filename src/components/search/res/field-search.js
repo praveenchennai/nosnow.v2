@@ -77,7 +77,7 @@ return (
                                 fontWeight: "600",
                                 color: "#56516b"
                             }}
-                        >Commnity / Development Name</Typography>
+                        >Community / Development Name</Typography>
                         <Typography 
                             sx={{
                                 fontSize: "12px",
