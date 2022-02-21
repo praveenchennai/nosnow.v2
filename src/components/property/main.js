@@ -11,7 +11,7 @@ import RecurringFee from './details-blocks/recurring'
 import Exterior from './details-blocks/exterior'
 import Interior from './details-blocks/Interior'
 import {useGetPropertyQuery} from 'services/bridge-api'
-import ContactCard from './details-blocks/contact'
+import ContactCard from '../contact/contact'
 
 
 const PropertyMain = () => {

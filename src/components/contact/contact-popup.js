@@ -2,20 +2,22 @@ import React, {useEffect, useState} from 'react';
 import { makeStyles } from '@mui/styles';
 import { useParams } from "react-router-dom";
 import { listingCss } from 'common/style/style';
-import { TextField, Paper , Divider, Toolbar , MenuItem , Checkbox , ListItemText , AppBar, Button, Typography } from '@mui/material';
+import { TextField, Paper , Toolbar, AppBar, Button, Typography } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux'
-import * as service from '../../../service';
-import { setRegister } from 'api/auth';
+import * as service from '../../service';
+import { setLoading, setRegister } from 'api/auth';
 import { useContactMutation  } from "services/mail";
 const useStyles = makeStyles(listingCss());
 
 const ContactPopUp = (props) => { 
-    const {setPopUp} = props;
+    const {setPopUp, setSnackBar} = props;
     const {id} = useParams();
     const classes = useStyles();
     const register = useSelector(state=>state.auth.register);
     const dispatch = useDispatch();
     const [comments, setComments] = useState('');
+    
+    const [loading, setLoading] = useState(false);
     const [disableButton, setDisableButton] = useState(true);
     const [ contactus, { isLoading: isUpdating }] = useContactMutation();
 
@@ -65,23 +67,29 @@ const ContactPopUp = (props) => {
             
         })
         .unwrap()
-        .then(result=>{})
+        .then(result=>{
+            setPopUp(false);
+            setSnackBar(true);
+            setLoading(false)
+        })
         .catch(err=>{console.log(err)})
     }
 
-    const onSend = (event) =>{
+    const onSend = () =>{
+        setLoading(true);
+        setDisableButton(true);
         service.register(register)
         .then(result=>{
-            console.log(result);
             sendMailFunction();
         })
         .catch(error=>{
-            console.log(error)
             if(error==='UsernameExistsException'){
                 sendMailFunction();
             }
         })
     }
+
+    
 
 return ( 
     <React.Fragment>
@@ -187,9 +195,9 @@ return (
                 size={'large'}
                 fullWidth
                 onClick={(()=>onSend())}
-                disabled={disableButton}
+                disabled={disableButton || loading}
             >
-                Send
+                {loading?'Please Wait...' : 'Send'}
             </Button>
         </Paper>
     </React.Fragment>

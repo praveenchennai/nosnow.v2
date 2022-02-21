@@ -1,13 +1,18 @@
 import React, {useState} from 'react';
-import { Grid, Button, CardMedia, CardHeader, Card, Typography, Avatar, Dialog } from '@mui/material';
+import { Grid, Button, Snackbar, CardMedia, CardHeader, Card, Typography, Avatar, Dialog } from '@mui/material';
 import ContactPopUp from './contact-popup';
 
 const ContactCard = () => {
     const [popUp, setPopUp] = useState(false);
-    console.log(popUp, setPopUp)
+    const [snackBar, setSnackBar] = useState(false);
     var value = {
         popUp: popUp,
-        setPopUp: setPopUp
+        setPopUp: setPopUp,
+        snackBar: snackBar,
+        setSnackBar: setSnackBar
+    }
+    const handleClose = () =>{
+        setSnackBar(false)
     }
     return ( 
             <Card display="flex" direction={'column'}
@@ -98,6 +103,7 @@ const ContactCard = () => {
             >
                 <ContactPopUp {...value}/>
             </Dialog>
+            <Snackbar  open={snackBar}  autoHideDuration={3000}  onClose={handleClose}  message="Thank you for your Comments/Question. We will contact you shortly!!" />
             </Card>
 
     );
