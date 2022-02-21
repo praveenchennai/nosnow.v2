@@ -1,60 +1,40 @@
 import React from 'react';
-import { makeStyles } from '@mui/styles';
-import { listingCss } from '../../../common/style/style';
-import {Grid, Typography, FormControl, InputLabel, Select, MenuItem} from '@mui/material';
+import { Grid, Typography, Slider } from '@mui/material';
 import { useSelector } from 'react-redux'
 
-const useStyles = makeStyles(listingCss());
-
 const Fee = () => {
-    const classes = useStyles();
-    const fmin = useSelector(state=>state.lot.totalFee.min);
-    const fmax = useSelector(state=>state.lot.totalFee.max);
-
+    const min = useSelector(state=>state.lot.totalFee.min);
+    const max = useSelector(state=>state.lot.totalFee.max);
+    const marks = useSelector(state=>state.lot.totalFeeOptions);
     const handleChange=()=>{};
 
 return ( 
     <React.Fragment>
-        <Grid sm={6} xs={12} container item spacing={1}>
-            <Grid xs={12} item>
-                <Typography variant="h4" component="h2" >Total Annual Recurring Fees</Typography>
-            </Grid>
-            <Grid xs={6} item >
-                <FormControl variant="outlined" className={classes.formControl} fullWidth>
-                    <InputLabel >Min</InputLabel>
-                    <Select
-                    value={fmin}
-                    onChange={handleChange}
-                    label="Age"
-                    >
-                        <MenuItem value="">
-                            <em>None</em>
-                        </MenuItem>
-                        <MenuItem value={10}>Ten</MenuItem>
-                        <MenuItem value={20}>Twenty</MenuItem>
-                        <MenuItem value={30}>Thirty</MenuItem>
-                    </Select>
-                </FormControl>
-            </Grid>
-
-            <Grid xs={6} item>
-                <FormControl variant="outlined" className={classes.formControl} fullWidth>
-                    <InputLabel>Max</InputLabel>
-                    <Select
-                    value={fmax}
-                    onChange={handleChange}
-                    label="Age"
-                    >
-                        <MenuItem value="">
-                            <em>None</em>
-                        </MenuItem>
-                        <MenuItem value={10}>Ten</MenuItem>
-                        <MenuItem value={20}>Twenty</MenuItem>
-                        <MenuItem value={30}>Thirty</MenuItem>
-                    </Select>
-                </FormControl>
-            </Grid>
+        <Grid sm={1} xs={12} item />
+        <Grid sm={4} xs={12} item>
+            <Typography variant="body1" component="h2"
+                sx={{
+                    marginBottom: "30px"
+                }}
+            >Total Annual Fees</Typography>
+            <Slider
+                // sx={{
+                //     color: "#56516b",
+                //     '& .MuiSlider-thumb': {
+                //         backgroundColor: '#FE8200'
+                //     }
+                // }}
+                disabled
+                value={[min, max]}
+                onChange={handleChange}
+                step={1}
+                max={8}
+                valueLabelDisplay="off"
+                valueLabelFormat={value=>marks?.find(m=>m.value===value)?.label || '$2,000,000'}
+                //marks={marks}
+            />
         </Grid>
+        <Grid sm={1} xs={12} item />
     </React.Fragment>
 
 )}

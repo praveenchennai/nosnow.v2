@@ -1,5 +1,8 @@
 const customStyle = () =>{
     return {
+        slider: {
+          color: "#fff"
+        },
         typography: {
           fontFamily: [
             'Montserrat',
@@ -66,6 +69,7 @@ const customStyle = () =>{
         //     fontFamily: 'Ubuntu'
         //   }
         }
+
       }
 }
 

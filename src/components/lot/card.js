@@ -1,11 +1,12 @@
 import React, { useState} from 'react';
 import { makeStyles } from '@mui/styles';
+import { useHistory, useParams } from "react-router-dom";
 import {Chip, Divider, Grid, Grow, Paper, CardMedia, Card, CardContent, Typography} from '@mui/material';
 import { listingCss } from 'common/style/style';
 const useStyles = makeStyles(listingCss());
 
 const LotCard = (props) => {
-
+    const navi = useHistory();
     const [noimage, setNoImage] = useState('https://nosnow-news-pdfs.s3.us-west-2.amazonaws.com/defaultproperty.webp')
     var {
         LivingArea, 
@@ -31,6 +32,10 @@ const LotCard = (props) => {
         
     }
 
+    const onProperty = (property) =>{
+        navi.push(`/lots/${property}`)
+    }
+
     return ( 
         <React.Fragment>
 
@@ -42,9 +47,11 @@ const LotCard = (props) => {
             onMouseOver={()=>hoverChange('in')}
             onMouseOut={()=>hoverChange('out')}
             sx={{
-                position: 'relative'
+                position: 'relative',
+                cursor: "pointer"
             }}
-
+            // onClick={() => window.open(`https://nosnownaples.com/lot-land/${ListingId}/${UnparsedAddress}`)}
+            onClick={() => onProperty(ListingId)}
         >
             <Grid container item md={12} display="flex"
                 sx={{

@@ -5,11 +5,13 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from './app/store'
 import { Provider } from 'react-redux'
+import * as service from './service';
+var configs = service.config()
 
 ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>
-      <App />
+      <App configs={configs}/>
     </React.StrictMode>
   </Provider>
   ,

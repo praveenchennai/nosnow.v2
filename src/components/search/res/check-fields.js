@@ -18,7 +18,7 @@ return (
             <FormControlLabel control={<Switch checked={golfAccess|| false} onChange={()=>dispatch(setGolfAccess(!golfAccess))} />} label="Gulf Access"  />
             <FormControlLabel control={<Switch checked={waterFrontView} onChange={()=>dispatch(setWaterFrontView(!waterFrontView))} />} label="Water Front"  />
             <FormControlLabel control={<Switch checked={guestHouse} onChange={()=>dispatch(setGuestHouse(!guestHouse))} />} label="Guest House"  />
-            <FormControlLabel control={<Switch disabled checked={newConstruction} onChange={()=>dispatch(setNewConstruction(!newConstruction))} />} label="New Construction"  />
+            <FormControlLabel control={<Switch checked={newConstruction} onChange={()=>dispatch(setNewConstruction(!newConstruction))} />} label="New Construction"  />
         </Grid>
     </React.Fragment>
 

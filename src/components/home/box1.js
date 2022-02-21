@@ -174,18 +174,18 @@ const Box1 = () => {
                         padding: "30px"
                     }}
                 >
-                        <Button 
-                            variant="contained"
-                            sx={{
-                                backgroundColor: "#ff5722",
-                                color: "#fff",
-                                fontSize: "15px"
-                            }}
-                            onClick={()=>onSearch()}
-                        >
-                            Detailed Search
-                        </Button>
-                    </Grid>
+                    <Button 
+                        variant="contained"
+                        sx={{
+                            backgroundColor: "#ff5722",
+                            color: "#fff",
+                            fontSize: "15px"
+                        }}
+                        onClick={()=>onSearch()}
+                    >
+                        Detailed Search
+                    </Button>
+                </Grid>
             </Paper>
         </React.Fragment>
     )

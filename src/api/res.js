@@ -1,5 +1,8 @@
+import { AccessAlarm } from '@mui/icons-material';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-
+import * as cities from './cities'
+import * as communities from './communities'
+import * as subDivision from './subdivision'
 export const fetchCity = createAsyncThunk('res/fetchCity', (id) => {
     console.log("reached", id)
     return [];
@@ -9,7 +12,6 @@ const addCityOptions = (state, action) =>{
     var cityOptions = action.payload;
   return {
       ...state,
-      //routes: routes,
       cityOptions: cityOptions
     }
 }
@@ -17,19 +19,39 @@ const addCityOptions = (state, action) =>{
 export const ResSearchFields = createSlice({
     name: 'res',
     initialState: {
+        previousPages: [
+            {page:0, start:0, index:0}
+        ],
         page: 0,
+        limit: 10,
         order: 'desc',
         sortBy: 'ModificationTimestamp',
         keyword: '',
+        mls: '',
         PropertyType: ['Residential', 'Residential Income', 'Commercial Sale'],
         city: '',
-        cityOptions: [],
+        cityOptions: [
+            "NAPLES",
+            "BONITA SPRINGS",
+            "ESTERO",
+            "MARCO ISLAND",
+            "CAPE CORAL",
+            "LEHIGH ACRES",
+            "FORT MYERS",
+            ...cities.cities()
+        ],
         community: '',
+        communityOptions: [
+            ...communities.Communities()
+        ].sort(),
         subCondo: '',
+        subCondoOptions: [
+            ...subDivision.subDivisions()
+        ].sort(),
         PropertySubType: [],
                 
         PropertySubTypeOptions: [
-            {id: 'Single Family Residence', value: 'Single Family'},
+            {id: 'Single Family', value: 'Single Family'},
             {id: 'Low Rise (1-3)', value: 'Low Rise (1-3)'},
             {id: 'Mid Rise (4-7)', value: 'Mid Rise (4-7)'},
             {id: 'High Rise (8+)', value: 'High Rise (8+)'},
@@ -38,8 +60,8 @@ export const ResSearchFields = createSlice({
             {id: 'Townhouse', value: 'Town House'},
             {id: 'Multi Family', value: 'Multi Family'},
             {id: 'Duplex', value: 'Duplex'},
-            {id: 'tx', value: 'Triplex'},
-            {id: 'qx', value: 'Quadraplex'},
+            {id: 'Triplex', value: 'Triplex'},
+            {id: 'Quadraplex', value: 'Quadraplex'},
             {id: 'Manufactured Home', value: 'Manufactured'}
         ],
         CommunityFeatures: [],
@@ -68,98 +90,225 @@ export const ResSearchFields = createSlice({
             {id: 'Attached', value: 'Attached'},
             {id: 'Detached', value: 'Detached'}
         ],
-        GarageSpaces: 'Any',
+        GarageSpaces: 0,
         GarageSpacesOptions: [
-            {id: 0, value: 'Any'},
-            {id: 1, value: '1+'},
-            {id: 2, value: '2+'},
-            {id: 3, value: '3+'},
-            {id: 4, value: '4+'},
-            {id: 5, value: '5+'},
-            {id: 6, value: '6+'}
+            {value: 0, label: 'Any', v: 0},
+            {value: 1, label: '1+', v: 1},
+            {value: 2, label: '2+', v: 2},
+            {value: 3, label: '3+', v: 3},
+            {value: 4, label: '4+', v: 4},
+            {value: 5, label: '5+', v: 5},
+            {value: 6, label: '6+', v: 6}
         ],
         priceRange: {
-            min: 0, max: 0
+            min: 0, max: 26
         },
         priceRangeOptions: [
-            {id: 0, value: 'Any'},
-            {id: 100000, value: '$100,000'},
-            {id: 150000, value: '$150,000'},
-            {id: 200000, value: '$200,000'},
-            {id: 250000, value: '$250,000'},
-            {id: 300000, value: '$300,000'},
-            {id: 350000, value: '$350,000'},
-            {id: 400000, value: '$400,000'},
-            {id: 450000, value: '$450,000'},
-            {id: 500000, value: '$500,000'},
-            {id: 600000, value: '$600,000'},
-            {id: 700000, value: '$700,000'},
-            {id: 800000, value: '$800,000'},
-            {id: 900000, value: '$900,000'},
-            {id: 1000000, value: '$1,000,000'},
-            {id: 1250000, value: '$1,250,000'},
-            {id: 1500000, value: '$1,500,000'},
-            {id: 1750000, value: '$1,750,000'},
-            {id: 2000000, value: '$2,000,000'}
+            {value: 0, label: 'Any', v: 0},
+            {value: 1, label: '$150,000', v: 150000},
+            {value: 2, label: '$200,000', v: 200000},
+            {value: 3, label: '$250,000', v: 250000},
+            {value: 4, label: '$300,000', v: 300000},
+            {value: 5, label: '$350,000', v: 350000},
+            {value: 6, label: '$400,000', v: 400000},
+            {value: 7, label: '$450,000', v: 450000},
+            {value: 8, label: '$500,000', v: 500000},
+            {value: 9, label: '$600,000', v: 600000},
+            {value: 10, label: '$700,000', v: 700000},
+            {value: 11, label: '$800,000', v: 800000},
+            {value: 12, label: '$900,000', v: 900000},
+            {value: 13, label: '$1,000,000', v: 1000000},
+            {value: 14, label: '$1,250,000', v: 1250000},
+            {value: 15, label: '$1,500,000', v: 1500000},
+            {value: 16, label: '$1,750,000', v: 1750000},
+            {value: 17, label: '$2,000,000', v: 2000000},
+            {value: 18, label: '$2,250,000', v: 2250000},
+            {value: 19, label: '$2,500,000', v: 2500000},
+            {value: 20, label: '$3,000,000', v: 3000000},
+            {value: 21, label: '$4,000,000', v: 4000000},
+            {value: 22, label: '$5,000,000', v: 5000000},
+            {value: 23, label: '$7,500,000', v: 7500000},
+            {value: 24, label: '$10,000,000', v: 10000000},
+            {value: 25, label: '$20,000,000', v: 20000000},
+            {value: 26, label: '$30,000,000', v: 30000000}
         ],
         monthlyPayment: {
-            min: 0, max: 0
+            min: 0, max: 8
         },
         monthlyPaymentOptions: [
-            {id: 0, value: 'Any'},
-            {id: 1000, value: 'less $1000'},
-            {id: 1250, value: '$1,250'},
-            {id: 1500, value: '$1,500'},
-            {id: 1750, value: '$1,750'},
-            {id: 2000, value: '$2,000'},
-            {id: 2500, value: '$2,500'},
-            {id: 3000, value: '$3,000'},
-            {id: 3500, value: '$3,500'}
+            {value: 0, label: 'Any', v: 0},
+            {value: 1, label: '$1000', v: 1000},
+            {value: 2, label: '$1,250', v: 1250},
+            {value: 3, label: '$1,500', v: 1500},
+            {value: 4, label: '$1,750', v: 1750},
+            {value: 5, label: '$2,000', v: 2000},
+            {value: 6, label: '$2,500', v: 2500},
+            {value: 7, label: '$3,000', v: 3000},
+            {value: 8, label: '$3,500', v: 3500}
         ],
         beds: {
-            min: 0, max: 0
+            min: 0, max: 5
         },
-        bbOptions:[
-            {id: 1, value: '1'},
-            {id: 2, value: '2'},
-            {id: 3, value: '3'},
-            {id: 4, value: '4'},
-            {id: 5, value: '5'},
-            {id: 0, value: 'Any'},
-        ],
         baths: {
-            min: 0, max: 0
+            min: 0, max: 5
         },
-        recurringFee: {
-            min: 0, max: 0
+        fee: {
+            min: 0, max: 12
         },
+        feeOptions: [
+            {value: 0, label: 'Any', v: 0},
+            {value: 1, label: 'No Fee', v: 0},
+            {value: 2, label: '$50', v: 50},
+            {value: 3, label: '$100', v: 100},
+            {value: 4, label: '$200', v: 200},
+            {value: 5, label: '$300', v: 300},
+            {value: 6, label: '$400', v: 400},
+            {value: 7, label: '$500', v: 500},
+            {value: 8, label: '$600', v: 600},
+            {value: 9, label: '$700', v: 700},
+            {value: 10, label: '$800', v: 800},
+            {value: 11, label: '$900', v: 900},
+            {value: 12, label: '$1000', v: 1000}
+        ],
         sqft: {
-            min: 0, max: 0
+            min: 0, max: 15
         },
+        sqftOptions: [
+            {value: 0, label: 'Any', v: 0},
+            {value: 1, label: '500', v: 500},
+            {value: 2, label: '750', v: 750},
+            {value: 3, label: '1000', v: 1000},
+            {value: 4, label: '1250', v: 1250},
+            {value: 5, label: '1500', v: 1500},
+            {value: 6, label: '1750', v: 1750},
+            {value: 7, label: '2000', v: 2000},
+            {value: 8, label: '2250', v: 2250},
+            {value: 9, label: '2500', v: 2500},
+            {value: 10, label: '2750', v: 2750},
+            {value: 11, label: '3000', v: 3000},
+            {value: 12, label: '3500', v: 3500},
+            {value: 13, label: '4000', v: 4000},
+            {value: 14, label: '5000', v: 5000},
+            {value: 15, label: '7500', v: 7500}
+        ],
         yearBuilt: {
-            min: 0, max: 0
+            min: 0, max: 23
         },
+        yearBuiltOptions: [
+            {value: 0, label: '1960', v: 1960},
+            {value: 1, label: '1960', v: 1965},
+            {value: 2, label: '1965', v: 1970},
+            {value: 3, label: '1970', v: 1975},
+            {value: 4, label: '1975', v: 1980},
+            {value: 5, label: '1980', v: 1985},
+            {value: 6, label: '1985', v: 1990},
+            {value: 7, label: '1990', v: 1995},
+            {value: 8, label: '1995', v: 2000},
+            {value: 9, label: '2000', v: 2005},
+            {value: 10, label: '2010', v: 2010},
+            {value: 11, label: '2011', v: 2011},
+            {value: 12, label: '2012', v: 2012},
+            {value: 13, label: '2013', v: 2013},
+            {value: 14, label: '2014', v: 2014},
+            {value: 15, label: '2015', v: 2015},
+            {value: 16, label: '2016', v: 2016},
+            {value: 17, label: '2017', v: 2017},
+            {value: 18, label: '2018', v: 2018},
+            {value: 19, label: '2019', v: 2019},
+            {value: 20, label: '2020', v: 2020},
+            {value: 21, label: '2021', v: 2021},
+            {value: 22, label: '2022', v: 2022},
+            {value: 23, label: '2023', v: 2023}
+        ],
         WaterfrontFeatures: [],
         WaterfrontFeaturesOptions: [
-            {id: 'Basin', value: 'Basin'},
-            {id: 'Bay', value: 'Bay'},
-            {id: 'Canal Front', value: 'Canal Front'},
-            {id: 'Creek', value: 'Creek'},
-            {id: 'Fresh Water', value: 'Fresh Water'},
-            {id: 'Gulf Frontage', value: 'Gulf Frontage'},
-            {id: 'Intersecting Canal', value: 'Intersecting Canal'},
-            {id: 'Lagoon', value: 'Lagoon'},
-            {id: 'Lake', value: 'Lake'},
-            {id: 'Mangrove', value: 'Mangrove'},
-            {id: 'Navigable', value: 'Navigable'},
-            {id: 'No Gulf Access', value: 'No Gulf Access'},
-            {id: 'On the Gulf Beach', value: 'On the Gulf Beach'},
-            {id: 'Rip Rap', value: 'Rip Rap'},
-            {id: 'River Front', value: 'River Front'},
-            {id: 'Salt Water', value: 'Salt Water'},
-            {id: 'Seawall', value: 'Seawall'},
-            {id: 'None', value: 'None'},
+            "BAY",
+            "LAKE",
+            "BASIN",
+            "CANAL FRONT",
+            "CREEK",
+            "FRESH WATER",
+            "GULF FRONTAGE",
+            "INTERSECTING CANEL",
+            "LAGOON",
+            "MANGROVE",
+            "NAVIGABLE",
+            "NO GULF Access",
+            "ON THE GULF BEACH",
+            "RIP RAP",
+            "RIVER FRONT",
+            "SALT WATER",
+            "SEAWALL",
+            "NONE"
         ],
+        Amenities: [],
+        AmenitiesOptions: [
+            "None",
+            "Sauna",
+            "Cabana",
+            "Marina",
+            "Library",
+            "Theater",
+            "Dog Park",
+            "Shopping",
+            "Sidewalk",
+            "Billiard Room",
+            "Clubhouse",
+            "Horses OK",
+            "Play Area",
+            "Basketball Court",
+            "Guest Room",
+            "Hobby Room",
+            "Pickleball",
+            "Restaurant",
+            "Volleyball",
+            "Bocce Court",
+            "Golf Course",
+            "Streetlight",
+            "Trash Chute",
+            "Barbecue",
+            "Beach Access",
+            "Beauty Salon",
+            "Bike Storage",
+            "Boat Storage",
+            "Fishing Pier",
+            "Racquetball",
+            "Shuffleboard Court",
+            "Tennis Court(s)",
+            "Water Skiing",
+            "Fitness Center",
+            "Storage",
+            "Putting Green",
+            "Common Laundry",
+            "Park",
+            "Pool",
+            "Community Room",
+            "Stable(s)",
+            "Beach - Private",
+            "Business Center",
+            "Internet Access",
+            "Lakefront Beach",
+            "Full Service Spa",
+            "Bike And Jog Path",
+            "Car Wash Area",
+            "Concierge",
+            "Private Membership",
+            "Beach Club Included",
+            "Community Boat Dock",
+            "Community Boat Lift",
+            "Community Boat Ramp",
+            "Community Boat Slip",
+            "Underground Utility",
+            "Beach Club Available",
+            "Spa/Hot Tub",
+            "Fish Cleaning Station",
+            "Private Beach Pavilion",
+            "Fitness Center",
+            "Assisted Living Available",
+            "Electric Vehicle Charging",
+            "Community Gulf Boat Access"
+        ].sort(),
+
         NABOR_PetsLimitMaxNumber: '',
         NABOR_PetsLimitMaxNumberOptions: [
             {id: 'Allowed', value: 'Allowed'},
@@ -169,13 +318,43 @@ export const ResSearchFields = createSlice({
         waterFrontView: false,
         guestHouse: false,
         newConstruction: false,
-        dropDownAPI: 'https://www.nosnownaples.com/api/property/dropdown/res/City/'
+        dropDownAPI: 'https://nosnownaples.com/api/property/dropdown/res/City/'
     },
     reducers: {
+        setPreviousPages: (state, action)=>{
+            return{
+                ...state,
+                previousPages:[...state.previousPages, action.payload]
+            }
+        },
+        resetPreviousPages: (state, action)=>{
+            return {
+                ...state,
+                previousPages: [{page: 0, index: 0, start:0}]
+            }
+        },
+        setPage: (state, action) =>{
+            return{
+                ...state,
+                page:action.payload
+            }
+        },
+        setLimit: (state, action) =>{
+            return{
+                ...state,
+                limit:action.payload
+            }
+        },
         setKeyword: (state, action) => {
             return{
                 ...state,
                 keyword:action.payload
+            }
+        },
+        setMls: (state, action) => {
+            return{
+                ...state,
+                mls:action.payload
             }
         },
         setCity: (state, action) => {
@@ -207,12 +386,12 @@ export const ResSearchFields = createSlice({
             
         },
         setCommunityFeatures: (state, action) => {
-            if(action.payload==='Non-Gated'){
-                return{
-                    ...state,
-                    CommunityFeaturesExclude:action.payload
-                }  
-            }
+            // if(action.payload==='Non-Gated'){
+            //     return{
+            //         ...state,
+            //         CommunityFeaturesExclude:action.payload
+            //     }  
+            // }
             return{
                 ...state,
                 CommunityFeatures:action.payload
@@ -236,13 +415,13 @@ export const ResSearchFields = createSlice({
             
         },
         setPriceRange: (state, action) => {
-            
+            var params = {
+                min: action.payload[0],
+                max: action.payload[1]
+            }
             return{
                 ...state,
-                priceRange:{
-                    ...state.priceRange,
-                    [action.payload.key]: action.payload.value
-                }
+                priceRange  :params
             }
             
         },
@@ -258,54 +437,55 @@ export const ResSearchFields = createSlice({
             
         },
         setBeds: (state, action) => {
+            var params = {
+                min: action.payload[0],
+                max: action.payload[1]
+            }
             return{
                 ...state,
-                beds:{
-                    ...state.beds,
-                    [action.payload.key]: action.payload.value,
-                }
+                beds:params
             }
             
         },
         setBaths: (state, action) => {
+            var params = {
+                min: action.payload[0],
+                max: action.payload[1]
+            }
             return{
                 ...state,
-                baths:{
-                    ...state.baths,
-                    [action.payload.key]: action.payload.value,
-                }
-            }
-            
+                baths:params
+            } 
         },
-        setRecurringFee: (state, action) => {
+        setFee: (state, action) => {
+            var params = {
+                min: action.payload[0],
+                max: action.payload[1]
+            }
             return{
                 ...state,
-                recurringFee:{
-                    min: action.payload.min,
-                    max: action.payload.max
-                }
-            }
-            
+                fee:params
+            } 
         },
         setSqft: (state, action) => {
+            var params = {
+                min: action.payload[0],
+                max: action.payload[1]
+            }
             return{
                 ...state,
-                sqft:{
-                    min: action.payload.min,
-                    max: action.payload.max
-                }
-            }
-            
+                sqft:params
+            } 
         },
         setYearBuilt: (state, action) => {
+            var params = {
+                min: action.payload[0],
+                max: action.payload[1]
+            }
             return{
                 ...state,
-                yearBuilt:{
-                    min: action.payload.min,
-                    max: action.payload.max
-                }
-            }
-            
+                yearBuilt:params
+            } 
         },
         setWaterfrontFeatures: (state, action) => {
             return{
@@ -313,7 +493,13 @@ export const ResSearchFields = createSlice({
                 WaterfrontFeatures:action.payload
             }
             
-        },        
+        },   
+        setAmenitiesFeatures: (state, action) => {
+            return{
+                ...state,
+                Amenities:action.payload
+            }
+        },      
         setNABOR_PetsLimitMaxNumber: (state, action) => {
             return{
                 ...state,
@@ -358,7 +544,12 @@ export const ResSearchFields = createSlice({
 })
 
 export const { 
+    setLimit,
+    setPage,
+    setPreviousPages,
+    resetPreviousPages,
     setKeyword,
+    setMls,
     setCity,
     setCommunity,
     setSubCondo,
@@ -370,10 +561,11 @@ export const {
     setMonthlyPayment,
     setBeds,
     setBaths,
-    setRecurringFee,
+    setFee,
     setSqft,
     setYearBuilt,
     setWaterfrontFeatures,
+    setAmenitiesFeatures,
     setNABOR_PetsLimitMaxNumber,
     setGolfAccess,
     setWaterFrontView,

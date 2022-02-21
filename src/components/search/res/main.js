@@ -22,13 +22,17 @@ const ResMain = () => {
     const classes = useStyles();
 
     return ( 
-        <Container component="main" maxWidth="lg" sx={{minHeight:'80vh', paddingBottom: "20px"}}>
+        <Container component="main" maxWidth="lg" sx={{minHeight:'calc(100vh - 120px)'}}>
             <KeywordSearch />
 
-             <Grid container justify="space-between" spacing={2} className={classes.mt10}>
+            <Grid container justify="space-between" spacing={2} className={classes.mt10}>
                 <FieldSearch />
                 <TypeSearch />
                 <Garage />
+            </Grid>
+
+            <Grid container justify="space-between" spacing={2} className={classes.mt10}>
+                <Others />            
             </Grid>
 
            <Grid  container justify="space-between" spacing={2} className={classes.mt10}>
@@ -46,14 +50,13 @@ const ResMain = () => {
 
             
             <Grid container justify="space-between" spacing={2} className={classes.mt10}>
-                <Fee />
+                {/* <Fee /> */}
+                <Year />
                 <Sqft />             
             </Grid>
-            
-            <Grid container justify="space-between" spacing={2} className={classes.mt10}>
-                <Year />
-                <Others />            
-            </Grid>
+
+           
+
 
             <Grid container justify="space-between" spacing={2} className={classes.mt10}>
                 <CheckFields />

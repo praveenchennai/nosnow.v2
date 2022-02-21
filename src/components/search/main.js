@@ -7,23 +7,29 @@ import { makeStyles } from '@mui/styles';
 import { listingCss } from 'common/style/style';
 
 const useStyles = makeStyles(listingCss());
+
 const SearchMain = () => {
     const navi = useHistory();
     const classes = useStyles();
     const [value, setValue] = useState(0);
+
     const tabChange = (event, newValue) => {
-        console.log(event)
         setValue(newValue);
     };
 
-
-      
     const onSearch = () =>{
-        console.log('reached')
-        navi.push('/result/res')
+        if(value==0){
+            navi.push('/result/res')
+        } else {
+            navi.push('/result/lot-land')
+        }
+        
     }
+    
     return ( 
-        <Container component="main" maxWidth="lg">
+        <Container component="main" maxWidth="lg"
+
+        >
             <AppBar position="sticky" elevation={0} className={classes.transparent}>
                 <Toolbar>
                     <Tabs value={value || 0} onChange={tabChange} sx={{ flexGrow: 1 }}>

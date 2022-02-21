@@ -373,6 +373,27 @@ export const listingCss = () =>{
                 background: "#FE8200"
             }
         },
+        btn_site: {
+            background: "#56516b",
+            marginLeft: 10,
+            color: "#fff",
+            paddingBottom: 6,
+            paddingTop: 6,
+            fontWeight: "bolder",
+            '&:hover': {
+                background: "#6a6485"
+            }
+        },
+        appbar_site: {
+            background: "#56516b",
+            color: "#fff",
+            paddingBottom: 6,
+            paddingTop: 6,
+            fontWeight: "bolder",
+            '&:hover': {
+                background: "#6a6485"
+            }
+        },
           root: {
             maxWidth: 345,
             marginTop: 0,

@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import { useHistory, useParams } from "react-router-dom";
 import { Paper, Tabs, Tab, Button, Box, TextField, Grid,  Typography} from '@mui/material';
 import { createTheme } from "@mui/material/styles";
-import SwipeableViews from 'react-swipeable-views';
+import { useSelector, useDispatch } from 'react-redux'
+import {setKeyword} from 'api/res';
 
 const theme = createTheme();
+
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -43,11 +45,16 @@ function TabPanel(props) {
 
 
 const Box2 = () => {
-
+    const navi = useHistory();
+    const dispatch = useDispatch();
     const [value, setValue] = React.useState(0);
+    const keyword = useSelector(state=>state.res.keyword);
+    const onSearch = () =>{
+        navi.push('/result/res')
+    }
 
-    const handleChange = (event, newValue) => {
-      setValue(newValue);
+    const handleChange=(event)=>{
+        dispatch(setKeyword(event.target.value))
     };
 
     const handleChangeIndex = (index) => {
@@ -123,57 +130,62 @@ const Box2 = () => {
                         <Tab label="Residential" />
                         <Tab label="Lots & Land" />
                     </Tabs>
-                    <SwipeableViews
-                        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-                        index={value}
-                        onChangeIndex={handleChangeIndex}
-                    >
-                        <TabPanel value={value} index={0} dir={theme.direction}>
-                            <TextField fullWidth placeholder="Enter Either MLS#, Address, Community, Sub Division, Zip, City or Any keyword" variant="outlined" />
-                            <Grid container item
-                                direction="column" 
-                                justifyContent="center" 
-                                alignItems="center" 
+                    <TabPanel value={value} index={0} dir={theme.direction}>
+                        <TextField 
+                            fullWidth 
+                            placeholder="Enter Address," 
+                            variant="outlined" 
+                            type="text" 
+                            margin="normal" 
+                            label="Enter Address" 
+                            name="keyword" 
+                            onChange={handleChange}
+                            value={keyword?keyword:''} 
+                        />
+                        <Grid container item
+                            direction="column" 
+                            justifyContent="center" 
+                            alignItems="center" 
+                            sx={{
+                                padding: "10px"
+                            }}
+                        >
+                            <Button 
+                                variant="contained"
                                 sx={{
-                                    padding: "10px"
+                                    backgroundColor: "#ff5722",
+                                    color: "#fff",
+                                    fontSize: "15px"
                                 }}
+                                onClick={()=>onSearch()}
                             >
-                                <Button 
-                                    variant="contained"
-                                    sx={{
-                                        backgroundColor: "#ff5722",
-                                        color: "#fff",
-                                        fontSize: "15px"
-                                    }}
-                                >
-                                    Search
-                                </Button>
-                            </Grid>
-                        </TabPanel>
-                        <TabPanel value={value} index={1} dir={theme.direction}>
-                            <TextField fullWidth placeholder="Enter Either MLS#, Address, Community, Sub Division, Zip, City or Any keyword" variant="outlined" />
-                            <Grid container item
-                                direction="column" 
-                                justifyContent="center" 
-                                alignItems="center" 
+                                Search
+                            </Button>
+                        </Grid>
+                    </TabPanel>
+                    <TabPanel value={value} index={1} dir={theme.direction}>
+                        <TextField fullWidth placeholder="Enter Address" variant="outlined" />
+                        <Grid container item
+                            direction="column" 
+                            justifyContent="center" 
+                            alignItems="center" 
+                            sx={{
+                                padding: "10px"
+                            }}
+                        >
+                            <Button 
+                                variant="contained"
                                 sx={{
-                                    padding: "10px"
+                                    backgroundColor: "#ff5722",
+                                    color: "#fff",
+                                    fontSize: "15px"
                                 }}
+                                onClick={()=>onSearch()}
                             >
-                                <Button 
-                                    variant="contained"
-                                    sx={{
-                                        backgroundColor: "#ff5722",
-                                        color: "#fff",
-                                        fontSize: "15px"
-                                    }}
-                                >
-                                    Search
-                                </Button>
-                            </Grid>
-                        </TabPanel>
-                  </SwipeableViews>
-                    
+                                Search
+                            </Button>
+                        </Grid>
+                    </TabPanel>     
                 </Grid>
                 
             </Paper>

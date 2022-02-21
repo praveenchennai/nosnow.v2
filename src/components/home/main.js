@@ -31,7 +31,7 @@ const HomeMain = (props) => {
                 <Box2 />
             </Stack>
             <Content1 />
-            {/* <CommunityGroupHomeBlock /> */}
+            <CommunityGroupHomeBlock />
             <Divider sx={{marginTop: "70px", marginBottom: "40px", marginX: "20px"}}/>
             <FeaturedResHomeBlock />
             <Divider sx={{marginTop: "70px", marginBottom: "40px", marginX: "20px"}}/>
