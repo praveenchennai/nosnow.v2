@@ -9,6 +9,7 @@
     "@mui/material": "^5.0.4",
     "@mui/styled-engine-sc": "^5.0.3",
     "@mui/styles": "^5.0.2",
+    "@react-google-maps/api": "^2.7.0",
     "@reduxjs/toolkit": "^1.7.2",
     "axios": "^0.24.0",
     "leaflet": "^1.7.1",
