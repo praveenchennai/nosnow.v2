@@ -1,5 +1,5 @@
 import React from 'react';
-import { Paper,  Button,  Grid, Typography} from '@mui/material';
+import { Paper,  Button, Link, Grid, Typography} from '@mui/material';
 import { createTheme } from "@mui/material/styles";
 import SearchIcon from '@mui/icons-material/Search';
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
@@ -167,11 +167,12 @@ const Box1 = () => {
                     </Grid>
                 </Grid>
                 <Grid container item
-                    direction="column" 
+                    direction="row" 
                     justifyContent="center" 
                     alignItems="center" 
                     sx={{
                         padding: "30px"
+
                     }}
                 >
                     <Button 
@@ -179,11 +180,24 @@ const Box1 = () => {
                         sx={{
                             backgroundColor: "#ff5722",
                             color: "#fff",
-                            fontSize: "15px"
+                            fontSize: "15px",
+                            margin: "20px"
                         }}
                         onClick={()=>onSearch()}
                     >
                         Detailed Search
+                    </Button>
+                    <Button 
+                        variant='contained' 
+                        sx={{
+                            backgroundColor: "#ff5722",
+                            color: "#fff",
+                            fontSize: "15px",
+                            margin: "20px"
+                        }}
+                        target="_blank" href="http://www.nosnowevalue.com/"
+                    >
+                        What's My Home Worth?
                     </Button>
                 </Grid>
             </Paper>
