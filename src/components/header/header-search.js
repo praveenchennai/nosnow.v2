@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppBar, Link, Grid, Tooltip, IconButton, Toolbar, Typography } from '@mui/material';
+import { AppBar, Link, Grid, Tooltip, IconButton, Toolbar, Button, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -77,6 +77,7 @@ const HeaderSearch = (props) => {
                                 }
                             }}
                         >
+                            <Button color="inherit" size="large"><Link color="inherit" target="_blank" href="https://www.facebook.com/NoSnowNaples/"><FacebookIcon /></Link></Button>
                             <IconButton color="inherit" size="large"><Link color="inherit" target="_blank" href="https://www.facebook.com/NoSnowNaples/"><FacebookIcon /></Link></IconButton>
                             <IconButton color="inherit" size="large"><Link color="inherit" target="_blank" href="https://twitter.com/nosnownaples/"><TwitterIcon /></Link></IconButton>
                             <IconButton color="inherit" size="large"><Link color="inherit" target="_blank" href="https://www.instagram.com/nosnownaples/"><InstagramIcon /></Link></IconButton>
