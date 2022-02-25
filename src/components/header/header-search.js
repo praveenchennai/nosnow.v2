@@ -69,7 +69,7 @@ const HeaderSearch = (props) => {
                                 </IconButton> 
                             </Grid> 
                         </Grid>
-                        <Grid container item md={7} justifyContent="flex-end"
+                        <Grid container item md={7} justifyContent="flex-end" alignItems={'center'}
                             sx={{
                                 display: {
                                     xs: "none", 
@@ -77,7 +77,13 @@ const HeaderSearch = (props) => {
                                 }
                             }}
                         >
-                            <Button color="inherit" size="large"><Link color="inherit" target="_blank" href="https://www.facebook.com/NoSnowNaples/"><FacebookIcon /></Link></Button>
+                            <Button 
+                                sx={{
+                                    backgroundColor: "#ff5722",
+                                    color: "#fff",
+                                    fontSize: "15px",
+                                }}
+                                variant='contained' target="_blank" href="http://www.nosnowevalue.com/">What's My Home Worth?</Button>
                             <IconButton color="inherit" size="large"><Link color="inherit" target="_blank" href="https://www.facebook.com/NoSnowNaples/"><FacebookIcon /></Link></IconButton>
                             <IconButton color="inherit" size="large"><Link color="inherit" target="_blank" href="https://twitter.com/nosnownaples/"><TwitterIcon /></Link></IconButton>
                             <IconButton color="inherit" size="large"><Link color="inherit" target="_blank" href="https://www.instagram.com/nosnownaples/"><InstagramIcon /></Link></IconButton>

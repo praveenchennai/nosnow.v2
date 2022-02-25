@@ -64,12 +64,12 @@ const Header = (props) => {
                     </IconButton>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}></Typography>
                     <Button 
-                    sx={{
-                        backgroundColor: "#ff5722",
-                        color: "#fff",
-                        fontSize: "15px",
-                    }}
-                    variant='contained' size="large" target="_blank" href="http://www.nosnowevalue.com/">What's My Home Worth?</Button>
+                        sx={{
+                            backgroundColor: "#ff5722",
+                            color: "#fff",
+                            fontSize: "15px",
+                        }}
+                        variant='contained' target="_blank" href="http://www.nosnowevalue.com/">What's My Home Worth?</Button>
                     <IconButton color="inherit" size="large"><Link color="inherit" target="_blank" href="https://www.facebook.com/NoSnowNaples/"><FacebookIcon /></Link></IconButton>
                     <IconButton color="inherit" size="large"><Link color="inherit" target="_blank" href="https://twitter.com/nosnownaples/"><TwitterIcon /></Link></IconButton>
                     <IconButton color="inherit" size="large"><Link color="inherit" target="_blank" href="https://www.instagram.com/nosnownaples/"><InstagramIcon /></Link></IconButton>
