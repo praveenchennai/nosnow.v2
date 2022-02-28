@@ -18,9 +18,9 @@ const Routes = (props) => {
             <BrowserRouter>
                 <Header {...props}/>
                 <Suspense fallback={<Paper 
-                            sx={{
-                                minHeight: "100vh"
-                            }}
+                    sx={{
+                        minHeight: "100vh"
+                    }}
                 />}>
                     <Switch>
                         <Route path="/" render = {()=><Home />} exact/>

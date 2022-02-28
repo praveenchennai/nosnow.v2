@@ -21,7 +21,10 @@ const FeaturedLotHomeBlock = () => {
 
     const {properties, total, pStatus, pIsLoading, pError} = useMultipleCustomQuery({
         url: orderFlow,
-        search: ''
+        search: '',
+        limit: 10,
+        start: 0,
+        index: 0
     }, {
         selectFromResult: ({ data, status, isLoading, error, originalArgs }) => {
             return {
