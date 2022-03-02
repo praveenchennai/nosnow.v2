@@ -76,6 +76,26 @@ const LeftMenu = (anchor) => {
                 {title: 'Mortgage Calculator', secTitle: '', onclick: '/https://nosnownaples.com/content/tcalc'}
             ]
         },
+        {
+            id: '5',
+            title: 'Living in Naples', 
+            secTitle: 'Manage Site Locations @ Work', 
+            onclick: '/orgs/sit/list', 
+            admin: true, 
+            icon: 'add_circle',
+            subMenu: [
+                {title: 'Quality Of Life', onclick: 'https://content.nosnownaples.com/quality-of-life.html'},
+                {title: 'Luxury Life Style', secTitle: '', onclick: 'https://content.nosnownaples.com/luxury-life-style.html' },
+                {title: 'Best Place of Retirement', secTitle: '', onclick: 'https://content.nosnownaples.com/best-place-of-retirement.html'},
+                {title: 'Top 5 reasons to move to Florida', secTitle: '', onclick: 'https://content.nosnownaples.com/top-5-reasons-to-live-in-florida.html'},
+                {title: 'Naples Recreation', secTitle: '', onclick: 'https://content.nosnownaples.com/naples-recreation.html'},
+                {title: 'Professional Sports', secTitle: '', onclick: 'https://content.nosnownaples.com/professional-sports.html'},
+                {title: 'Sports For The Family', secTitle: '', onclick: 'https://content.nosnownaples.com/sports-for-the-family.html'},
+                {title: 'Famous 5th Avenue District', secTitle: '', onclick: 'https://content.nosnownaples.com/famous-5th-avenue-district.html'},
+                {title: 'Naples Collier County Hot Vacation', secTitle: '', onclick: 'https://content.nosnownaples.com/naples-collier-county-hot-vacation-home-spot.html'},
+                {title: 'More', secTitle: '', onclick: 'https://content.nosnownaples.com/'}
+            ]
+        },
     ])
 
     const onHome = () =>{
@@ -86,11 +106,6 @@ const LeftMenu = (anchor) => {
     }
 
     const [menu2] = useState([
-        {
-            id: '1',
-            title: 'Living In Naples', 
-            onclick: 'https://content.nosnownaples.com', 
-        },
         {
             id: '2',
             title: 'News', 
@@ -149,10 +164,9 @@ const LeftMenu = (anchor) => {
                             <ListItemButton 
                                 key={i}
                                 sx={{ 
-                                    paddingLeft: 4, 
-                                    minHeight: 30, 
                                     color: 'rgba(255,255,255,.8)',
                                     backgroundColor: "#56516b",
+                                    maxHeight: "30px"
                                 }}
                                 onClick={() => window.open(item.onclick)}
                             >
@@ -168,6 +182,7 @@ const LeftMenu = (anchor) => {
                                             color: '#fff',
                                             fontWeight: 'medium',
                                             variant: 'body1',
+                                            fontSize: "12px"
                                         }}
                                     />
                                 
