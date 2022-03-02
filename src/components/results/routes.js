@@ -18,6 +18,7 @@ const ResultRoutes = (props) => {
                         <Route path="/details/:id" render={()=> <PropertyMain />} />
                         <Route path="/lots/:id" render={()=> <LotMain />} />
                         <Route path="/search" render={()=> <SearchMain />} />
+                        <Route path="/search/:type" render={()=> <SearchMain />} />
                     </Switch>
                 </Suspense>
             </BrowserRouter>
