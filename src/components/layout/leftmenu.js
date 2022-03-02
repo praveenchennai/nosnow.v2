@@ -20,8 +20,8 @@ const LeftMenu = (anchor) => {
             admin: true, 
             icon: 'add_circle',
             subMenu: [
-                {title: 'Featured Residential', secTitle: '', onclick: 'https://nosnownaples.com/search/residential/featured'},
-                {title: 'Featured Land & Lots', secTitle: '', onclick: 'https://nosnownaples.com/search/lot-land/featured' },
+                {title: 'Featured Residential', secTitle: '', onclick: 'https://www.nosnownaples.com/result/featured-res'},
+                {title: 'Featured Land & Lots', secTitle: '', onclick: 'https://www.nosnownaples.com/result/featured-lot' },
                 {title: 'Upcoming Open House', secTitle: '', onclick: 'https://nosnownaples.com/search/residential/openhouse'},
                 {title: 'New Construction Southwest FL', secTitle: '', onclick: 'https://nosnownaples.com/search/residential/newconstructionyn_true'},
             ]

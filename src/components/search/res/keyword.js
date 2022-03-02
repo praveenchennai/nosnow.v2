@@ -7,7 +7,7 @@ const KeywordSearch = () => {
     const [label, setLabel] = useState('Enter MLS# or Address')
     const dispatch = useDispatch();
     const keyword = useSelector(state=>state.res.keyword);
-    const mls = useSelector(state=>state.res.mls);
+
     const handleKeywordChange=(event)=>{
         dispatch(setKeyword(event.target.value))
     };
@@ -24,7 +24,7 @@ return (
             margin="normal" 
             label={label}
             placeholder = "Enter MLS# or Address"
-            name="mls" 
+            name="keyword" 
             onChange={handleKeywordChange}
             onFocus={handleFocus}
             value={keyword || ''} 

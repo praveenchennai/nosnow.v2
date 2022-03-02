@@ -34,8 +34,6 @@ const FeaturedResHomeBlock = () => {
         }
     });
 
-    console.log("properties", properties)
-
     
     return (
         <Grid container item maxWidth="false" md={12} 
