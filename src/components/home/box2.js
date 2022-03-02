@@ -51,7 +51,12 @@ const Box2 = () => {
     const dispatch = useDispatch();
     const keyword = useSelector(state=>state.res.keyword);
     const onSearch = () =>{
-        navi.push('/result/res')
+        if(value===0){
+            navi.push('/result/res')
+        } else {
+            navi.push('/result/lot-land')
+        }
+        
     }
 
     const handleChange=(event)=>{
@@ -144,10 +149,10 @@ const Box2 = () => {
                         <Tab label="Lots & Land"  />
                     </Tabs>
                     <TabPanel value={value} index={0} dir={theme.direction}>
-                        {value===0? 
-                            <ResMain />
-                        :
-                            <KeywordSearch />}
+                        <ResMain />
+                    </TabPanel>
+                    <TabPanel value={value} index={1} dir={theme.direction}>
+                        <KeywordSearch />
                     </TabPanel>
                         <Button 
                             variant="contained"
