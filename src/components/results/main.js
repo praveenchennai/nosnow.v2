@@ -44,6 +44,20 @@ var orderFlowLot = [
     {id: 8, query:'&PropertyType=Land&MlsStatus=Sold&sortBy=CloseDate&order=desc'}
 ]
 
+var FeaturedRes = [
+    {id: 1, query:'&PropertyType=Residential&ListAgentMlsId=505199&MlsStatus=Active&sortBy=ListPrice&order=desc'},
+    {id: 3, query:'&PropertyType=Residential&ListAgentMlsId=505199&MlsStatus.in=Pending&sortBy=ListPrice&order=desc'},
+    {id: 5, query:'&PropertyType=Residential&ListAgentMlsId=505199&MlsStatus=Pending With Contingencies&sortBy=ListPrice&order=desc'},
+    {id: 7, query:'&PropertyType=Residential&ListAgentMlsId=505199&MlsStatus=Sold&sortBy=CloseDate&order=desc'},
+]
+
+var FeaturedLot = [
+    {id: 1, query:'&PropertyType=Land&ListAgentMlsId=505199&MlsStatus=Active&sortBy=ListPrice&order=desc'},
+    {id: 3, query:'&PropertyType=Land&ListAgentMlsId=505199&MlsStatus.in=Pending&sortBy=ListPrice&order=desc'},
+    {id: 5, query:'&PropertyType=Land&ListAgentMlsId=505199&MlsStatus=Pending With Contingencies&sortBy=ListPrice&order=desc'},
+    {id: 7, query:'&PropertyType=Land&ListAgentMlsId=505199&MlsStatus=Sold&sortBy=CloseDate&order=desc'},
+]
+
 var params = undefined;
 var query = '';
 var start = 0;
@@ -90,10 +104,12 @@ const ResultsMain = () => {
         if(type==='lot-land'){
             params = orderFlowLot;
             if(lkeyword.length>0){
-                query = query + `&UnparsedAddress.in=${keyword || ''}`
-            }
-            if(lmls.length>0){
-                query = query + `&ListingId=${mls || ''}`
+                var n = isNaN(lkeyword);
+                if(!n && lkeyword.length===9){
+                    query = query + `&ListingId=${lkeyword || ''}`
+                } else {
+                    query = query + `&UnparsedAddress.in=${lkeyword || ''}`
+                }
             }
             if(lcity.length>0){
                 query = query + `&City.in=${lcity.join(", ") || ''}`
@@ -191,6 +207,10 @@ const ResultsMain = () => {
             if(newConstruction){
                query = query + `&NABOR_StatusType.ne=null`;
             }
+        } else if (type==='featured-res'){
+            params = FeaturedRes;
+        } else if (type==='featured-lot'){
+            params = FeaturedLot;
         }
         dispatch(resetPreviousPages(0));
         dispatch(setPage(0));
