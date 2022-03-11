@@ -70,6 +70,7 @@ const LeftMenu = (props) => {
             icon: 'add_circle',
             subMenu: [
                 {title: 'About the Parlante Group', secTitle: '', useNavi: true, onclick: '/content/about'},
+                {title: 'Rick Parlante in the News', secTitle: '', onclick: 'https://rick.nosnownaples.com' },
                 {title: 'Parlante Group Video', secTitle: '', onclick: 'https://www.nosnownaples.com/content/parlante-video' },
                 {title: 'Messege on COVID-19', secTitle: '', onclick: 'https://www.nosnownaples.com/content/covid19'},
                 {title: 'Real Estate Special Report', secTitle: '', onclick: '/https://nosnownaples.com/content/news'},
