@@ -14,6 +14,9 @@ const HeaderRoutes = (props) => {
                     props?.location?.pathname.startsWith('/result')?
                         <HeaderSearch />
                     :
+                        props?.location?.pathname.startsWith('/content')?
+                        <HeaderHome />
+                        :
                         <Header />
                         
             }

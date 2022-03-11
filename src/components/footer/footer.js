@@ -31,7 +31,7 @@ const Footer = (props) => {
     const classes = useStyles();
     return (
         <React.Fragment>
-            {props?.location?.pathname==='/'?
+            {props?.location?.pathname==='/' || props?.location?.pathname.startsWith('/content')?
                 <React.Fragment>
                     <AppBar position="static" className={classes.root} elevation={0}>
                         <Toolbar>

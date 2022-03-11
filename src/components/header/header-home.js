@@ -24,11 +24,15 @@ const useStyles = makeStyles({
 
 });
 
+
 const HeaderHome = (props) => {
     const [state, setState] = React.useState(false);
     const classes = useStyles();
     const theme = useTheme();
     const bottom = useMediaQuery(theme.breakpoints.down('md'));
+    var props = {
+        setState: setState
+    }
     return (
         <React.Fragment>
             <AppBar position="sticky" className={classes.root} elevation={0}>
@@ -98,7 +102,7 @@ const HeaderHome = (props) => {
                 }
               }}
             >
-                <LeftMenu />
+                <LeftMenu value={props}/>
             </Drawer>
         </React.Fragment>
     )
