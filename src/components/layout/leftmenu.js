@@ -7,9 +7,10 @@ import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import { useHistory, useParams } from "react-router-dom";
 
-const LeftMenu = (anchor) => {
+const LeftMenu = (props) => {
+    const {setState} = props.value
     const navi = useHistory();
-    const toggleDrawer = (anchor, a) =>{}
+    const toggleDrawer = () =>{}
     const [open, setOpen] = useState(false)
     const [menus] = useState([
         {
@@ -68,12 +69,12 @@ const LeftMenu = (anchor) => {
             admin: true, 
             icon: 'add_circle',
             subMenu: [
-                {title: 'About the Parlante Group', secTitle: '', onclick: 'https://nosnownaples.com/content/about'},
-                {title: 'Parlante Group Video', secTitle: '', onclick: 'https://nosnownaples.com/content/parlante-video' },
-                {title: 'Messege on COVID-19', secTitle: '', onclick: 'https://nosnownaples.com/content/covid19'},
+                {title: 'About the Parlante Group', secTitle: '', useNavi: true, onclick: '/content/about'},
+                {title: 'Parlante Group Video', secTitle: '', onclick: 'https://www.nosnownaples.com/content/parlante-video' },
+                {title: 'Messege on COVID-19', secTitle: '', onclick: 'https://www.nosnownaples.com/content/covid19'},
                 {title: 'Real Estate Special Report', secTitle: '', onclick: '/https://nosnownaples.com/content/news'},
                 {title: 'Whats Your Home Worth?', secTitle: '', onclick: 'http://www.nosnowevalue.com/'},
-                {title: 'Mortgage Calculator', secTitle: '', onclick: '/https://nosnownaples.com/content/tcalc'}
+                // {title: 'Mortgage Calculator', secTitle: '', onclick: '/https://www.nosnownaples.com/content/tcalc'}
             ]
         },
         {
@@ -100,9 +101,21 @@ const LeftMenu = (anchor) => {
 
     const onHome = () =>{
         navi.push('/')
+        setState(false)
     }
     const onSearch = () =>{
         navi.push('/search')
+        setState(false)
+    }
+
+    const onLeftMenuClick = (item) =>{
+        if(item.useNavi){
+            navi.push(item.onclick)
+            setState(false)
+        } else {
+            window.open(item.onclick)
+        }
+        
     }
 
     const [menu2] = useState([
@@ -120,7 +133,7 @@ const LeftMenu = (anchor) => {
     ])
     
     return (
-        <Box role="presentation" onClick={toggleDrawer(anchor, false)} onKeyDown={toggleDrawer(anchor, false)}>
+        <Box role="presentation" >
             <List> 
                 <ListItemButton 
                         sx={{ height: 56 }}  
@@ -168,7 +181,7 @@ const LeftMenu = (anchor) => {
                                     backgroundColor: "#56516b",
                                     maxHeight: "30px"
                                 }}
-                                onClick={() => window.open(item.onclick)}
+                                onClick={() => onLeftMenuClick(item)}
                             >
                                 
                                     <ListItemIcon>
