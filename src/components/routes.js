@@ -5,11 +5,13 @@ import HeaderRoutes from './header/routes';
 import FooterRoutes from './footer/footer';
 
 const Search = lazy(() => import('components/search/main'));
-const Content = lazy(() => import('components/content/main'));
 const Home = lazy(() => import('components/home/main'));
 const PropertyMain = lazy(()=>import('components/property/main'));
 const LotMain = lazy(()=>import('components/lot/main'));
 const ResultRoutes = lazy(()=>import('components/results/routes'));
+
+const About = lazy(()=>import('components/content/about'));
+const ParlanteVideo = lazy(()=>import('components/content/parlante-video'));
 
 const Routes = (props) => {
     const Header = withRouter(props => <HeaderRoutes {...props}/>);
@@ -26,11 +28,13 @@ const Routes = (props) => {
                     <Switch>
                         <Route path="/" render = {()=><Home />} exact/>
                         <Route path="/search" render = {()=><Search />} exact/>
-                        <Route path="/content/:type" render = {()=><Content />} exact/>
+                        
                         <Route path="/search/:type" render = {()=><Search />} />
                         <Route path="/details/:id" render={()=> <PropertyMain />} />
                         <Route path="/lots/:id" render={()=> <LotMain />} />
                         <Route path="/result" render={()=> <ResultRoutes />} />
+                        <Route path="/content/about" render = {()=><About />} exact/>
+                        <Route path="/content/parlante-video" render={()=> <ParlanteVideo />} exact/>
                     </Switch>
                 </Suspense>
                 <Footer {...props}/>
