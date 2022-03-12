@@ -71,9 +71,8 @@ const LeftMenu = (props) => {
             subMenu: [
                 {title: 'About the Parlante Group', secTitle: '', useNavi: true, onclick: '/content/about'},
                 {title: 'Rick Parlante in the News', secTitle: '', onclick: 'https://rick.nosnownaples.com' },
-                {title: 'Parlante Group Video', secTitle: '', onclick: 'https://www.nosnownaples.com/content/parlante-video' },
-                {title: 'Messege on COVID-19', secTitle: '', onclick: 'https://www.nosnownaples.com/content/covid19'},
-                {title: 'Real Estate Special Report', secTitle: '', onclick: '/https://nosnownaples.com/content/news'},
+                {title: 'Parlante Group Video', secTitle: '', useNavi: true, onclick: '/content/parlante-video' },
+                {title: 'Real Estate Special Report', secTitle: '', onclick: 'https://news.nosnownaples.com'},
                 {title: 'Whats Your Home Worth?', secTitle: '', onclick: 'http://www.nosnowevalue.com/'},
                 // {title: 'Mortgage Calculator', secTitle: '', onclick: '/https://www.nosnownaples.com/content/tcalc'}
             ]
@@ -115,6 +114,7 @@ const LeftMenu = (props) => {
             setState(false)
         } else {
             window.open(item.onclick)
+            setState(false)
         }
         
     }
