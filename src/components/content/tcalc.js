@@ -8,8 +8,8 @@ const Mortgage = () => {
         interestRate: '3.00'
     })
     const onSent = () => {
-
-        window.open(`https://morgage.nosnownaples.com/calc.html?LOANAMOUNT=${tcal.homePrice}&DOWNPAYMENT=${tcal.downPayment}+&DOWNPAYMENT_TYPE=Percent&TERM=${tcal.loadTerm}&TERM_UNITS=Years&INTERESTRATE=${tcal.interestRate}+&SHOWAMORTIZATIONSCHEDULE=on&COMPUTE=COMPUTE&CALCULATORID=HF02&TEMPLATE_ID=WWW.NOSNOWNAPLES.COM_1`)
+        console.log(`https://morgage.nosnownaples.com/?LOANAMOUNT=${tcal.homePrice}&DOWNPAYMENT=${tcal.downPayment}+&DOWNPAYMENT_TYPE=Percent&TERM=${tcal.loadTerm}&TERM_UNITS=Years&INTERESTRATE=${tcal.interestRate}+&SHOWAMORTIZATIONSCHEDULE=on&COMPUTE=COMPUTE&CALCULATORID=HF02&TEMPLATE_ID=WWW.NOSNOWNAPLES.COM_1`)
+        window.open(`https://morgage.nosnownaples.com/?LOANAMOUNT=${tcal.homePrice}&DOWNPAYMENT=${tcal.downPayment}+&DOWNPAYMENT_TYPE=Percent&TERM=${tcal.loadTerm}&TERM_UNITS=Years&INTERESTRATE=${tcal.interestRate}+&SHOWAMORTIZATIONSCHEDULE=on&COMPUTE=COMPUTE&CALCULATORID=HF02&TEMPLATE_ID=WWW.NOSNOWNAPLES.COM_1`)
         
     }
 
