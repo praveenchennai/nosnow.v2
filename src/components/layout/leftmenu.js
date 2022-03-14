@@ -74,7 +74,7 @@ const LeftMenu = (props) => {
                 {title: 'Parlante Group Video', secTitle: '', useNavi: true, onclick: '/content/parlante-video' },
                 {title: 'Real Estate Special Report', secTitle: '', onclick: 'https://news.nosnownaples.com'},
                 {title: 'Whats Your Home Worth?', secTitle: '', onclick: 'http://www.nosnowevalue.com/'},
-                // {title: 'Mortgage Calculator', secTitle: '', onclick: '/https://www.nosnownaples.com/content/tcalc'}
+                {title: 'Mortgage Calculator', secTitle: '', useNavi: true, onclick: '/content/tcalc'}
             ]
         },
         {
