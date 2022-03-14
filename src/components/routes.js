@@ -12,6 +12,7 @@ const ResultRoutes = lazy(()=>import('components/results/routes'));
 
 const About = lazy(()=>import('components/content/about'));
 const ParlanteVideo = lazy(()=>import('components/content/parlante-video'));
+const Tcalc = lazy(()=>import('components/content/tcalc'));
 
 const Routes = (props) => {
     const Header = withRouter(props => <HeaderRoutes {...props}/>);
@@ -34,6 +35,7 @@ const Routes = (props) => {
                         <Route path="/lots/:id" render={()=> <LotMain />} />
                         <Route path="/result" render={()=> <ResultRoutes />} />
                         <Route path="/content/about" render = {()=><About />} exact/>
+                        <Route path="/content/tcalc" render = {()=><Tcalc />} exact/>
                         <Route path="/content/parlante-video" render={()=> <ParlanteVideo />} exact/>
                     </Switch>
                 </Suspense>
