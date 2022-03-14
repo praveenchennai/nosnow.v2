@@ -1,6 +1,5 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 import { Grid, Box, Card, TableContainer, Typography } from '@mui/material';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { useParams } from "react-router-dom";
 import PropertyDetails from './details-blocks/details';
 import Facts from './details-blocks/facts';
@@ -11,25 +10,32 @@ import RecurringFee from './details-blocks/recurring'
 import Exterior from './details-blocks/exterior'
 import Interior from './details-blocks/Interior'
 import {useGetPropertyQuery} from 'services/bridge-api'
-import ContactCard from './details-blocks/contact'
+import ContactCard from '../contact/contact'
+import { GoogleMap, Marker, LoadScript   } from '@react-google-maps/api';
 
+const containerStyle = {
+    width: '100%',
+    height: '100%'
+};
+  
+  
 
 const PropertyMain = () => {
     const {id} = useParams();
-    const [cdra, setcDra] = useState(false)
     const {property, lat, lng, status, isLoading, error} = useGetPropertyQuery(id, {
         skip: !id,
         selectFromResult: ({ data, status, isLoading, error, id, originalArgs }) => {
             return {
                 property: data?.bundle || {},
-                lng: data?.bundle?.Coordinates[0] || undefined,
-                lat: data?.bundle?.Coordinates[1] || undefined,  
+                lng: Number(data?.bundle?.Coordinates[0]) || undefined,
+                lat: Number(data?.bundle?.Coordinates[1]) || undefined,  
                 status: status,
                 isLoading: isLoading,
                 error: error
             }
         }
     });
+        
 return ( 
     <React.Fragment>
         <Box display="flex" justify="space-between" 
@@ -161,20 +167,20 @@ return (
                     }
                 }}
             >
-                {lat?<MapContainer 
-                    center={[lat, lng]} 
-                    zoom={19} scrollWheelZoom={true}
-                    height="500"
-                >
-                    <TileLayer attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                    />
-                    <Marker position={[lat, lng]}>
-                        <Popup>
-                            <Typography sx={{fontSize: "16px", fontWeight: "600"}}></Typography>
-                        </Popup>
-                    </Marker>
-                </MapContainer>: ''}
+                {lat?
+
+                    <LoadScript googleMapsApiKey="AIzaSyAgV5Jp5V353fQ-khx1wKX2s4vx-xbb3zQ">
+                        <GoogleMap
+                            mapContainerStyle={containerStyle}
+                            center={{lat, lng}}
+                            zoom={18}
+                            options={map => ({ mapTypeId: 'SATELLITE' })}
+                        >
+                            <Marker position={{lat, lng}} animation={'DROP'}/>
+                        </GoogleMap>
+                    </LoadScript>
+                
+                : ''}
             </TableContainer>         
         </Box>
         <ContactCard />

@@ -7,9 +7,10 @@ import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import { useHistory, useParams } from "react-router-dom";
 
-const LeftMenu = (anchor) => {
+const LeftMenu = (props) => {
+    const {setState} = props.value
     const navi = useHistory();
-    const toggleDrawer = (anchor, a) =>{}
+    const toggleDrawer = () =>{}
     const [open, setOpen] = useState(false)
     const [menus] = useState([
         {
@@ -20,8 +21,8 @@ const LeftMenu = (anchor) => {
             admin: true, 
             icon: 'add_circle',
             subMenu: [
-                {title: 'Featured Residential', secTitle: '', onclick: 'https://nosnownaples.com/search/residential/featured'},
-                {title: 'Featured Land & Lots', secTitle: '', onclick: 'https://nosnownaples.com/search/lot-land/featured' },
+                {title: 'Featured Residential', secTitle: '', onclick: 'https://www.nosnownaples.com/result/featured-res'},
+                {title: 'Featured Land & Lots', secTitle: '', onclick: 'https://www.nosnownaples.com/result/featured-lot' },
                 {title: 'Upcoming Open House', secTitle: '', onclick: 'https://nosnownaples.com/search/residential/openhouse'},
                 {title: 'New Construction Southwest FL', secTitle: '', onclick: 'https://nosnownaples.com/search/residential/newconstructionyn_true'},
             ]
@@ -68,29 +69,57 @@ const LeftMenu = (anchor) => {
             admin: true, 
             icon: 'add_circle',
             subMenu: [
-                {title: 'About the Parlante Group', secTitle: '', onclick: 'https://nosnownaples.com/content/about'},
-                {title: 'Parlante Group Video', secTitle: '', onclick: 'https://nosnownaples.com/content/parlante-video' },
-                {title: 'Messege on COVID-19', secTitle: '', onclick: 'https://nosnownaples.com/content/covid19'},
-                {title: 'Real Estate Special Report', secTitle: '', onclick: '/https://nosnownaples.com/content/news'},
+                {title: 'About the Parlante Group', secTitle: '', useNavi: true, onclick: '/content/about'},
+                {title: 'Rick Parlante in the News', secTitle: '', onclick: 'https://rick.nosnownaples.com' },
+                {title: 'Parlante Group Video', secTitle: '', useNavi: true, onclick: '/content/parlante-video' },
+                {title: 'Real Estate Special Report', secTitle: '', onclick: 'https://news.nosnownaples.com'},
                 {title: 'Whats Your Home Worth?', secTitle: '', onclick: 'http://www.nosnowevalue.com/'},
-                {title: 'Mortgage Calculator', secTitle: '', onclick: '/https://nosnownaples.com/content/tcalc'}
+                {title: 'Mortgage Calculator', secTitle: '', useNavi: true, onclick: '/content/tcalc'}
+            ]
+        },
+        {
+            id: '5',
+            title: 'Living in Naples', 
+            secTitle: 'Manage Site Locations @ Work', 
+            onclick: '/orgs/sit/list', 
+            admin: true, 
+            icon: 'add_circle',
+            subMenu: [
+                {title: 'Quality Of Life', onclick: 'https://content.nosnownaples.com/quality-of-life.html'},
+                {title: 'Luxury Life Style', secTitle: '', onclick: 'https://content.nosnownaples.com/luxury-life-style.html' },
+                {title: 'Best Place of Retirement', secTitle: '', onclick: 'https://content.nosnownaples.com/best-place-of-retirement.html'},
+                {title: 'Top 5 reasons to move to Florida', secTitle: '', onclick: 'https://content.nosnownaples.com/top-5-reasons-to-live-in-florida.html'},
+                {title: 'Naples Recreation', secTitle: '', onclick: 'https://content.nosnownaples.com/naples-recreation.html'},
+                {title: 'Professional Sports', secTitle: '', onclick: 'https://content.nosnownaples.com/professional-sports.html'},
+                {title: 'Sports For The Family', secTitle: '', onclick: 'https://content.nosnownaples.com/sports-for-the-family.html'},
+                {title: 'Famous 5th Avenue District', secTitle: '', onclick: 'https://content.nosnownaples.com/famous-5th-avenue-district.html'},
+                {title: 'Naples Collier County Hot Vacation', secTitle: '', onclick: 'https://content.nosnownaples.com/naples-collier-county-hot-vacation-home-spot.html'},
+                {title: 'More', secTitle: '', onclick: 'https://content.nosnownaples.com/'}
             ]
         },
     ])
 
     const onHome = () =>{
         navi.push('/')
+        setState(false)
     }
     const onSearch = () =>{
         navi.push('/search')
+        setState(false)
+    }
+
+    const onLeftMenuClick = (item) =>{
+        if(item.useNavi){
+            navi.push(item.onclick)
+            setState(false)
+        } else {
+            window.open(item.onclick)
+            setState(false)
+        }
+        
     }
 
     const [menu2] = useState([
-        {
-            id: '1',
-            title: 'Living In Naples', 
-            onclick: 'https://content.nosnownaples.com', 
-        },
         {
             id: '2',
             title: 'News', 
@@ -105,7 +134,7 @@ const LeftMenu = (anchor) => {
     ])
     
     return (
-        <Box role="presentation" onClick={toggleDrawer(anchor, false)} onKeyDown={toggleDrawer(anchor, false)}>
+        <Box role="presentation" >
             <List> 
                 <ListItemButton 
                         sx={{ height: 56 }}  
@@ -149,12 +178,11 @@ const LeftMenu = (anchor) => {
                             <ListItemButton 
                                 key={i}
                                 sx={{ 
-                                    paddingLeft: 4, 
-                                    minHeight: 30, 
                                     color: 'rgba(255,255,255,.8)',
                                     backgroundColor: "#56516b",
+                                    maxHeight: "30px"
                                 }}
-                                onClick={() => window.open(item.onclick)}
+                                onClick={() => onLeftMenuClick(item)}
                             >
                                 
                                     <ListItemIcon>
@@ -168,6 +196,7 @@ const LeftMenu = (anchor) => {
                                             color: '#fff',
                                             fontWeight: 'medium',
                                             variant: 'body1',
+                                            fontSize: "12px"
                                         }}
                                     />
                                 

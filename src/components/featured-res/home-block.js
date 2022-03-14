@@ -18,11 +18,14 @@ const FeaturedResHomeBlock = () => {
 
     const {properties, total, pStatus, pIsLoading, pError} = useMultipleCustomQuery({
         url: orderFlow,
-        search: ''
+        search: '',
+        limit: 10,
+        start: 0,
+        index: 0
     }, {
         selectFromResult: ({ data, status, isLoading, error }) => {
-            return {
-                properties: data || [],
+             return {
+                properties: data?.properties || [],
                 total: data?.total || [],
                 pStatus: status,
                 pIsLoading: isLoading,
@@ -30,8 +33,6 @@ const FeaturedResHomeBlock = () => {
             }
         }
     });
-
-    console.log(properties)
 
     
     return (

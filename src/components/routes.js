@@ -10,6 +10,10 @@ const PropertyMain = lazy(()=>import('components/property/main'));
 const LotMain = lazy(()=>import('components/lot/main'));
 const ResultRoutes = lazy(()=>import('components/results/routes'));
 
+const About = lazy(()=>import('components/content/about'));
+const ParlanteVideo = lazy(()=>import('components/content/parlante-video'));
+const Tcalc = lazy(()=>import('components/content/tcalc'));
+
 const Routes = (props) => {
     const Header = withRouter(props => <HeaderRoutes {...props}/>);
     const Footer = withRouter(props => <FooterRoutes {...props}/>);
@@ -18,16 +22,21 @@ const Routes = (props) => {
             <BrowserRouter>
                 <Header {...props}/>
                 <Suspense fallback={<Paper 
-                            sx={{
-                                minHeight: "100vh"
-                            }}
+                    sx={{
+                        minHeight: "100vh"
+                    }}
                 />}>
                     <Switch>
                         <Route path="/" render = {()=><Home />} exact/>
                         <Route path="/search" render = {()=><Search />} exact/>
+                        
+                        <Route path="/search/:type" render = {()=><Search />} />
                         <Route path="/details/:id" render={()=> <PropertyMain />} />
                         <Route path="/lots/:id" render={()=> <LotMain />} />
                         <Route path="/result" render={()=> <ResultRoutes />} />
+                        <Route path="/content/about" render = {()=><About />} exact/>
+                        <Route path="/content/tcalc" render = {()=><Tcalc />} exact/>
+                        <Route path="/content/parlante-video" render={()=> <ParlanteVideo />} exact/>
                     </Switch>
                 </Suspense>
                 <Footer {...props}/>

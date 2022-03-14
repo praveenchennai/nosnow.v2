@@ -9,6 +9,7 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import {useMultipleCustomQuery} from 'services/bridge-api'
 import { useDispatch, useSelector } from 'react-redux';
 import { setPage, setPreviousPages, resetPreviousPages } from 'api/res'
+import ContactCard from '../contact/contact'
 
 const useStyles = makeStyles({
     root: {
@@ -41,6 +42,20 @@ var orderFlowLot = [
     {id: 6, query:'&PropertyType=Land&MlsStatus=Pending With Contingencies&sortBy=ListPrice&order=desc'},
     {id: 7, query:'&PropertyType=Land&ListAgentMlsId=505199&MlsStatus=Sold&sortBy=CloseDate&order=desc'},
     {id: 8, query:'&PropertyType=Land&MlsStatus=Sold&sortBy=CloseDate&order=desc'}
+]
+
+var FeaturedRes = [
+    {id: 1, query:'&PropertyType=Residential&ListAgentMlsId=505199&MlsStatus=Active&sortBy=ListPrice&order=desc'},
+    {id: 3, query:'&PropertyType=Residential&ListAgentMlsId=505199&MlsStatus.in=Pending&sortBy=ListPrice&order=desc'},
+    {id: 5, query:'&PropertyType=Residential&ListAgentMlsId=505199&MlsStatus=Pending With Contingencies&sortBy=ListPrice&order=desc'},
+    {id: 7, query:'&PropertyType=Residential&ListAgentMlsId=505199&MlsStatus=Sold&sortBy=CloseDate&order=desc'},
+]
+
+var FeaturedLot = [
+    {id: 1, query:'&PropertyType=Land&ListAgentMlsId=505199&MlsStatus=Active&sortBy=ListPrice&order=desc'},
+    {id: 3, query:'&PropertyType=Land&ListAgentMlsId=505199&MlsStatus.in=Pending&sortBy=ListPrice&order=desc'},
+    {id: 5, query:'&PropertyType=Land&ListAgentMlsId=505199&MlsStatus=Pending With Contingencies&sortBy=ListPrice&order=desc'},
+    {id: 7, query:'&PropertyType=Land&ListAgentMlsId=505199&MlsStatus=Sold&sortBy=CloseDate&order=desc'},
 ]
 
 var params = undefined;
@@ -89,10 +104,12 @@ const ResultsMain = () => {
         if(type==='lot-land'){
             params = orderFlowLot;
             if(lkeyword.length>0){
-                query = query + `&UnparsedAddress.in=${keyword || ''}`
-            }
-            if(lmls.length>0){
-                query = query + `&ListingId=${mls || ''}`
+                var n = isNaN(lkeyword);
+                if(!n && lkeyword.length===9){
+                    query = query + `&ListingId=${lkeyword || ''}`
+                } else {
+                    query = query + `&UnparsedAddress.in=${lkeyword || ''}`
+                }
             }
             if(lcity.length>0){
                 query = query + `&City.in=${lcity.join(", ") || ''}`
@@ -190,6 +207,10 @@ const ResultsMain = () => {
             if(newConstruction){
                query = query + `&NABOR_StatusType.ne=null`;
             }
+        } else if (type==='featured-res'){
+            params = FeaturedRes;
+        } else if (type==='featured-lot'){
+            params = FeaturedLot;
         }
         dispatch(resetPreviousPages(0));
         dispatch(setPage(0));
@@ -334,6 +355,7 @@ const ResultsMain = () => {
             </MapContainer>
             </TableContainer>
         </Box>
+        <ContactCard />
     </React.Fragment>
     
     );

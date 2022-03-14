@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import { useHistory, useParams } from "react-router-dom";
 import { Paper, Tabs, Tab, Button, Box, TextField, Grid,  Typography} from '@mui/material';
 import { createTheme } from "@mui/material/styles";
 import { useSelector, useDispatch } from 'react-redux'
 import {setKeyword} from 'api/res';
+import ResMain from '../search/res/keyword';
+import KeywordSearch from '../search/lot/keyword';
 
 const theme = createTheme();
 
@@ -47,10 +49,14 @@ function TabPanel(props) {
 const Box2 = () => {
     const navi = useHistory();
     const dispatch = useDispatch();
-    const [value, setValue] = React.useState(0);
     const keyword = useSelector(state=>state.res.keyword);
     const onSearch = () =>{
-        navi.push('/result/res')
+        if(value===0){
+            navi.push('/result/res')
+        } else {
+            navi.push('/result/lot-land')
+        }
+        
     }
 
     const handleChange=(event)=>{
@@ -58,8 +64,16 @@ const Box2 = () => {
     };
 
     const handleChangeIndex = (index) => {
+        console.log(index)
         setValue(index);
-      };
+    };
+
+    const [value, setValue] = useState(0);
+
+    const tabChange = (event, newValue) => {
+        console.log(newValue)
+        setValue(newValue);
+    };
     
 
     return (
@@ -126,11 +140,33 @@ const Box2 = () => {
                     flexDirection="column"
                     justifyContent="flex-start"
                 >
-                    <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+                    {/* <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
                         <Tab label="Residential" />
-                        <Tab label="Lots & Land" />
+                        <Tab label="Lots & Land" /> 
+                    </Tabs> */}
+                    <Tabs value={value || 0} onChange={tabChange} sx={{ flexGrow: 1 }}>
+                        <Tab label="Residential" />
+                        <Tab label="Lots & Land"  />
                     </Tabs>
                     <TabPanel value={value} index={0} dir={theme.direction}>
+                        <ResMain />
+                    </TabPanel>
+                    <TabPanel value={value} index={1} dir={theme.direction}>
+                        <KeywordSearch />
+                    </TabPanel>
+                        <Button 
+                            variant="contained"
+                            sx={{
+                                backgroundColor: "#ff5722",
+                                color: "#fff",
+                                fontSize: "15px",
+                                margin: "20px"
+                            }}
+                            onClick={()=>onSearch()}
+                        >
+                            Search
+                        </Button>
+                    {/* <TabPanel value={value} index={0} dir={theme.direction}>
                         <TextField 
                             fullWidth 
                             placeholder="Enter Address," 
@@ -162,8 +198,8 @@ const Box2 = () => {
                                 Search
                             </Button>
                         </Grid>
-                    </TabPanel>
-                    <TabPanel value={value} index={1} dir={theme.direction}>
+                    </TabPanel> */}
+                    {/* <TabPanel value={value} index={1} dir={theme.direction}>
                         <TextField fullWidth placeholder="Enter Address" variant="outlined" />
                         <Grid container item
                             direction="column" 
@@ -185,7 +221,7 @@ const Box2 = () => {
                                 Search
                             </Button>
                         </Grid>
-                    </TabPanel>     
+                    </TabPanel>      */}
                 </Grid>
                 
             </Paper>

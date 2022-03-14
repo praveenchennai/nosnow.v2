@@ -1,7 +1,7 @@
-import React, { useState} from 'react';
+import React, { useEffect, useState} from 'react';
 import ResMain from './res/main';
 import LotMain from './lot/main';
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import {Container, Tabs, Tab, Button, Toolbar, AppBar} from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { listingCss } from 'common/style/style';
@@ -10,8 +10,16 @@ const useStyles = makeStyles(listingCss());
 
 const SearchMain = () => {
     const navi = useHistory();
+    const {type} = useParams();
     const classes = useStyles();
     const [value, setValue] = useState(0);
+
+    useEffect(()=>{
+        console.log(type)
+        if(type==='lot'){
+            setValue(1)
+        }
+    }, [type])
 
     const tabChange = (event, newValue) => {
         setValue(newValue);
@@ -27,9 +35,7 @@ const SearchMain = () => {
     }
     
     return ( 
-        <Container component="main" maxWidth="lg"
-
-        >
+        <Container component="main" maxWidth="lg">
             <AppBar position="sticky" elevation={0} className={classes.transparent}>
                 <Toolbar>
                     <Tabs value={value || 0} onChange={tabChange} sx={{ flexGrow: 1 }}>

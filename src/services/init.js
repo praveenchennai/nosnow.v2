@@ -6,7 +6,6 @@ const getBaseUrl=(service)=>{
     var module_url = Config.stage[stage];
     var MODULE_SERVICE = module_url.find(m=>m.service===service);
     var MODULE_SERVICE_URL = `https://${MODULE_SERVICE.apiId}.execute-api.${MODULE_SERVICE.region}.amazonaws.com/${stage}/`;
-    console.log(MODULE_SERVICE_URL)
     return MODULE_SERVICE_URL;
 }
 
