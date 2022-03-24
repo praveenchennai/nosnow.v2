@@ -1,4 +1,3 @@
-import { AccessAlarm } from '@mui/icons-material';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import * as cities from './cities'
 import * as communities from './communities'

@@ -43,6 +43,10 @@ const HeaderSearch = (props) => {
         navi.goBack()
     }
 
+    var props = {
+        setState: setState
+    }
+
     return (
         <React.Fragment>
             <AppBar position="sticky" elevation={0}  className={classes.root} >
@@ -100,7 +104,7 @@ const HeaderSearch = (props) => {
                 }
                 }}
             >
-                <LeftMenu />
+                <LeftMenu value={props}/>
             </Drawer>
         </React.Fragment>
     )
