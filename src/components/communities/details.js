@@ -7,27 +7,28 @@ import { useHistory, useParams } from "react-router-dom";
 const CommunityDetails = () => {
     const communities = useSelector(state=>state.communities.content);
     const contents = useSelector(state=>state.content.paras);
+    const mapping = useSelector(state=>state.mapping.conditions);
+
     const [community, setCommunity] = useState({});
+    const [map, setMap] = useState({});
     const [paras, setParas] = useState([])
     const {seo} = useParams();
 
     useEffect(()=>{
         var co = communities?.find(c=>c.seoUrl===seo);
         setCommunity(co);
+        console.log(co)
+        var mo = mapping?.find(m=>m.community === co.community);
+        console.log(mo)
     }, [seo])
 
     useEffect(()=>{
-        console.log(community);
         if(community?._id){
             var pa = contents.filter(c=>c.community===community._id);
             setParas(pa);
         }
         
     }, [community])
-
-    useEffect(()=>{
-        console.log(paras);
-    }, [paras])
 
     return ( 
         <Box component={"container"} display="flex" justify="space-between"
@@ -37,7 +38,7 @@ const CommunityDetails = () => {
         >
             <Card  display="flex" direction={'column'}
                 sx={{
-                    //width: "350px",
+                    width: "30%",
                     height: "auto",
                     margin: "10px"
                 }}
@@ -86,9 +87,9 @@ const CommunityDetails = () => {
                     </Grid>
                 )}
             </Card>
-            <Card  display="flex" direction={'column'}
+            <Card display="flex" direction={'column'}
                 sx={{
-                    //width: "350px",
+                    width: "70%",
                     height: "auto",
                     margin: "10px"
                 }}

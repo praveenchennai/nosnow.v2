@@ -87,6 +87,7 @@ const ResultsMain = () => {
         NABOR_PetsLimitMaxNumber,
         golfAccess,
         waterFrontView,
+        monthlyPayment,
         guestHouse,
         newConstruction,
     } = useSelector(state=>state.res);
@@ -158,6 +159,14 @@ const ResultsMain = () => {
             if(priceRange.max<26){
                 var m = priceRangeOptions.find(p=>p.value===priceRange.max).v
                 query = query + `&ListPrice.lte=${m}`
+            }
+            if(monthlyPayment.min>0){
+                var v = Number(monthlyPayment.min) * 296.4863563508763
+                query = query + `&ListPrice.gte=${v}`
+            }
+            if(monthlyPayment.max<8){
+                var v = Number(monthlyPayment.max) * 296.4863563508763
+                query = query + `&ListPrice.lte=${v}`
             }
             if(beds.min>0){
                 query = query + `&BedroomsTotal.gte=${beds.min}`   
