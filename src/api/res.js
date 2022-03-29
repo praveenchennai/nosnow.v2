@@ -1,4 +1,3 @@
-import { AccessAlarm } from '@mui/icons-material';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import * as cities from './cities'
 import * as communities from './communities'
@@ -426,13 +425,14 @@ export const ResSearchFields = createSlice({
             
         },
         setMonthlyPayment: (state, action) => {
-
+            console.log(action.payload)
+            var params = {
+                min: action.payload[0],
+                max: action.payload[1]
+            }
             return{
                 ...state,
-                monthlyPayment:{
-                    ...state.monthlyPayment,
-                    [action.payload.key]: action.payload.value
-                }
+                monthlyPayment:params
             }
             
         },
