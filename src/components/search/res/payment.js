@@ -11,7 +11,6 @@ const Payment = () => {
     const marks = useSelector(state=>state.res.monthlyPaymentOptions);
 
     const handleChange = (event, newValue) => {
-        console.log(event, newValue)
         dispatch(setMonthlyPayment(newValue));
     };
 
