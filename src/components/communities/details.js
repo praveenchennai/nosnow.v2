@@ -16,7 +16,13 @@ const useStyles = makeStyles({
     paper: {
       backgroundColor: "#002C5D",
       color: "#fff",
-  }
+    },
+    video: {
+        minWidth:"100%",
+        minHeight:"100%",
+        width:"100%",
+        height:"720px"
+    }
 });
 
 
@@ -57,33 +63,40 @@ const CommunityDetails = () => {
     const [community, setCommunity] = useState({});
     const [map, setMap] = useState({});
     const [paras, setParas] = useState([])
+    const navi = useHistory();
     const {seo} = useParams();
     const classes = useStyles();
 
     useEffect(()=>{
         params = orderFlowRes;
-        
+
         var co = communities?.find(c=>c.seoUrl===seo);
         setCommunity(co);
-        var mo = mapping?.find(m=>m.community === co._id);
-        setMap(mo)
-        if(mo.tags.length>0){
-            query = query + `&ParkName.in=${mo.tags.join(", ") || ''}`;
-            setSkip(false)
+        var mo = mapping?.find(m=>m.community === co?._id);
+        console.log(mo)
+        if(!mo?.community){
+            navi.push('/search')
+        } else {
+            setMap(mo)
+            if(mo.tags.length>0){
+                query = `&ParkName.in=${mo.tags.join(", ") || ''}`;
+                setSkip(false)
+            }
         }
+
     }, [seo])
 
 
 
     useEffect(()=>{
         if(community?._id){
-            var pa = contents.filter(c=>c.community===community._id);
+            var pa = contents.filter(c=>c.community===community?._id);
             setParas(pa);
         }
     }, [community])
 
 
-    const {properties } = useMultipleCustomQuery({
+    const {properties, pStatus } = useMultipleCustomQuery({
         url: orderFlowRes,
         search: query,
         limit: limit,
@@ -91,16 +104,18 @@ const CommunityDetails = () => {
         index: index
     }, {
         skip: skip,
-        selectFromResult: ({ data, originalArgs }) => {
+
+        selectFromResult: ({ data, status, originalArgs }) => {
             return {
                 properties: data?.properties || [],
+                pStatus: status
             }
         }
     });
 
 
 
-    const {lots} = useMultipleCustomQuery({
+    const {lots, lStatus} = useMultipleCustomQuery({
         url: orderFlowLot,
         search: query,
         limit: limit,
@@ -108,16 +123,17 @@ const CommunityDetails = () => {
         index: index
     }, {
         skip: skip,
-        selectFromResult: ({ data, originalArgs }) => {
-            console.log(data, orderFlowLot, query, limit, start, index)
+
+        selectFromResult: ({ data, status, originalArgs }) => {
             return {
                 lots: data?.properties || [],
+                lStatus: status
             }
         }
     });
 
     return ( 
-        <Box display="flex" justify="space-between"
+        <Box display="flex" justify="space-between" alignContent={'start'}
             sx={{
                 padding: "10px"
             }}
@@ -130,8 +146,8 @@ const CommunityDetails = () => {
                 }}
             >
                 <CardHeader 
-                    title={community.metaTitle}
-                    subheader={community.name}>
+                    title={community?.metaTitle}
+                    subheader={community?.name}>
                 </CardHeader>
                 <Grid container item md={12} display="flex" direction="column"
                     sx={{
@@ -144,7 +160,7 @@ const CommunityDetails = () => {
                             fontSize: "14px"
                         }}
                     >
-                        {community.metaDescription}
+                        {community?.metaDescription}
                     </Typography>
                 </Grid>
                 <CardMedia
@@ -152,7 +168,10 @@ const CommunityDetails = () => {
                     alt="nosnownaples"
                     height="auto"
                     image="https://nosnow-news-pdfs.s3.us-west-2.amazonaws.com/home.webp"
+                
                 />
+                
+                
                 {paras?.map((p, i)=>
                     <Grid key={i} container item md={12} display="flex" direction="column"
                         sx={{
@@ -180,29 +199,46 @@ const CommunityDetails = () => {
                     margin: "10px"
                 }}
             >
-                <CardHeader 
+
+                {seo==='verona-walk'?
+                    <React.Fragment>
+                        <CardMedia
+                            component="video"
+                            alt="nosnownaples"
+                            height="auto"
+                            src="https://dl.dropboxusercontent.com/s/fx9rqr1g05jjlnw/verona-walk.mp4?dl=0"
+                            autoPlay
+                            controls
+                        />
+                    </React.Fragment>
+                :''}
+
+                {seo==='ave-maria'?
+                    <React.Fragment>
+                        <CardMedia
+                            component="video"
+                            alt="nosnownaples"
+                            height="auto"
+                            src="https://www.dropbox.com/s/01ukyv8mbto4c3k/ave-maria.mp4?raw=1"
+                            autoPlay
+                            controls
+                        />
+                    </React.Fragment>
+                :''}
+
+                {properties.length!==0 && pStatus === 'fulfilled'?<CardHeader 
                     title={'Residential'}
-                    subheader={community.name}>
-                </CardHeader>
+                    subheader={community?.name}>
+                </CardHeader>:""}
 
-                {properties.length===0 ?
+                {pStatus !== 'fulfilled'?
 
-                    <Grid 
-                        container
-                        maxWidth="false" 
-                        direction="column" 
-                        alignItems="center"
-                        sx={{
-                            mt:15
-                        }}
-                    > 
-                        <Typography variant='body1' align='center'
-                            sx={{
-                                fontWeight: "600"
-                            }}
-                        >
-                            Loading Please wait ...
-                        </Typography>
+                    <Grid container item columns={12} display="flex" justify="space-between">
+                        {[1,2,3,4,5,6,7,8].map((row, i) => 
+                            <Grid container item xs={12} sm={6} md={12} lg={3} key={i} >
+                                <LoadingPropertyCard />
+                            </Grid>
+                        )}  
                     </Grid>
                     
                 : 
@@ -217,32 +253,20 @@ const CommunityDetails = () => {
                 
                 }
 
-                <CardHeader 
+                {lots.length!==0 && lStatus === 'fulfilled'?<CardHeader 
                     title={'Land and Lots'}
-                    subheader={community.name}>
-                </CardHeader>
+                    subheader={community?.name}>
+                </CardHeader>:""}
 
-                {lots.length===0 ?
-
-                    <Grid 
-                        container
-                        maxWidth="false" 
-                        direction="column" 
-                        alignItems="center"
-                        sx={{
-                            mt:15
-                        }}
-                    > 
-                        <Typography variant='body1' align='center'
-                            sx={{
-                                fontWeight: "600"
-                            }}
-                        >
-                            Loading Please wait ...
-                        </Typography>
+                {lots.length===0 && lStatus !== 'fulfilled'?
+                    <Grid container item columns={12} display="flex" justify="space-between">
+                        {[1,2,3,4,5,6,7,8].map((row, i) => 
+                            <Grid container item xs={12} sm={6} md={12} lg={3} key={i} >
+                                <LoadingPropertyCard />
+                            </Grid>
+                        )}  
                     </Grid>
-
-                    : 
+                : 
 
                     <Grid container item columns={12} display="flex" justify="space-between">
                         {lots.map((row, i) => 

@@ -37,7 +37,7 @@ const LeftMenu = (props) => {
             subMenu: [
                 {title: 'View All Communities', secTitle: '', onclick: 'https://nosnownaples.com/#community'},
                 {title: 'Ave Maria', secTitle: '', useNavi: true, onclick: '/community/ave-maria' },
-                {title: 'Verona Walk', secTitle: '', useNavi: true, onclick: '/community/verona-walkt'},
+                {title: 'Verona Walk', secTitle: '', useNavi: true, onclick: '/community/verona-walk'},
                 {title: 'Imperial Golf Estates', secTitle: '', useNavi: true, onclick: '/community/imperial-golf-estates'},
                 {title: 'Orange Blossom Ranch', secTitle: '', useNavi: true, onclick: '/community/orange-blossom-ranch'},
                 {title: 'Indigo Lakes', secTitle: '', useNavi: true, onclick: '/community/indigo-lakes'  },
