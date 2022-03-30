@@ -36,13 +36,13 @@ const LeftMenu = (props) => {
             icon: 'add_circle',
             subMenu: [
                 {title: 'View All Communities', secTitle: '', onclick: 'https://nosnownaples.com/#community'},
-                {title: 'Ave Maria', secTitle: '', onclick: 'https://nosnownaples.com/community/ave-maria' },
-                {title: 'Verona Walk', secTitle: '', onclick: 'https://nosnownaples.com/community/verona-walkt'},
-                {title: 'Imperial Golf Estates', secTitle: '', onclick: 'https://nosnownaples.com/community/imperial-golf-estates'},
-                {title: 'Orange Blossom Ranch', secTitle: '', onclick: 'https://nosnownaples.com/community/orange-blossom-ranch'},
-                {title: 'Indigo Lakes', secTitle: '', onclick: 'https://nosnownaples.com/community/indigo-lakes'  },
-                {title: 'Golden Gate Lakes', secTitle: '', onclick: 'https://nosnownaples.com/community/golden-gate-estates'  },
-                {title: 'Naples Farm Sites', secTitle: '', onclick: 'https://nosnownaples.com/community/naples-farm-sites'}
+                {title: 'Ave Maria', secTitle: '', useNavi: true, onclick: '/community/ave-maria' },
+                {title: 'Verona Walk', secTitle: '', useNavi: true, onclick: '/community/verona-walkt'},
+                {title: 'Imperial Golf Estates', secTitle: '', useNavi: true, onclick: '/community/imperial-golf-estates'},
+                {title: 'Orange Blossom Ranch', secTitle: '', useNavi: true, onclick: '/community/orange-blossom-ranch'},
+                {title: 'Indigo Lakes', secTitle: '', useNavi: true, onclick: '/community/indigo-lakes'  },
+                {title: 'Golden Gate Lakes', secTitle: '', useNavi: true, onclick: '/community/golden-gate-estates'  },
+                {title: 'Naples Farm Sites', secTitle: '', useNavi: true, onclick: '/community/naples-farm-sites'}
             ]
         },
         {
@@ -109,6 +109,7 @@ const LeftMenu = (props) => {
     }
 
     const onLeftMenuClick = (item) =>{
+        console.log(item)
         if(item.useNavi){
             navi.push(item.onclick)
             setState(false)
