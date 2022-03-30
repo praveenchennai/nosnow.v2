@@ -56,7 +56,6 @@ export const bridgeAPI = createApi({
     }),
     multipleCustom: builder.query({
       async queryFn(_arg, _queryApi, _extraOptions, baseQuery) {
-        console.log(_arg)
         //Exit if no arg array.
         if(!_arg){
           return {data:{

@@ -3,7 +3,6 @@ import * as cities from './cities'
 import * as communities from './communities'
 import * as subDivision from './subdivision'
 export const fetchCity = createAsyncThunk('res/fetchCity', (id) => {
-    console.log("reached", id)
     return [];
 })
 
@@ -425,7 +424,6 @@ export const ResSearchFields = createSlice({
             
         },
         setMonthlyPayment: (state, action) => {
-            console.log(action.payload)
             var params = {
                 min: action.payload[0],
                 max: action.payload[1]
