@@ -22,7 +22,7 @@ return (
                 sx={{
                     marginBottom: "30px"
                 }}
-            >Monthly Payment</Typography>
+            >Monthly Payments</Typography>
             <Slider
                 sx={{
                     color: "#56516b",
@@ -34,7 +34,7 @@ return (
                 value={[min, max]}
                 onChange={handleChange}
                 step={1}
-                max={8}
+                max={36}
                 valueLabelDisplay="on"
                 valueLabelFormat={value=>marks?.find(m=>m.value===value)?.label || '$2,000,000'}
                 //marks={marks}
