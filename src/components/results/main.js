@@ -88,9 +88,11 @@ const ResultsMain = () => {
         golfAccess,
         waterFrontView,
         monthlyPayment,
+        monthlyPaymentOptions,
         guestHouse,
         newConstruction,
     } = useSelector(state=>state.res);
+
     const {
         lmls,
         lkeyword,
@@ -161,14 +163,18 @@ const ResultsMain = () => {
                 query = query + `&ListPrice.lte=${m}`
             }
             if(monthlyPayment.min>0){
-                var minRange = priceRangeOptions?.find(m=>m.value===monthlyPayment.min)?.v;
+                console.log(monthlyPayment, '- Min')
+                var minRange = monthlyPaymentOptions?.find(m=>m.value===monthlyPayment.min)?.v;
+                console.log(minRange)
                 var v = Number(minRange) * 296.4863563508763
-                query = query + `&ListPrice.gte=${v}`
+                console.log(v)
+                query = query + `&ListPrice.gte=${v.toFixed(0)}`
             }
-            if(monthlyPayment.max<37){
-                var maxRange = priceRangeOptions?.find(m=>m.value===monthlyPayment.max)?.v;
+            if(monthlyPayment.max<36){
+                console.log(monthlyPayment, '- Max')
+                var maxRange = monthlyPaymentOptions?.find(m=>m.value===monthlyPayment.max)?.v;
                 var v = Number(maxRange) * 296.4863563508763
-                query = query + `&ListPrice.lte=${v}`
+                query = query + `&ListPrice.lte=${v.toFixed(0)}`
             }
             if(beds.min>0){
                 query = query + `&BedroomsTotal.gte=${beds.min}`   
@@ -225,6 +231,7 @@ const ResultsMain = () => {
         }
         dispatch(resetPreviousPages(0));
         dispatch(setPage(0));
+        console.log(query)
     }, [params])
 
     useEffect(()=>{
