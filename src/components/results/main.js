@@ -161,11 +161,13 @@ const ResultsMain = () => {
                 query = query + `&ListPrice.lte=${m}`
             }
             if(monthlyPayment.min>0){
-                var v = Number(monthlyPayment.min) * 296.4863563508763
+                var minRange = priceRangeOptions?.find(m=>m.value===monthlyPayment.min)?.v;
+                var v = Number(minRange) * 296.4863563508763
                 query = query + `&ListPrice.gte=${v}`
             }
-            if(monthlyPayment.max<8){
-                var v = Number(monthlyPayment.max) * 296.4863563508763
+            if(monthlyPayment.max<37){
+                var maxRange = priceRangeOptions?.find(m=>m.value===monthlyPayment.max)?.v;
+                var v = Number(maxRange) * 296.4863563508763
                 query = query + `&ListPrice.lte=${v}`
             }
             if(beds.min>0){
