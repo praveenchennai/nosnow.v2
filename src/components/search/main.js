@@ -2,7 +2,7 @@ import React, { useEffect, useState} from 'react';
 import ResMain from './res/main';
 import LotMain from './lot/main';
 import { useHistory, useParams } from "react-router-dom";
-import {Container, Tabs, Tab, Button, Toolbar, AppBar} from '@mui/material';
+import { Container, Tabs, Tab, Button, Toolbar, AppBar, Paper, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { listingCss } from 'common/style/style';
 
@@ -35,6 +35,21 @@ const SearchMain = () => {
     }
     
     return ( 
+        <React.Fragment>
+            <Paper square  md={12}>
+                <Typography 
+                    sx={{
+                        fontSize: "12px", 
+                        fontWeight: "700",
+                        paddingLeft: "10px",
+                        backgroundColor: '#FF5722',
+                        color: "#fff"
+                    }}
+                >
+                    Naples, Residential and Lots Search
+                </Typography>
+            </Paper>
+        
         <Container component="main" maxWidth="lg">
             <AppBar position="sticky" elevation={0} className={classes.transparent}>
                 <Toolbar>
@@ -52,6 +67,7 @@ const SearchMain = () => {
 
             {value===0? <ResMain />:<LotMain />}
         </Container>
+        </React.Fragment>
     );
 }
 
