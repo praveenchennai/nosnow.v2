@@ -35,7 +35,7 @@ const LeftMenu = (props) => {
             admin: true, 
             icon: 'add_circle',
             subMenu: [
-                {title: 'View All Communities', secTitle: '', onclick: 'https://nosnownaples.com/#community'},
+                {title: 'View All Communities', secTitle: '', useNavi: true, onclick: '/communities'},
                 {title: 'Ave Maria', secTitle: '', useNavi: true, onclick: '/community/ave-maria' },
                 {title: 'Verona Walk', secTitle: '', useNavi: true, onclick: '/community/verona-walk'},
                 {title: 'Imperial Golf Estates', secTitle: '', useNavi: true, onclick: '/community/imperial-golf-estates'},

@@ -9,7 +9,8 @@ const Home = lazy(() => import('components/home/main'));
 const PropertyMain = lazy(()=>import('components/property/main'));
 const LotMain = lazy(()=>import('components/lot/main'));
 const ResultRoutes = lazy(()=>import('components/results/routes'));
-const CommunityContent = lazy (()=>import('components/communities/details'))
+const CommunityContent = lazy (()=>import('components/communities/details'));
+const CommunityList = lazy (()=>import('components/communities/list'));
 
 const About = lazy(()=>import('components/content/about'));
 const ParlanteVideo = lazy(()=>import('components/content/parlante-video'));
@@ -36,6 +37,7 @@ const Routes = (props) => {
                         <Route path="/lots/:id" render={()=> <LotMain />} />
                         <Route path="/result" render={()=> <ResultRoutes />} />
                         <Route path="/community/:seo" render={()=> <CommunityContent />} />
+                        <Route path="/communities" render={()=> <CommunityList />} />
                         <Route path="/content/about" render = {()=><About />} exact/>
                         <Route path="/content/tcalc" render = {()=><Tcalc />} exact/>
                         <Route path="/content/parlante-video" render={()=> <ParlanteVideo />} exact/>
