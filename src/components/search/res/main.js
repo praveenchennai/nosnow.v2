@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@mui/styles';
 import { listingCss } from 'common/style/style';
-import {Container, Grid} from '@mui/material';
+import {Container, Grid, Typography} from '@mui/material';
 import KeywordSearch from './keyword'; 
 import FieldSearch from './field-search'; 
 import TypeSearch from './type-search';
@@ -35,11 +35,9 @@ const ResMain = () => {
                 <Others />            
             </Grid>
 
-           <Grid  container justify="space-between" spacing={2} className={classes.mt10}>
+           <Grid  container justify="space-between" alignItems={"center"} spacing={2} className={classes.mt10}>
                 <PriceRange />
-                {/* <Grid sm={2} xs={12} container item justify="center" alignItems="center">
-                    <Typography variant="body1" component="h2" align="center">OR</Typography>
-                </Grid> */}
+                <Typography variant="body1" component="h2" align="center">OR</Typography>
                 <Payment />
             </Grid>
 

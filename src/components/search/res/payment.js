@@ -8,6 +8,8 @@ const Payment = () => {
     const min = useSelector(state=>state.res.monthlyPayment.min);
     const max = useSelector(state=>state.res.monthlyPayment.max);
     const marks = useSelector(state=>state.res.monthlyPaymentOptions);
+    const pMin = useSelector(state=>state.res.priceRange.min);
+    const pMax = useSelector(state=>state.res.priceRange.max);
 
     const handleChange = (event, newValue) => {
         dispatch(setMonthlyPayment(newValue));
@@ -17,6 +19,14 @@ const Payment = () => {
         var minRange = marks?.find(m=>m.value===min)?.v;
         var maxRange = marks?.find(m=>m.value===max)?.v;
         return `${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(Number(minRange)*296.4863563508763) || 0}${`   -   `}${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(maxRange*296.4863563508763) || 0}`
+    }
+
+    const changeSlide = () =>{
+        if(pMin!==0 || pMax!==26){
+            return true
+        } else {
+            return false
+        }
     }
 
 return ( 
@@ -35,7 +45,7 @@ return (
                         backgroundColor: '#FE8200'
                     }
                 }}
-                
+                disabled={changeSlide()}
                 value={[min, max]}
                 onChange={handleChange}
                 step={1}
