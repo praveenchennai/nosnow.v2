@@ -97,6 +97,26 @@ const LeftMenu = (props) => {
                 {title: 'More', secTitle: '', onclick: 'https://content.nosnownaples.com/'}
             ]
         },
+        {
+            id: '6',
+            title: 'News', 
+            secTitle: 'View all', 
+            onclick: 'https://news.nosnownaples.com', 
+            admin: true, 
+            icon: 'add_circle',
+            subMenu: [
+                {title: 'April Nabor Market Report', onclick: 'https://news.nosnownaples.com/april-nabor-market-report'},
+                {title: 'April Market Report', secTitle: '', onclick: 'https://news.nosnownaples.com/april-market-report' },
+                {title: 'March Nabor Market Report', secTitle: '', onclick: 'https://news.nosnownaples.com/march-nabor-market-report'},
+                {title: 'February Nabor Market Report', secTitle: '', onclick: 'https://news.nosnownaples.com/february-nabor-market-report'},
+                {title: 'February Market Report', secTitle: '', onclick: 'https://news.nosnownaples.com/february-market-report'},
+                {title: 'January Market Report', secTitle: '', onclick: 'https://news.nosnownaples.com/january-market-report'},
+                {title: 'December Market Report', secTitle: '', onclick: 'https://news.nosnownaples.com/december-market-report'},
+                {title: 'November Market Report', secTitle: '', onclick: 'https://news.nosnownaples.com/november-market-report'},
+                {title: 'More', secTitle: '', onclick: 'https://news.nosnownaples.com/'}
+            ]
+        }
+
     ])
 
     const onHome = () =>{
@@ -123,7 +143,7 @@ const LeftMenu = (props) => {
     const [menu2] = useState([
         {
             id: '2',
-            title: 'News', 
+            title: 'Latest News', 
             onclick: 'https://news.nosnownaples.com', 
         },
         {
@@ -207,7 +227,7 @@ const LeftMenu = (props) => {
                 ))}
             </List>
             <Divider sx={{borderColor: "rgba(255, 255, 255, 0.2)"}}/>
-            <List>
+            {/* <List>
                 {menu2.map((text, index) => (
                 <ListItemButton key={index} onClick={() => window.open(text.onclick)}>
                     <ListItemIcon sx={{color:"#fff", minWidth:40}}>
@@ -217,7 +237,7 @@ const LeftMenu = (props) => {
                 </ListItemButton>
 
                 ))}
-            </List>
+            </List> */}
             <List>
                 {['Property Search'].map((text, index) => (
                 <ListItemButton key={index} sx={{backgroundColor: "#0174f5"}} onClick={()=>onSearch()}>
