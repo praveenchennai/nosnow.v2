@@ -33,6 +33,7 @@ const HeaderHome = (props) => {
     var props = {
         setState: setState
     }
+    
     return (
         <React.Fragment>
             <AppBar position="sticky" className={classes.root} elevation={0}>
