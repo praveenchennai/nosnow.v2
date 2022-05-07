@@ -16,7 +16,6 @@ export const mailAPI = initSplitApi.injectEndpoints({
         }),
         share: builder.mutation({
             query: (params) => {
-                console.log('useShareMutation', params)
                 return {
                     url: `nsn/user/share`,
                     method: 'POST',
