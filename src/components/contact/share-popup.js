@@ -13,49 +13,26 @@ const SharePopUp = (props) => {
     const {setSharePopUp, setShareSnackBar} = props;
     const {id} = useParams();
     const classes = useStyles();
-    const register = useSelector(state=>state.auth.register);
     const dispatch = useDispatch();
-    const [comments, setComments] = useState('');
-    
+   
     const [loading, setLoading] = useState(false);
     const [disableButton, setDisableButton] = useState(true);
-    const [recipient, setRecipient] = useState({email: '', name: ''})
+    const [form, setForm] = useState({remail: '', rname: '', name: '', email: '', phone: '', comments: ''})
     const [ sendToFriend, { isLoading: isUpdating }] = useShareMutation();
 
     useEffect(()=>{
-        if(register.firstName.length>0 && register.lastName.length>0 && register.email.length>0 && register.phone_number.length>0 && comments.length>0){
+        if(form.name.length>0 && form.email.length>0 && form.rname.length>0 && form.remail.length>0){
             setDisableButton(false)
         }
-    }, [register, comments])
-
-    const onLastNameChange = (event) =>{
-        dispatch(setRegister({lastName: event.target.value}))
-    }
-
-    const onFirstNameChange = (event) =>{
-        dispatch(setRegister({firstName: event.target.value}))
-    }
-
-    const onEmailChange = (event) =>{
-        dispatch(setRegister({email: event.target.value}))
-    }
-
-    const onPhoneChange = (event) =>{
-        if(register.phone.length<11){
-            dispatch(setRegister({phone: event.target.value}));
-            dispatch(setRegister({phone_number: `+1${event.target.value}`}));
-        }
-    }
-
-    const onComments = (event) =>{
-        setComments(event.target.value);
-    }
+    }, [form])
 
     const sendMailFunction = () =>{
+        setLoading(true);
+        setDisableButton(true);
         sendToFriend({
             "recipient": {
-                name: recipient.name,
-                email: recipient.email
+                name: form.rname,
+                email: form.remail
             },
             "from": {
                 "module": "Property",
@@ -63,12 +40,11 @@ const SharePopUp = (props) => {
                 "url": `https://www.nosnownaples.com/details/${id}`
             },
             "value": {
-                "name": `${register.firstName} ${register.lastName}`,
-                "email": register.email,
-                "phone": register.phone_number,
-                "comments": comments
+                "name": form.name,
+                "email": form.email,
+                "phone": form.phone,
+                "comments": form.comments
             }
-            
         })
         .unwrap()
         .then(result=>{
@@ -78,21 +54,6 @@ const SharePopUp = (props) => {
         })
         .catch(err=>{console.log(err)})
     }
-
-    const onSend = () =>{
-        setLoading(true);
-        setDisableButton(true);
-        service.register(register)
-        .then(result=>{
-            sendMailFunction();
-        })
-        .catch(error=>{
-            if(error==='UsernameExistsException'){
-                sendMailFunction();
-            }
-        })
-    }
-
     
 
 return ( 
@@ -126,10 +87,10 @@ return (
                 fullWidth
                 margin="normal" 
                 label="Recipient Name"
-                placeholder="Enter your Recipient name"
-                name="recipientName" 
-                onChange={(event)=>setRecipient({...recipient, name: event.target.value})}
-                value={recipient.name || ''} 
+                placeholder="Enter your recipient name"
+                name="rname" 
+                onChange={(event)=>setForm({...form, rname: event.target.value})}
+                value={form.rname || ''} 
             />
             <TextField 
                 variant="outlined" 
@@ -138,31 +99,20 @@ return (
                 margin="normal" 
                 label="Recipient E-Mail"
                 placeholder="Enter your recipient email"
-                name="recipientEmail" 
-                onChange={(event)=>setRecipient({...recipient, email: event.target.value})}
-                value={recipient.email || ''} 
+                name="remail" 
+                onChange={(event)=>setForm({...form, remail: event.target.value})}
+                value={form.remail || ''} 
             />
             <TextField 
                 variant="outlined" 
                 type="text" 
                 fullWidth
                 margin="normal" 
-                label="First Name"
-                placeholder="Enter your first name"
-                name="firstName" 
-                onChange={onFirstNameChange}
-                value={register.firstName || ''} 
-            />
-            <TextField 
-                variant="outlined" 
-                type="text" 
-                fullWidth
-                margin="normal" 
-                label="Last Name"
-                placeholder="Enter your last name"
-                name="lastName" 
-                onChange={onLastNameChange}
-                value={register.lastName || ''} 
+                label="Your Name"
+                placeholder="Enter your name"
+                name="name" 
+                onChange={(event)=>setForm({...form, name: event.target.value})}
+                value={form.name || ''} 
             />
             <TextField 
                 variant="outlined" 
@@ -172,8 +122,8 @@ return (
                 label="E-Mail"
                 placeholder="Enter your email address"
                 name="email" 
-                onChange={onEmailChange}
-                value={register.email || ''} 
+                onChange={(event)=>setForm({...form, email: event.target.value})}
+                value={form.email || ''} 
             />
             <TextField 
                 variant="outlined" 
@@ -183,8 +133,8 @@ return (
                 label="Phone"
                 placeholder="Enter your Phone Number"
                 name="phone" 
-                onChange={onPhoneChange}
-                value={register.phone || ''}  
+                onChange={(event)=>setForm({...form, phone: event.target.value})}
+                value={form.phone || ''}  
              />
             <TextField 
                 variant="outlined" 
@@ -196,8 +146,8 @@ return (
                 label="Questions / Comments"
                 placeholder="Enter your questions or comments"
                 name="comments" 
-                onChange={onComments}
-                value={comments || ''}    
+                onChange={(event)=>setForm({...form, comments: event.target.value})}
+                value={form.comments || ''}    
             />
         
             <Button 
@@ -220,7 +170,7 @@ return (
                 }}
                 size={'large'}
                 fullWidth
-                onClick={(()=>onSend())}
+                onClick={(()=>sendMailFunction())}
                 disabled={disableButton || loading}
             >
                 {loading?'Please Wait...' : 'Send'}
