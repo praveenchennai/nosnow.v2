@@ -15,11 +15,11 @@ const getBaseUrl=(service)=>{
 
 const rawBaseQuery = fetchBaseQuery({
     baseUrl: '/',
-    prepareHeaders: (headers, { getState }) => {
-        headers.set('authorization', `Bearer ${"token"}`)
-        console.log(headers)
-        return headers;
-    }
+    // prepareHeaders: (headers, { getState }) => {
+    //     headers.set('authorization', `Bearer ${"token"}`)
+    //     console.log(headers)
+    //     return headers;
+    // }
 });
 
 const dynamicBaseQuery = async (args, api, extraOptions) =>{
@@ -41,6 +41,6 @@ const dynamicBaseQuery = async (args, api, extraOptions) =>{
 // initialize an empty api service that we'll inject endpoints into later as needed
 export const initSplitApi = createApi({
     baseQuery: dynamicBaseQuery,
-    tagTypes: ['Mail', 'tmp'],
+    tagTypes: ['Mail', 'Share', 'tmp'],
     endpoints: () => ({}),
 })
