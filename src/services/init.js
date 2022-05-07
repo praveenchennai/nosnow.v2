@@ -14,22 +14,14 @@ const getBaseUrl=(service)=>{
 }
 
 const rawBaseQuery = fetchBaseQuery({
-    baseUrl: '/',
-    // prepareHeaders: (headers, { getState }) => {
-    //     headers.set('authorization', `Bearer ${"token"}`)
-    //     console.log(headers)
-    //     return headers;
-    // }
+    baseUrl: '/'
 });
 
 const dynamicBaseQuery = async (args, api, extraOptions) =>{
     const adjustedUrl = getBaseUrl(args.service) + args.url;
-    console.log("adjustedUrl", adjustedUrl)
     const adjustedArgs =  typeof args === 'string' ? adjustedUrl : { ...args, url: adjustedUrl };
-    console.log("adjustedArgs", adjustedArgs)
     return rawBaseQuery(adjustedArgs, api, extraOptions)
     .then(res=>{
-        console.log(res);
         return res;
     })
     .catch(error=>{
