@@ -143,7 +143,7 @@ const ContactCard = () => {
             >
                 <SharePopUp {...value}/>
             </Dialog>
-            <Snackbar  open={shareSnackBar}  autoHideDuration={3000}  onClose={handleShareClose}  message="Thank you for your Comments/Question. We will contact you shortly!!" />
+            <Snackbar  open={shareSnackBar}  autoHideDuration={3000}  onClose={handleShareClose}  message="E-Mail sent to Recipient!!!" />
             </Card>
 
     );
