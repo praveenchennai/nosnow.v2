@@ -5,7 +5,7 @@ const Mortgage = () => {
         homePrice: 100000,
         downPayment: 10,
         loadTerm: 30,
-        interestRate: '3.00'
+        interestRate: '5.5'
     })
     const onSent = () => {
         console.log(`http://morgage.s3-website-us-west-2.amazonaws.com/?LOANAMOUNT=${tcal.homePrice}&DOWNPAYMENT=${tcal.downPayment}+&DOWNPAYMENT_TYPE=Percent&TERM=${tcal.loadTerm}&TERM_UNITS=Years&INTERESTRATE=${tcal.interestRate}+&SHOWAMORTIZATIONSCHEDULE=on&COMPUTE=COMPUTE&CALCULATORID=HF02&TEMPLATE_ID=WWW.NOSNOWNAPLES.COM_2`)
