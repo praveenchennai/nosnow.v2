@@ -3,7 +3,7 @@ import { Container, List, Typography, Grid, Card, Paper, TextField, Button } fro
 const Mortgage = () => {
     const [tcal, setTcal] = useState({
         homePrice: 100000,
-        downPayment: 10,
+        downPayment: 20,
         loadTerm: 30,
         interestRate: '5.5'
     })

@@ -166,14 +166,14 @@ const ResultsMain = () => {
                 console.log(monthlyPayment, '- Min')
                 var minRange = monthlyPaymentOptions?.find(m=>m.value===monthlyPayment.min)?.v;
                 console.log(minRange)
-                var v = Number(minRange) * 296.4863563508763
+                var v = Number(minRange) * 220.152097695
                 console.log(v)
                 query = query + `&ListPrice.gte=${v.toFixed(0)}`
             }
             if(monthlyPayment.max<36){
                 console.log(monthlyPayment, '- Max')
                 var maxRange = monthlyPaymentOptions?.find(m=>m.value===monthlyPayment.max)?.v;
-                var v = Number(maxRange) * 296.4863563508763
+                var v = Number(maxRange) * 220.152097695
                 query = query + `&ListPrice.lte=${v.toFixed(0)}`
             }
             if(beds.min>0){
