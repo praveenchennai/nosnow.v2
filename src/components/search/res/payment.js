@@ -18,7 +18,7 @@ const Payment = () => {
     const priceRange = () =>{
         var minRange = marks?.find(m=>m.value===min)?.v;
         var maxRange = marks?.find(m=>m.value===max)?.v;
-        return `${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(Number(minRange)*296.4863563508763) || 0}${`   -   `}${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(maxRange*296.4863563508763) || 0}`
+        return `${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(Number(minRange)*220.152097695) || 0}${`   -   `}${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(maxRange*220.152097695) || 0}`
     }
 
     const changeSlide = () =>{

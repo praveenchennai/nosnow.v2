@@ -38,7 +38,7 @@ const Facts = (props) => {
     } = props;
 
     var factsArray = [
-        {name: 'Payment', value: new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(ListPrice/296.4863563508763) || 0},
+        {name: 'Payment', value: new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(ListPrice/220.152097695) || 0},
         
         {name: 'Type', value: ArchitecturalStyle?.join(", ") || ''},
         {name: 'Year Built', value: YearBuilt},

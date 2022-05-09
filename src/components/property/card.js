@@ -195,7 +195,7 @@ const PropertyCard = (props) => {
                     >
                         <Grid container item xs={5} direction="column" alignItems="center" justifyContent="center">
                             <Typography sx={{fontSize: "12px", fontWeight: "400"}}>Payment</Typography>
-                            <Typography sx={{fontSize: "10px", fontWeight: "800"}}>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(ListPrice/296.4863563508763) || 0}</Typography>
+                            <Typography sx={{fontSize: "10px", fontWeight: "800"}}>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(ListPrice/220.152097695) || 0}</Typography>
                         </Grid>
                         <Divider orientation="vertical" sx={{marginTop: "5px", height:"25px", width: "1px", marginBottom: "5px"}}/>
                         <Grid container item xs={5} direction="column" alignItems="center" justifyContent="center">
