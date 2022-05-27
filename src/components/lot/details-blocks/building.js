@@ -28,7 +28,7 @@ const Building = (props) => {
     } = props;
 
     var factsArray = [
-        {name: 'Building Design', value: new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(ListPrice/296.4863563508763) || 0},
+        {name: 'Building Design', value: new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(ListPrice/220.152097695) || 0},
         {name: 'Building Description', value: ArchitecturalStyle?.join(", ") || ''},
         {name: 'Ownership Description', value: YearBuilt},
         {name: 'Total Floors', value: Heating?.join(", ") || ''},

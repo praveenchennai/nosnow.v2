@@ -91,26 +91,6 @@ export const sessionUsrUpdate = async (session, stage, es, cognito) => {
                 idToken: token.idToken,
                 accessToken: token.accessToken
             }
-            switch(Config.userType){
-                case 'org':
-                    return services.getOrgFullDetails(es, stage, session.attributes.email)
-                    .then(result=>{
-                        usrUpdate.orgId= result.orgDetails.id, 
-                        usrUpdate.apiKey= result.orgDetails.key,
-                        usrUpdate.orgName= result.orgDetails.name,
-                        usrUpdate.isClientOrg = result.orgDetails.clientOrg,
-                        usrUpdate.isHaulerOrg = result.orgDetails.haulerOrg,
-                        localStorage.setItem('CurbItUserDetails', JSON.stringify(usrUpdate));
-                        return {usrUpdate: usrUpdate}
-                    }).catch(err=>{
-                        return {usrUpdate: usrUpdate}
-                    });
-                break;
-                default:
-                    localStorage.setItem('CurbItUserDetails', JSON.stringify(usrUpdate));
-                    return {usrUpdate: usrUpdate}
-                break;
-            }
         }
     })
     .catch(err=>console.log(err))
