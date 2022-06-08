@@ -105,6 +105,7 @@ const LeftMenu = (props) => {
             admin: true, 
             icon: 'add_circle',
             subMenu: [
+                {title: 'June Market Report', onclick: 'https://news.nosnownaples.com/june-market-report'},
                 {title: 'May Nabor Market Report', onclick: 'https://news.nosnownaples.com/may-nabor-market-report'},
                 {title: 'May Market Report', onclick: 'https://news.nosnownaples.com/may-market-report'},
                 {title: 'April Nabor Market Report', onclick: 'https://news.nosnownaples.com/april-nabor-market-report'},
