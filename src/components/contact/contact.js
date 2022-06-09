@@ -2,13 +2,17 @@ import React, {useState} from 'react';
 import { Grid, Button, Snackbar, CardMedia, CardHeader, Card, Typography, Avatar, Dialog } from '@mui/material';
 import ContactPopUp from './contact-popup';
 import SharePopUp from './share-popup';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const ContactCard = () => {
     const [popUp, setPopUp] = useState(false);
     const [sharePopUp, setSharePopUp] = useState(false);
     const [snackBar, setSnackBar] = useState(false);
     const [shareSnackBar, setShareSnackBar] = useState(false);
-    
+    const theme = useTheme();
+    const md = useMediaQuery(theme.breakpoints.down('md'));
+
     var value = {
         popUp: popUp,
         setPopUp: setPopUp,
@@ -30,7 +34,8 @@ const ContactCard = () => {
 
     
     return ( 
-            <Card display="flex" direction={'column'}
+        <React.Fragment>
+            {!md?<Card display="flex" direction={'column'}
                 sx={{
                     position: 'absolute',
                     width: "350px",
@@ -144,7 +149,8 @@ const ContactCard = () => {
                 <SharePopUp {...value}/>
             </Dialog>
             <Snackbar  open={shareSnackBar}  autoHideDuration={3000}  onClose={handleShareClose}  message="E-Mail sent to Recipient!!!" />
-            </Card>
+            </Card>:''}
+            </React.Fragment>
 
     );
 }
