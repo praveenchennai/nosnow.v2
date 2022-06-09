@@ -21,14 +21,15 @@ const LotMain = () => {
         selectFromResult: ({ data, status, isLoading, error, id, originalArgs }) => {
             return {
                 property: data?.bundle || {},
-                lng: Number(data?.bundle?.Coordinates[0]) || undefined,
-                lat: Number(data?.bundle?.Coordinates[1]) || undefined,    
+                lng: data?.bundle?.Coordinates ? Number(data.bundle.Coordinates[0]) : undefined,
+                lat: data?.bundle?.Coordinates ? Number(data.bundle.Coordinates[1]) : undefined,    
                 status: status,
                 isLoading: isLoading,
                 error: error
             }
         }
     });
+
 return ( 
     <React.Fragment>
         <Box display="flex" justify="space-between" 
