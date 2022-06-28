@@ -24,7 +24,7 @@ const HomeMain = (props) => {
                     background: "url(https://nosnow-news-pdfs.s3.us-west-2.amazonaws.com/home.webp)",
                     height: "100vh",
                     backgroundRepeat: "no-repeat",
-                    backgroundSize: "contain",
+                    backgroundSize: "cover",
                     paddingTop: "20px"
                 }}
             >

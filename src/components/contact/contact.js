@@ -15,14 +15,15 @@ const ContactCard = () => {
         setSnackBar(false)
     }
     return ( 
-            <Card display="flex" direction={'column'}
+            <Card direction={'column'}
                 sx={{
                     position: 'absolute',
                     width: "350px",
                     top: '74px',
                     right: '10px',
                     height: "250px",
-                    zIndex: "1000"
+                    zIndex: "1000",
+                    display: { xs: 'none', md: 'block' }
                 }}
             >
                 <Typography 

@@ -1,25 +1,30 @@
 import React from 'react';
 import { Paper,  Button, Link, Grid, Typography} from '@mui/material';
-import { createTheme } from "@mui/material/styles";
+import { useTheme } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 import OpenInBrowserIcon from '@mui/icons-material/OpenInBrowser';
 import { useHistory, useParams } from "react-router-dom";
-
-const theme = createTheme();
-
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const Box1 = () => {
     const navi = useHistory();
     const onSearch = () =>{
         navi.push('/search')
     }
+    const theme = useTheme();
+    const belowmd = useMediaQuery(theme.breakpoints.down('md'));
+    console.log(belowmd)
     return (
         <React.Fragment>
             <Paper elevation={4} 
                 sx={{
-                    display: { xs: 'none', md: 'block' },
-                    width: "850px",
+                    //display: { xs: 'none', md: 'block' },
+                    width:{
+                        xs: "400px",
+                        sm: "650px",
+                        md: "850px"
+                    },
                     backgroundColor: "#56516b",
                     opacity: ".9"
                 }}
@@ -38,7 +43,11 @@ const Box1 = () => {
                         sx={{
                             color:"#fff",
                             fontWeight: "500",
-                            fontSize: "20px",
+                            fontSize: {
+                                xs: "12px",
+                                sm: "20px"
+                            },
+
                             padding: "10px"
                         }}
 
@@ -54,7 +63,7 @@ const Box1 = () => {
                     alignItems="center" 
                     sx={{
                         color: "#fff",
-                        marginBottom: "20px"
+                        marginBottom: "20px",
                     }}
                 >
                     <Typography 
@@ -62,7 +71,10 @@ const Box1 = () => {
                         sx={{
                             color:"#fff",
                             fontWeight: "500",
-                            fontSize: "38px",
+                            fontSize: {
+                                sx:"16px",
+                                md:"38px"
+                            },
                             paddingBottom: "2px!important",
                             padding: "10px",
                         }}
@@ -74,7 +86,10 @@ const Box1 = () => {
                         sx={{
                             color:"#fff",
                             fontWeight: "500",
-                            fontSize: "18px",
+                            fontSize: {
+                                sx:"10px",
+                                md:"18px"
+                            },
                             padding: "2px"
                         }}
                     >
@@ -89,6 +104,7 @@ const Box1 = () => {
                     justifyContent="center"
                     alignItems="center"
                     spacing={3}
+                    sx={{display: { xs: 'none', md: 'flex' },}}
                 >
                     <Grid container item
                         md={3}
@@ -183,6 +199,7 @@ const Box1 = () => {
                             fontSize: "15px",
                             margin: "20px"
                         }}
+                        fullWidth={belowmd}
                         onClick={()=>onSearch()}
                     >
                         Detailed Search
@@ -195,9 +212,23 @@ const Box1 = () => {
                             fontSize: "15px",
                             margin: "20px"
                         }}
+                        fullWidth={belowmd}
                         target="_blank" href="http://www.nosnowevalue.com/"
                     >
                         What's My Home Worth?
+                    </Button>
+                    <Button 
+                        variant='contained' 
+                        sx={{
+                            backgroundColor: "#ff5722",
+                            color: "#fff",
+                            fontSize: "15px",
+                            margin: "20px"
+                        }}
+                        fullWidth={belowmd}
+                        target="_blank" href="http://www.nosnowsells.com/"
+                    >
+                        Interested In Selling?
                     </Button>
                 </Grid>
             </Paper>
