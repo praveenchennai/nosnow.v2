@@ -3429,10 +3429,7 @@ setMappingContent: (state, action) => {
 	
 },
 
-},
-extraReducers: (builder) => {
-//builder.addCase(updateStop.fulfilled, updateItemsFromDB);
-},
+}
 })
 
 export const { 
