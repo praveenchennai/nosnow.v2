@@ -35,14 +35,14 @@ const LeftMenu = (props) => {
             admin: true, 
             icon: 'add_circle',
             subMenu: [
-                {title: 'View All Communities', secTitle: '', onclick: 'https://nosnownaples.com/#community'},
-                {title: 'Ave Maria', secTitle: '', onclick: 'https://nosnownaples.com/community/ave-maria' },
-                {title: 'Verona Walk', secTitle: '', onclick: 'https://nosnownaples.com/community/verona-walkt'},
-                {title: 'Imperial Golf Estates', secTitle: '', onclick: 'https://nosnownaples.com/community/imperial-golf-estates'},
-                {title: 'Orange Blossom Ranch', secTitle: '', onclick: 'https://nosnownaples.com/community/orange-blossom-ranch'},
-                {title: 'Indigo Lakes', secTitle: '', onclick: 'https://nosnownaples.com/community/indigo-lakes'  },
-                {title: 'Golden Gate Lakes', secTitle: '', onclick: 'https://nosnownaples.com/community/golden-gate-estates'  },
-                {title: 'Naples Farm Sites', secTitle: '', onclick: 'https://nosnownaples.com/community/naples-farm-sites'}
+                {title: 'View All Communities', secTitle: '', useNavi: true, onclick: '/communities'},
+                {title: 'Ave Maria', secTitle: '', useNavi: true, onclick: '/community/ave-maria' },
+                {title: 'Verona Walk', secTitle: '', useNavi: true, onclick: '/community/verona-walk'},
+                {title: 'Imperial Golf Estates', secTitle: '', useNavi: true, onclick: '/community/imperial-golf-estates'},
+                {title: 'Orange Blossom Ranch', secTitle: '', useNavi: true, onclick: '/community/orange-blossom-ranch'},
+                {title: 'Indigo Lakes', secTitle: '', useNavi: true, onclick: '/community/indigo-lakes'  },
+                {title: 'Golden Gate Lakes', secTitle: '', useNavi: true, onclick: '/community/golden-gate-estates'  },
+                {title: 'Naples Farm Sites', secTitle: '', useNavi: true, onclick: '/community/naples-farm-sites'}
             ]
         },
         {
@@ -97,6 +97,29 @@ const LeftMenu = (props) => {
                 {title: 'More', secTitle: '', onclick: 'https://content.nosnownaples.com/'}
             ]
         },
+        {
+            id: '6',
+            title: 'News', 
+            secTitle: 'View all', 
+            onclick: 'https://news.nosnownaples.com', 
+            admin: true, 
+            icon: 'add_circle',
+            subMenu: [
+                {title: 'June Market Report', onclick: 'https://news.nosnownaples.com/june-market-report'},
+                {title: 'May Nabor Market Report', onclick: 'https://news.nosnownaples.com/may-nabor-market-report'},
+                {title: 'May Market Report', onclick: 'https://news.nosnownaples.com/may-market-report'},
+                {title: 'April Nabor Market Report', onclick: 'https://news.nosnownaples.com/april-nabor-market-report'},
+                {title: 'April Market Report', secTitle: '', onclick: 'https://news.nosnownaples.com/april-market-report' },
+                {title: 'March Nabor Market Report', secTitle: '', onclick: 'https://news.nosnownaples.com/march-nabor-market-report'},
+                {title: 'February Nabor Market Report', secTitle: '', onclick: 'https://news.nosnownaples.com/february-nabor-market-report'},
+                {title: 'February Market Report', secTitle: '', onclick: 'https://news.nosnownaples.com/february-market-report'},
+                {title: 'January Market Report', secTitle: '', onclick: 'https://news.nosnownaples.com/january-market-report'},
+                {title: 'December Market Report', secTitle: '', onclick: 'https://news.nosnownaples.com/december-market-report'},
+                {title: 'November Market Report', secTitle: '', onclick: 'https://news.nosnownaples.com/november-market-report'},
+                {title: 'More', secTitle: '', onclick: 'https://news.nosnownaples.com/'}
+            ]
+        }
+
     ])
 
     const onHome = () =>{
@@ -109,6 +132,7 @@ const LeftMenu = (props) => {
     }
 
     const onLeftMenuClick = (item) =>{
+        console.log(item)
         if(item.useNavi){
             navi.push(item.onclick)
             setState(false)
@@ -122,7 +146,7 @@ const LeftMenu = (props) => {
     const [menu2] = useState([
         {
             id: '2',
-            title: 'News', 
+            title: 'Latest News', 
             onclick: 'https://news.nosnownaples.com', 
         },
         {
@@ -206,7 +230,7 @@ const LeftMenu = (props) => {
                 ))}
             </List>
             <Divider sx={{borderColor: "rgba(255, 255, 255, 0.2)"}}/>
-            <List>
+            {/* <List>
                 {menu2.map((text, index) => (
                 <ListItemButton key={index} onClick={() => window.open(text.onclick)}>
                     <ListItemIcon sx={{color:"#fff", minWidth:40}}>
@@ -216,7 +240,7 @@ const LeftMenu = (props) => {
                 </ListItemButton>
 
                 ))}
-            </List>
+            </List> */}
             <List>
                 {['Property Search'].map((text, index) => (
                 <ListItemButton key={index} sx={{backgroundColor: "#0174f5"}} onClick={()=>onSearch()}>

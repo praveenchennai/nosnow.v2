@@ -1,27 +1,47 @@
 import React, {useState} from 'react';
 import { Grid, Button, Snackbar, CardMedia, CardHeader, Card, Typography, Avatar, Dialog } from '@mui/material';
 import ContactPopUp from './contact-popup';
+import SharePopUp from './share-popup';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const ContactCard = () => {
     const [popUp, setPopUp] = useState(false);
+    const [sharePopUp, setSharePopUp] = useState(false);
     const [snackBar, setSnackBar] = useState(false);
+    const [shareSnackBar, setShareSnackBar] = useState(false);
+    const theme = useTheme();
+    const md = useMediaQuery(theme.breakpoints.down('md'));
+
     var value = {
         popUp: popUp,
         setPopUp: setPopUp,
         snackBar: snackBar,
-        setSnackBar: setSnackBar
+        setSnackBar: setSnackBar,
+        sharePopUp: sharePopUp,
+        setSharePopUp: setSharePopUp,
+        shareSnackBar: shareSnackBar, 
+        setShareSnackBar: setShareSnackBar
+
+
     }
     const handleClose = () =>{
         setSnackBar(false)
     }
+    const handleShareClose = () =>{
+        setShareSnackBar(false)
+    }
+
+    
     return ( 
-            <Card direction={'column'}
+        <React.Fragment>
+            {!md?<Card display="flex" direction={'column'}
                 sx={{
                     position: 'absolute',
                     width: "350px",
                     top: '74px',
                     right: '10px',
-                    height: "250px",
+                    height: "300px",
                     zIndex: "1000",
                     display: { xs: 'none', md: 'block' }
                 }}
@@ -96,6 +116,23 @@ const ContactCard = () => {
                 >
                     Request Info
                 </Button>
+                <Button 
+                    color={"primary"}
+                    sx={{
+                        fontSize: "14px",
+                        marginTop: "10px",
+                        backgroundColor: "#ED6C02",
+                        color: "#fff",
+                        "&:hover":{
+                            backgroundColor: "#ED6C02",
+                            color: "#fff"
+                        }
+                        
+                    }}
+                    onClick={()=>setSharePopUp(true)}
+                >
+                    Send to Friend
+                </Button>
             </Grid>
             <Dialog 
                 onClose={()=>setPopUp(false)} 
@@ -105,7 +142,16 @@ const ContactCard = () => {
                 <ContactPopUp {...value}/>
             </Dialog>
             <Snackbar  open={snackBar}  autoHideDuration={3000}  onClose={handleClose}  message="Thank you for your Comments/Question. We will contact you shortly!!" />
-            </Card>
+            <Dialog 
+                onClose={()=>setSharePopUp(false)} 
+                open={sharePopUp}
+                scroll={"body"}
+            >
+                <SharePopUp {...value}/>
+            </Dialog>
+            <Snackbar  open={shareSnackBar}  autoHideDuration={3000}  onClose={handleShareClose}  message="E-Mail sent to Recipient!!!" />
+            </Card>:''}
+            </React.Fragment>
 
     );
 }

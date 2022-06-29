@@ -6,19 +6,31 @@ export const mailAPI = initSplitApi.injectEndpoints({
         contact: builder.mutation({
             query: (params) => {
                 return {
-                    url: `nsn/content/email`,
+                    url: `nsn/user/inquire`,
                     method: 'POST',
                     service: 'mail-service',
                     body: params
                 }
             },
             providesTags: ['Mail']
-        })
+        }),
+        share: builder.mutation({
+            query: (params) => {
+                return {
+                    url: `nsn/user/share`,
+                    method: 'POST',
+                    service: 'mail-service',
+                    body: params
+                }
+            },
+            providesTags: ['Share']
+        }),
         
     }),
     overrideExisting: false
 })
 
 export const { 
-    useContactMutation
+    useContactMutation,
+    useShareMutation
 } = mailAPI
