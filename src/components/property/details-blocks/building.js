@@ -24,7 +24,7 @@ const Building = (props) => {
         BuildingFeatures,
 
         RoadResponsibility,
-        RoadSurfaceType,
+        RoadSurfaceType
     } = props;
 
     var factsArray = [
