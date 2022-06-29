@@ -5,6 +5,9 @@ import auth from 'api/auth'
 import res from 'api/res'
 import lot from 'api/lot'
 import communityGroup from 'api/community-group'
+import communities from 'api/community'
+import mapping from 'api/mapping'
+import content from 'api/content'
 import resresults from 'api/results'
 import { mailAPI } from 'services/mail'
 
@@ -16,7 +19,10 @@ const store = configureStore({
         res: res,
         communityGroup: communityGroup,
         resresults: resresults,
-        lot: lot
+        lot: lot,
+        communities: communities,
+        mapping: mapping,
+        content: content
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(bridgeAPI.middleware),
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(mailAPI.middleware)

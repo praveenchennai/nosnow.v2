@@ -1,90 +1,51 @@
 import React, {useEffect, useState} from 'react';
 import { useParams } from "react-router-dom";
 import { TextField, Paper , Toolbar, AppBar, Button, Typography } from '@mui/material';
-import { useSelector, useDispatch } from 'react-redux'
-import * as service from '../../service';
-import { setLoading, setRegister } from 'api/auth';
-import { useContactMutation  } from "services/mail";
+import { useShareMutation  } from "services/mail";
 
-const ContactPopUp = (props) => { 
-    const {setPopUp, setSnackBar} = props;
+const SharePopUp = (props) => { 
+    const {setSharePopUp, setShareSnackBar} = props;
     const {id} = useParams();
-    const register = useSelector(state=>state.auth.register);
-    const dispatch = useDispatch();
-    const [comments, setComments] = useState('');
-    
+   
     const [loading, setLoading] = useState(false);
     const [disableButton, setDisableButton] = useState(true);
-    const [ contactus, { isLoading: isUpdating }] = useContactMutation();
+    const [form, setForm] = useState({remail: '', rname: '', name: '', email: '', phone: '', comments: ''})
+    const [ sendToFriend, { isLoading: isUpdating }] = useShareMutation();
 
     useEffect(()=>{
-        if(register.firstName.length>0 && register.lastName.length>0 && register.email.length>0 && register.phone_number.length>0 && comments.length>0){
+        if(form.name.length>0 && form.email.length>0 && form.rname.length>0 && form.remail.length>0){
             setDisableButton(false)
         }
-    }, [register, comments])
-
-    const onFirstNameChange = (event) =>{
-        dispatch(setRegister({firstName: event.target.value}))
-    }
-
-    const onLastNameChange = (event) =>{
-        dispatch(setRegister({lastName: event.target.value}))
-    }
-
-    const onEmailChange = (event) =>{
-        dispatch(setRegister({email: event.target.value}))
-    }
-
-    const onPhoneChange = (event) =>{
-        if(register.phone.length<11){
-            dispatch(setRegister({phone: event.target.value}));
-            dispatch(setRegister({phone_number: `+1${event.target.value}`}));
-        }
-    }
-
-    const onComments = (event) =>{
-        setComments(event.target.value);
-    }
+    }, [form])
 
     const sendMailFunction = () =>{
-        contactus({
-            
+        setLoading(true);
+        setDisableButton(true);
+        sendToFriend({
+            "recipient": {
+                name: form.rname,
+                email: form.remail
+            },
             "from": {
                 "module": "Property",
                 "title": id,
-                "url": "https://www.nosnownaples.com"
+                "url": `https://www.nosnownaples.com/details/${id}`
             },
             "value": {
-                "name": `${register.firstName} ${register.lastName}`,
-                "email": register.email,
-                "phone": register.phone_number,
-                "comments": comments
+                "name": form.name,
+                "email": form.email,
+                "phone": form.phone,
+                "comments": form.comments
             }
-            
         })
         .unwrap()
         .then(result=>{
-            setPopUp(false);
-            setSnackBar(true);
+            setSharePopUp(false);
+            setShareSnackBar(true);
             setLoading(false)
         })
         .catch(err=>{console.log(err)})
     }
-
-    const onSend = () =>{
-        setLoading(true);
-        setDisableButton(true);
-        service.register(register)
-        .then(result=>{
-            sendMailFunction();
-        })
-        .catch(error=>{
-            if(error==='UsernameExistsException'){
-                sendMailFunction();
-            }
-        })
-    }
-
     
 
 return ( 
@@ -109,7 +70,7 @@ return (
                         color: "#fff",
                         flexGrow: 1
                     }}
-                >Request Info</Typography>
+                >Send to Friend</Typography>
                 <Button 
                     variant="contained" 
                     sx={{
@@ -125,7 +86,7 @@ return (
                         }
                     }}
                     onClick={()=>{
-                        setPopUp(false);
+                        setSharePopUp(false);
                     }}
                 >Close</Button>
             </Toolbar>
@@ -139,22 +100,33 @@ return (
                 type="text" 
                 fullWidth
                 margin="normal" 
-                label="First Name"
-                placeholder="Enter your first name"
-                name="firstName" 
-                onChange={onFirstNameChange}
-                value={register.firstName || ''} 
+                label="Recipient Name"
+                placeholder="Enter your recipient name"
+                name="rname" 
+                onChange={(event)=>setForm({...form, rname: event.target.value})}
+                value={form.rname || ''} 
             />
             <TextField 
                 variant="outlined" 
                 type="text" 
                 fullWidth
                 margin="normal" 
-                label="Last Name"
-                placeholder="Enter your last name"
-                name="lastName" 
-                onChange={onLastNameChange}
-                value={register.lastName || ''} 
+                label="Recipient E-Mail"
+                placeholder="Enter your recipient email"
+                name="remail" 
+                onChange={(event)=>setForm({...form, remail: event.target.value})}
+                value={form.remail || ''} 
+            />
+            <TextField 
+                variant="outlined" 
+                type="text" 
+                fullWidth
+                margin="normal" 
+                label="Your Name"
+                placeholder="Enter your name"
+                name="name" 
+                onChange={(event)=>setForm({...form, name: event.target.value})}
+                value={form.name || ''} 
             />
             <TextField 
                 variant="outlined" 
@@ -164,8 +136,8 @@ return (
                 label="E-Mail"
                 placeholder="Enter your email address"
                 name="email" 
-                onChange={onEmailChange}
-                value={register.email || ''} 
+                onChange={(event)=>setForm({...form, email: event.target.value})}
+                value={form.email || ''} 
             />
             <TextField 
                 variant="outlined" 
@@ -175,8 +147,8 @@ return (
                 label="Phone"
                 placeholder="Enter your Phone Number"
                 name="phone" 
-                onChange={onPhoneChange}
-                value={register.phone || ''}  
+                onChange={(event)=>setForm({...form, phone: event.target.value})}
+                value={form.phone || ''}  
              />
             <TextField 
                 variant="outlined" 
@@ -188,8 +160,8 @@ return (
                 label="Questions / Comments"
                 placeholder="Enter your questions or comments"
                 name="comments" 
-                onChange={onComments}
-                value={comments || ''}    
+                onChange={(event)=>setForm({...form, comments: event.target.value})}
+                value={form.comments || ''}    
             />
         
             <Button 
@@ -212,7 +184,7 @@ return (
                 }}
                 size={'large'}
                 fullWidth
-                onClick={(()=>onSend())}
+                onClick={(()=>sendMailFunction())}
                 disabled={disableButton || loading}
             >
                 {loading?'Please Wait...' : 'Send'}
@@ -222,4 +194,4 @@ return (
 
 )}
 
-export default ContactPopUp;
+export default SharePopUp;
