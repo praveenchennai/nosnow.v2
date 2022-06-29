@@ -29,7 +29,6 @@ const LotCard = (props) => {
         } else {
             setEli(1)
         }
-        
     }
 
     const onProperty = (property) =>{
@@ -50,7 +49,6 @@ const LotCard = (props) => {
                 position: 'relative',
                 cursor: "pointer"
             }}
-            // onClick={() => window.open(`https://nosnownaples.com/lot-land/${ListingId}/${UnparsedAddress}`)}
             onClick={() => onProperty(ListingId)}
         >
             <Grid container item md={12} display="flex"
