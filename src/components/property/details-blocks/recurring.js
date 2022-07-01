@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Grid, Typography} from '@mui/material';
+import {Grid, Typography, Divider} from '@mui/material';
 import Row from './row'
 
 const RecurringFee = (props) => {
@@ -119,8 +119,15 @@ const RecurringFee = (props) => {
             <Row value={{label: 'Mandatory Club Fee', value: feeValue(NABOR_MandatoryClubFee, NABOR_MandatoryClubFeeFreq)}} />
 
             <Row value={{label: 'Master HOA Fee', value: feeValue(NABOR_MasterHOAFee, NABOR_MasterHOAFeeFreq)}} />
+            <Divider 
+            sx={{
+                marginTop: "10px", 
+                marginBottom: "0px",
+                color: "#000",
+                width: "100%"
+            }}/>
 
-            <Row value={{label: 'Association Fee', value: feeValue(AssociationFee, AssociationFeeFreq)}} />
+            <Row value={{label: 'Total Annual Recurring Fees', value: feeValue(AssociationFee, AssociationFeeFreq), bold: true}} />
 
         </React.Fragment>
     );
