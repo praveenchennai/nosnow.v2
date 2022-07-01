@@ -12,16 +12,19 @@ const Row = (props) =>{
             <Typography noWrap
                 sx={{
                     fontSize: "12px", 
-                    fontWeight: bold ? 'bold' : '500',
+                    fontWeight: 'bold',
                     flexGrow: 1
                 }}
             >    
                 {label}
             </Typography>
-            <Typography noWrap align="right"
+            <Typography align="right"
+
                 sx={{
                     fontSize: "12px", 
-                    flexGrow: 1,
+                    textAlign: "justify",
+                    lineHeight: "20px",
+                    margin: "5px",
                     fontWeight: bold ? 'bold' : '500'
                 }}
             >    

@@ -29,6 +29,8 @@ const RecurringFee = (props) => {
         NABOR_MandatoryClubFeeFreq,
         NABOR_MandatoryClubFee,
 
+        AssociationAmenities
+
         
         
     } = props;
@@ -128,6 +130,16 @@ const RecurringFee = (props) => {
             }}/>
 
             <Row value={{label: 'Total Annual Recurring Fees', value: feeValue(AssociationFee, AssociationFeeFreq), bold: true}} />
+
+            <Divider 
+            sx={{
+                marginTop: "10px", 
+                marginBottom: "0px",
+                color: "#000",
+                width: "100%"
+            }}/>
+
+            <Row value={{label: 'Association Amenities [Included in Fees]', value: AssociationAmenities?.join(", ")}} />
 
         </React.Fragment>
     );
