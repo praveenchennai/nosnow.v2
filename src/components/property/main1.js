@@ -20,7 +20,7 @@ const containerStyle = {
   
   
 
-const PropertyMain = () => {
+const PropertyMain1 = () => {
     const {id} = useParams();
     const {property, lat, lng, status, isLoading, error} = useGetPropertyQuery(id, {
         skip: !id,
@@ -54,12 +54,12 @@ return (
                     maxHeight: "calc(100vh - 65px)",
                     width: {
                         sx: "100vw",
-                        md:"50vw"
+                        md:"100vw"
                     }
                 }}
             > 
                 <Grid container item columns={12} display="flex" justify="space-between">
-                    <Grid container item xs={12} >
+                    <Grid container item xs={9} >
                         <Card 
                             elevation={1}
                             sx={{
@@ -174,9 +174,23 @@ return (
                         </Card>
                         
                     </Grid> 
+                    <Grid container item xs={3} >
+                    {lat?
+                        <LoadScript googleMapsApiKey="AIzaSyAgV5Jp5V353fQ-khx1wKX2s4vx-xbb3zQ">
+                            <GoogleMap
+                                mapContainerStyle={containerStyle}
+                                center={{lat, lng}}
+                                zoom={18}
+                                options={map => ({ mapTypeId: 'SATELLITE' })}
+                            >
+                                <Marker position={{lat, lng}} animation={'DROP'}/>
+                            </GoogleMap>
+                        </LoadScript>
+                    : ''}
+                    </Grid>
                 </Grid>
             </TableContainer>
-            <TableContainer
+            {/* <TableContainer
                 sx={{
                     display: {
                         xs: "none", 
@@ -198,11 +212,11 @@ return (
                     </LoadScript>
                 
                 : ''}
-            </TableContainer>         
+            </TableContainer>          */}
         </Box>
         <ContactCard />
     </React.Fragment>
 );
 }
 
-export default PropertyMain;
+export default PropertyMain1;
