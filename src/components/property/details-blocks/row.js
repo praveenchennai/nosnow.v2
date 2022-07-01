@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Grid, Typography} from '@mui/material';
 
 const Row = (props) =>{
-    const {label, value} = props.value;
+    const {label, value, bold} = props.value;
     return (
         <Grid container item md={12} alignItems="center" justifyContent="space-between"
             sx={{
@@ -12,7 +12,7 @@ const Row = (props) =>{
             <Typography noWrap
                 sx={{
                     fontSize: "12px", 
-                    fontWeight: "500",
+                    fontWeight: bold ? 'bold' : '500',
                     flexGrow: 1
                 }}
             >    
@@ -21,8 +21,8 @@ const Row = (props) =>{
             <Typography noWrap align="right"
                 sx={{
                     fontSize: "12px", 
-                    fontWeight: "500",
-                    flexGrow: 1
+                    flexGrow: 1,
+                    fontWeight: bold ? 'bold' : '500'
                 }}
             >    
                 {value}

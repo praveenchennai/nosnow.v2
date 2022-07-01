@@ -1,5 +1,6 @@
 import React from 'react';
 import {Grid, Typography, Divider} from '@mui/material';
+import Row from './row'
 
 const MlsDetails = (props) => {
     var {
@@ -10,7 +11,12 @@ const MlsDetails = (props) => {
         LivingArea,
         CoListOfficeName, View,
         NABOR_StatusType, PropertyType, 
-        ParcelNumber, CountyOrParish, NABOR_Township
+        ParcelNumber, CountyOrParish, NABOR_Township,
+        ElementarySchool, ElementarySchoolDistrict, 
+        HighSchoolDistrict, HighSchool, 
+        MiddleOrJuniorSchool, MiddleOrJuniorSchoolDistrict,
+
+
     } = props;
 
     var array = [
@@ -22,12 +28,23 @@ const MlsDetails = (props) => {
         {name: 'View', value: View?.join(", ") || ''},
         {name: 'Levels', value: Levels?.join(", ") || ''},
         {name: 'Living Area', value: `${LivingArea || ''} Sqft - Floor Plan Service`},
-        {name: 'Total Area', value: `${LotSizeSquareFeet || ''} Sqft - Floor Plan Service`},
+        //{name: 'Total Area', value: `${LotSizeSquareFeet || ''} Sqft - Floor Plan Service`},
         {name: 'Courtesy Of', value: CoListOfficeName || ''},
         {name: 'County', value: CountyOrParish || ''},
         {name: 'Property Type', value: PropertyType || ''},
         {name: 'ParcelNumber', value: ParcelNumber || ''},
         {name: 'Township', value: NABOR_Township || ''},
+
+        {name: 'Elementary School', value: ElementarySchool || ''},
+        {name: 'Elementary School District', value: ElementarySchoolDistrict || ''},
+
+        {name: 'Middle / Junior School', value: MiddleOrJuniorSchool || ''},
+        {name: 'Middle / Junior School District', value: MiddleOrJuniorSchoolDistrict || ''},
+
+        {name: 'High School', value: HighSchool || ''},
+        {name: 'High School District', value: HighSchoolDistrict || ''},
+       
+
     ]
 
     return ( 
@@ -55,27 +72,7 @@ const MlsDetails = (props) => {
                         padding: "5px"
                     }}
                 > 
-                    <Typography noWrap
-                        sx={{
-                            fontSize: "12px", 
-                            fontWeight: "500",
-                            flexGrow: 1
-                        }}
-                        component="div"
-                    >    
-                        {f.name}:
-                    </Typography>
-                    <Typography 
-                        sx={{
-                            fontSize: "12px", 
-                            fontWeight: "500",
-                            textAlign: "justify",
-                            lineHeight: "20px",
-                            margin: "5px"
-                        }}
-                    >
-                        {f.value}
-                    </Typography>
+                    <Row value={{label: f.name, value: f.value}} />
                     <Divider 
                         sx={{
                             marginTop: "10px", 

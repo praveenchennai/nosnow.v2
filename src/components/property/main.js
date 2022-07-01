@@ -1,4 +1,4 @@
-import React, {useState, useCallback} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import { Grid, Box, Card, TableContainer, Typography } from '@mui/material';
 import { useParams } from "react-router-dom";
 import PropertyDetails from './details-blocks/details';
@@ -35,6 +35,10 @@ const PropertyMain = () => {
             }
         }
     });
+
+    useEffect(()=>{
+        console.log(property)
+    }, [property])
         
 return ( 
     <React.Fragment>
@@ -77,6 +81,19 @@ return (
                             sx={{
                                 position: 'relative',
                                 cursor: "pointer",
+                                margin: "5px",
+                                width: "100%",
+                                height: "auto"
+                                
+                            }}
+                        >
+                            <Remarks {...property}/> 
+                        </Card>
+                        <Card 
+                            elevation={1}
+                            sx={{
+                                position: 'relative',
+                                cursor: "pointer",
                                 minHeight: {
                                     xs: "600px",
                                     sm: "530px" 
@@ -86,20 +103,7 @@ return (
                                 
                             }}
                         >
-                            <Facts {...property}/>
-                        </Card>
-                        <Card 
-                            elevation={1}
-                            sx={{
-                                position: 'relative',
-                                cursor: "pointer",
-                                margin: "5px",
-                                width: "100%",
-                                height: "auto"
-                                
-                            }}
-                        >
-                            <Remarks {...property}/> 
+                            <Interior {...property}/> 
                         </Card>
                         <Card 
                             elevation={1}
@@ -143,13 +147,12 @@ return (
                                     xs: "600px",
                                     sm: "530px" 
                                 },
-                                marginRight: "5px",
-                                marginY: "5px",
+                                margin: "5px",
                                 width: "100%"
                                 
                             }}
                         >
-                            <Exterior {...property}/> 
+                            <Facts {...property}/>
                         </Card>
                         <Card 
                             elevation={1}
@@ -160,13 +163,15 @@ return (
                                     xs: "600px",
                                     sm: "530px" 
                                 },
-                                margin: "5px",
+                                marginRight: "5px",
+                                marginY: "5px",
                                 width: "100%"
                                 
                             }}
                         >
-                            <Interior {...property}/> 
+                            <Exterior {...property}/> 
                         </Card>
+                        
                     </Grid> 
                 </Grid>
             </TableContainer>
