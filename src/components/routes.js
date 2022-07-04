@@ -1,8 +1,11 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useEffect } from 'react';
 import {BrowserRouter, Switch, Route, withRouter} from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import { Paper} from '@mui/material';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import HeaderRoutes from './header/routes';
 import FooterRoutes from './footer/footer';
+import {setSize} from 'api/design'
 
 const Search = lazy(() => import('components/search/main'));
 const Home = lazy(() => import('components/home/main'));
@@ -18,8 +21,20 @@ const ParlanteVideo = lazy(()=>import('components/content/parlante-video'));
 const Tcalc = lazy(()=>import('components/content/tcalc'));
 
 const Routes = (props) => {
+    const dispatch = useDispatch();
     const Header = withRouter(props => <HeaderRoutes {...props}/>);
     const Footer = withRouter(props => <FooterRoutes {...props}/>);
+
+    const xsSize = useMediaQuery((theme) => theme.breakpoints.only('xs'));
+    const smSize = useMediaQuery((theme) => theme.breakpoints.only('sm'));
+    const mdSize = useMediaQuery((theme) => theme.breakpoints.only('md'));
+    const lgSize = useMediaQuery((theme) => theme.breakpoints.only('lg'));
+    const xlSize = useMediaQuery((theme) => theme.breakpoints.only('xl'));
+
+    useEffect(()=>{
+        dispatch(setSize({xsSize: xsSize, smSize: smSize, mdSize: mdSize, lgSize: lgSize, xlSize: xlSize}))
+    }, [xsSize, smSize, mdSize, lgSize, xlSize])
+
     return (
         <React.Fragment>   
             <BrowserRouter>
