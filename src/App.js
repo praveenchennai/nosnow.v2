@@ -8,10 +8,16 @@ import { useSelector, useDispatch } from 'react-redux';
 import {signIn} from 'api/auth';
 import * as service from './service';
 
+
+
 const THEME = createTheme(customStyle());
+
+
 
 const App = () => {
   const dispatch = useDispatch();
+
+
 
   useEffect(()=>{
     service.updateSessions()
@@ -33,7 +39,7 @@ const App = () => {
 return (
     <React.Fragment>
       <ThemeProvider theme={THEME}>
-          <Base >
+          <Base>
             <Routes />
           </Base>
       </ThemeProvider>

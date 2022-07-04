@@ -5,7 +5,8 @@ import SharePopUp from './share-popup';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
-const ContactCard = () => {
+const ContactCard = (props) => {
+    const {staticlocation} = props;
     const [popUp, setPopUp] = useState(false);
     const [sharePopUp, setSharePopUp] = useState(false);
     const [snackBar, setSnackBar] = useState(false);
@@ -35,8 +36,12 @@ const ContactCard = () => {
     
     return ( 
         <React.Fragment>
-            {!md?<Card display="flex" direction={'column'}
-                sx={{
+            {!md?<Card display="flex" direction={'column'} elevation={0}
+                sx={staticlocation? {
+                    display: { xs: 'none', md: 'block' }
+                }
+                :
+                {
                     position: 'absolute',
                     width: "350px",
                     top: '74px',

@@ -12,7 +12,7 @@ const PropertyDetails = (props) => {
     const theme = useTheme();
     const [slide, setSlide] = useState(false);
     //const [noimage] = useState('https://nosnow-news-pdfs.s3.us-west-2.amazonaws.com/defaultproperty.webp')
-    const [noimage, setNoImage] = useState('https://dvvjkgh94f2v6.cloudfront.net/7487d661/46841388/83dcefb7.jpeg')
+    const [noimage, setNoImage] = useState('https://nosnow-news-pdfs.s3.us-west-2.amazonaws.com/defaultproperty.webp')
     
     var {
         PublicRemarks, Media, MlsStatus,

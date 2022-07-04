@@ -93,8 +93,6 @@ return (
             sx={{
                 background: "#56516b",
                 color: "#fff",
-                paddingBottom: 6,
-                paddingTop: 6,
                 fontWeight: "bolder",
                 '&:hover': {
                     background: "#6a6485"
@@ -113,13 +111,7 @@ return (
                 <Button 
                     variant="contained" 
                     sx={{
-                        marginTop: "10px",
                         background: "#FE8200",
-                        marginLeft: 10,
-                        color: "#fff",
-                        paddingBottom: 6,
-                        paddingTop: 6,
-                        fontWeight: "bolder",
                         '&:hover': {
                             background: "#FE8200"
                         }
