@@ -49,8 +49,8 @@ const Routes = (props) => {
                         <Route path="/search" render = {()=><Search />} exact/>
                         
                         <Route path="/search/:type" render = {()=><Search />} />
-                        <Route path="/details/:id" render={()=> <PropertyMain />} />
-                        <Route path="/details-new/:id" render={()=> <PropertyMain1 />} />
+                        <Route path="/details/:id" render={()=> <PropertyMain1 />} />
+                        <Route path="/details-new/:id" render={()=> <PropertyMain />} />
                         <Route path="/lots/:id" render={()=> <LotMain />} />
                         <Route path="/result" render={()=> <ResultRoutes />} />
                         <Route path="/community/:seo" render={()=> <CommunityContent />} />
