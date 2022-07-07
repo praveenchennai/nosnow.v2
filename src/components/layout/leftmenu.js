@@ -53,12 +53,17 @@ const LeftMenu = (props) => {
             admin: true, 
             icon: 'add_circle',
             subMenu: [
-                {title: 'Gated Communities', secTitle: '', onclick: 'https://nosnownaples.com/community/group/naples-bonita-springs-estero-gated-communities'},
-                {title: 'Non-Gated Communities', secTitle: '', onclick: 'https://nosnownaples.com/community/group/naples-bonita-springs-estero-non-gated-communities' },
-                {title: 'Golf Communities', secTitle: '', onclick: 'https://nosnownaples.com/community/group/golf-communities-naples-real-estate'},
-                {title: 'Beach Front Condos', secTitle: '', onclick: 'https://nosnownaples.com/community/group/beach-front-condo-sunset-water-views-naples-real-estate'},
-                {title: 'Estate Homes', secTitle: '', onclick: 'https://nosnownaples.com/community/group/estate-homes-are-for-more-space-naples-real-estate'},
-                {title: 'Community Lifestyle', secTitle: '', onclick: '/https://nosnownaples.com/community/group'}
+                {title: 'Gated Communities', secTitle: '', useNavi: true, onclick: '/community-group/gated-communities'},
+                {title: 'Non-Gated Communities', secTitle: '', useNavi: true, onclick: '/community-group/non-gated-communities' },
+                {title: 'Golf Communities', secTitle: '', useNavi: true, onclick: '/community-group/golf-communities'},
+                {title: 'Luxury Golf Communities', secTitle: '', useNavi: true, onclick: '/community-group/luxury-golf-communities' },
+                {title: 'Gold Membership Included', secTitle: '', useNavi: true, onclick: '/community-group/gold-membership-included'},
+                {title: 'Boating & Gulf Access', secTitle: '', useNavi: true, onclick: '/community-group/boating-gulf-access'},
+                {title: 'Beach Front Condos', secTitle: '', useNavi: true, onclick: '/community-group/beach-front-condos'},
+                {title: 'Beach Front Living', secTitle: '', useNavi: true, onclick: '/community-group/beach-front-living'},
+                {title: 'Waterfront Locations', secTitle: '', useNavi: true, onclick: '/community-group/water-front-locations'},
+                {title: 'Estate Homes', secTitle: '', useNavi: true, onclick: '/community-group/estate-homes'}
+                
             ]
         },
         {

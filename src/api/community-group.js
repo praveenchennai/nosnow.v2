@@ -6,6 +6,7 @@ export const CommunityGroupApi = createSlice({
         group: [
             {
                 title: 'Gated Communities',
+                seoUrl: 'gated-communities',
                 subTitle: 'Naples Bonita Springs Estero',
                 description: "Gated Communities offer security and privacy to homeowners and residents.",
                 image: "https://nosnow-news-pdfs.s3.us-west-2.amazonaws.com/gatedcommunity.webp",
@@ -13,6 +14,7 @@ export const CommunityGroupApi = createSlice({
             },
             {
                 title: 'Non Gated Communities',
+                seoUrl: 'non-gated-communities',
                 subTitle: 'Bonita Springs Estero',
                 description: "Non gated communities lend to a more northern lifestyle for homeowners.",
                 image: "https://nosnow-news-pdfs.s3.us-west-2.amazonaws.com/nongatedcommunity.webp",
@@ -20,6 +22,7 @@ export const CommunityGroupApi = createSlice({
             },
             {
                 title: 'Golf Communities',
+                seoUrl: 'golf-communities',
                 subTitle: 'Naples Real Estate',
                 description: "Home to golf course in the country",
                 image: "https://nosnow-news-pdfs.s3.us-west-2.amazonaws.com/golfcommunity.webp",
@@ -27,6 +30,7 @@ export const CommunityGroupApi = createSlice({
             },
             {
                 title: 'Luxury Golf Communities',
+                seoUrl: 'luxury-golf-communities',
                 subTitle: 'Bonita Springs Estero',
                 description: "Florida lifestyle with luxury homes",
                 image: "https://nosnow-news-pdfs.s3.us-west-2.amazonaws.com/lgolfcommunity.webp",
@@ -34,6 +38,7 @@ export const CommunityGroupApi = createSlice({
             },
             {
                 title: 'Gold Membership Included',
+                seoUrl: 'gold-membership-included',
                 subTitle: "Bundled golf communities in SW FL",
                 description: 'Bundled golf communities in Southwest Florida',
                 image: "https://nosnow-news-pdfs.s3.us-west-2.amazonaws.com/goldmembership.webp",
@@ -41,6 +46,7 @@ export const CommunityGroupApi = createSlice({
             },
             {
                 title: 'Boating & Gulf Access',
+                seoUrl: 'boating-gulf-access',
                 subTitle: 'Water, Canal, Beach front homes',
                 description: "Water front, Canal front, Beach front homes,",
                 image: "https://nosnow-news-pdfs.s3.us-west-2.amazonaws.com/boating.webp",
@@ -48,6 +54,7 @@ export const CommunityGroupApi = createSlice({
             },
             {
                 title: 'Beach Front Condos',
+                seoUrl: 'beach-front-condos',
                 subTitle: 'Sunset water views',
                 description: "Sunset and water views draw people to the coastline.",
                 image: "https://nosnow-news-pdfs.s3.us-west-2.amazonaws.com/beachcondo.webp",
@@ -55,6 +62,7 @@ export const CommunityGroupApi = createSlice({
             },
             {
                 title: 'Beachfront Living',
+                seoUrl: 'beach-front-living',
                 subTitle: 'Sunset views & Gulf vistas',
                 description: "Sunset views and Gulf vistas are breathtaking",
                 image: "https://nosnow-news-pdfs.s3.us-west-2.amazonaws.com/beachliving.webp",
@@ -62,6 +70,7 @@ export const CommunityGroupApi = createSlice({
             },
             {
                 title: 'Waterfront Locations',
+                seoUrl: 'water-front-locations',
                 subTitle: 'Within One Mile of the Beach',
                 description: "Within One Mile of the Beach",
                 image: "https://nosnow-news-pdfs.s3.us-west-2.amazonaws.com/waterfront.webp",
@@ -69,6 +78,7 @@ export const CommunityGroupApi = createSlice({
             },
             {
                 title: 'Estate Homes',
+                seoUrl: 'estate-homes',
                 subTitle: 'Estate Homes, If you need more space',
                 description: "Estate Homes are for you if you need a little more space",
                 image: "https://nosnow-news-pdfs.s3.us-west-2.amazonaws.com/estatehomes.webp",
