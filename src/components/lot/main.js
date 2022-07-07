@@ -1,6 +1,5 @@
-import React  from 'react';
+import React, { useEffect }  from 'react';
 import { Grid, Box, Card, TableContainer, Typography, } from '@mui/material';
-import { useParams } from "react-router-dom";
 import PropertyDetails from './details-blocks/details';
 import Facts from './details-blocks/facts';
 import Remarks from './details-blocks/remark';
@@ -8,6 +7,7 @@ import MlsDetails from './details-blocks/mls'
 import {useGetPropertyQuery} from 'services/bridge-api'
 import ContactCard from '../contact/contact'
 import { GoogleMap, Marker, LoadScript   } from '@react-google-maps/api';
+import { useHistory, useParams } from "react-router-dom";
 
 const containerStyle = {
     width: '100%',
@@ -16,6 +16,7 @@ const containerStyle = {
 
 const LotMain = () => {
     const {id} = useParams();
+    const navi = useHistory();
     const {property, lat, lng, status, isLoading, error} = useGetPropertyQuery(id, {
         skip: !id,
         selectFromResult: ({ data, status, isLoading, error, id, originalArgs }) => {
@@ -29,6 +30,18 @@ const LotMain = () => {
             }
         }
     });
+
+    useEffect(()=>{
+        
+        if(property?.ListingId && property.PropertyType!=='Land'){
+            
+            console.log('redirecting');
+            navi.push(`/details/${id}`)
+        } else {
+            console.log(property);
+            
+        }
+    }, [property])
 return ( 
     <React.Fragment>
         <Box display="flex" justify="space-between" 

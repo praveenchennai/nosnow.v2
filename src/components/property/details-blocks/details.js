@@ -107,17 +107,17 @@ const PropertyDetails = (props) => {
                         </CardMedia>
                     </Grid>
                     
-                        <Grid container item md={4}>
-                            <CardMedia
-                                component="img"
-                                height="auto"
-                                image={Media ? Media[3] ? Media[3].MediaURL || noimage : noimage : noimage}
-                                alt={UnparsedAddress}
-                                onMouseOver={()=>hoverChange('in')}
-                                onMouseOut={()=>hoverChange('out')}
-                                onClick={()=>setSlide(true)}
-                            />
-                        </Grid>
+                    <Grid container item md={4}>
+                        <CardMedia
+                            component="img"
+                            height="auto"
+                            image={Media ? Media[3] ? Media[3].MediaURL || noimage : noimage : noimage}
+                            alt={UnparsedAddress}
+                            onMouseOver={()=>hoverChange('in')}
+                            onMouseOut={()=>hoverChange('out')}
+                            onClick={()=>setSlide(true)}
+                        />
+                    </Grid>
                     
                 </Grid>
                 :''}
