@@ -3,18 +3,19 @@ import { makeStyles } from '@mui/styles';
 import { useSelector } from 'react-redux'
 import {Chip, ListItem, Divider, Grid, Grow, CardMedia, Card, List, CardContent, Typography} from '@mui/material';
 import { listingCss } from 'common/style/style';
+import { useHistory, useParams } from "react-router-dom";
 export const searchFields = React.createContext();
 
 const useStyles = makeStyles(listingCss());
 
 
 const CommunityGroupCard = (props) => {
-
+    const navi = useHistory();
     var {
         title, 
         subTitle, 
         description, 
-        image, url
+        image, url, seoUrl
     } = props;
 
     const block = useSelector(state=>state.communityGroup.block);
@@ -29,6 +30,10 @@ const CommunityGroupCard = (props) => {
         
     }
 
+    const onCommunityGroup = () =>{
+        navi.push(`/community-group/${seoUrl}`)
+    }
+
     const classes = useStyles();
     return ( 
         <React.Fragment>
@@ -41,7 +46,7 @@ const CommunityGroupCard = (props) => {
                 sx={{
                     cursor: "pointer"
                 }}
-                onClick={() => window.open(url)}
+                onClick={() => onCommunityGroup()}
             >
                 <Grid container item md={12} display="flex" direction="column"
                     sx={{
