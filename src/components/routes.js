@@ -10,7 +10,6 @@ import {setSize} from 'api/design'
 const Search = lazy(() => import('components/search/main'));
 const Home = lazy(() => import('components/home/main'));
 const PropertyMain = lazy(()=>import('components/property/main'));
-const PropertyMain1 = lazy(()=>import('components/property/main1'));
 const LotMain = lazy(()=>import('components/lot/main'));
 const ResultRoutes = lazy(()=>import('components/results/routes'));
 const CommunityContent = lazy (()=>import('components/communities/details'));
@@ -50,8 +49,7 @@ const Routes = (props) => {
                         <Route path="/search" render = {()=><Search />} exact/>
                         
                         <Route path="/search/:type" render = {()=><Search />} />
-                        <Route path="/details/:id" render={()=> <PropertyMain1 />} />
-                        <Route path="/details-new/:id" render={()=> <PropertyMain />} />
+                        <Route path="/details/:id" render={()=> <PropertyMain />} />
                         <Route path="/lots/:id" render={()=> <LotMain />} />
                         <Route path="/result" render={()=> <ResultRoutes />} />
                         <Route path="/community/:seo" render={()=> <CommunityContent />} />

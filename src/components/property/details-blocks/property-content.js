@@ -222,7 +222,7 @@ const PropertyContent = (props) => {
     ]
 
     return ( 
-        <React.Fragment>
+        <Grid container item md={12}>
             <Grid container item md={12} alignItems="center" justifyContent="space-between"
                 sx={{
                     paddingX: "1rem",
@@ -304,7 +304,7 @@ const PropertyContent = (props) => {
             </Grid>
             
             
-        </React.Fragment>
+        </Grid>
     );
 }
 
