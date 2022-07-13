@@ -54,6 +54,7 @@ const PropertyContent = (props) => {
         Electric,
         Flooring,
         Furnished,
+        ArchitecturalStyle,
         GarageSpaces,
         Gas,
         GreenEnergyGeneration,
@@ -62,7 +63,10 @@ const PropertyContent = (props) => {
         Cooling,
         IrrigationSource,
         PetsAllowed,
-
+        BuildingFeatures,
+        PoolPrivateYN,
+        SpaFeatures,
+        SpaYN,
 
         ExteriorFeatures,
         ParkingTotal,
@@ -114,6 +118,12 @@ const PropertyContent = (props) => {
         {name: 'Lot Dimension', value: ` ${NABOR_LotFrontage} X ${NABOR_LotLeft} X ${NABOR_LotBack} X ${NABOR_LotRight}` || ''},
         //{name: 'Courtesy Of', value: ListOfficeName || ''},
 
+        
+        {name: 'Furnished', value: Furnished || ''},
+        {name: 'Architectural Style', value: ArchitecturalStyle?.join(', ') || ''},
+        {name: 'Flooring', value: Flooring?.join(', ') || ''},
+        {name: 'BuildingFeatures', value: BuildingFeatures?.join(', ') || ''},
+
         {name: 'Elementary School', value: ElementarySchool || '', half: true},
         {name: 'Elementary School District', value: ElementarySchoolDistrict || '', half: true},
 
@@ -144,6 +154,18 @@ const PropertyContent = (props) => {
         {name: 'Electric', value: Electric || ''},
         {name: 'Pets Allowed', value: PetsAllowed || ''},
         {name: 'Irrigation Source', value: IrrigationSource || ''},
+
+        {name: 'Garage Spaces', value: GarageSpaces || ''},
+        {name: 'Gas', value: Gas || ''},
+        {name: 'Green Energy Generation', value: GreenEnergyGeneration || ''},
+        {name: 'Irrigation Source', value: IrrigationSource || ''},
+
+        {name: 'Private Pool', value: PoolPrivateYN ? 'Yes' : 'No'},
+        {name: 'Private SPA', value: SpaYN ? 'Yes' : 'No'},
+        {name: 'Pool Features', value: PoolFeatures?.join(', ') || ''},
+        {name: 'Spa Features', value: SpaFeatures?.join(', ') || ''},
+
+        
 
         {name: 'Appliances', value: Appliances?.join(", ") || '', half: true},
         {name: 'Interior Features', value: InteriorFeatures?.join(", ") || '', half: true},
@@ -257,7 +279,7 @@ const PropertyContent = (props) => {
                 <Element value={{label: "Bedrooms", value: NABOR_Bedrooms}}/>
                 <Element value={{label: "BathRooms", value: BathroomsTotalDecimal}}/>
                 <Element value={{label: "Living Area", value: LivingArea ? `${LivingArea} sqft` : ''}}/>
-                <Element value={{label: "Total Rooms", value: RoomsTotal}}/>
+                <Element value={{label: "List Price/SqFt", value: new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(ListPrice/LivingArea)}}/>
             </Grid>
             <Grid container item md={12} justifyContent="space-evenly">
                 <Element value={{label: "County", value: CountyOrParish}}/>

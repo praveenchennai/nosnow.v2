@@ -6,7 +6,7 @@ import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 const ContactCard = (props) => {
-    const {staticlocation} = props;
+    const {staticlocation, VirtualTourURLBranded, VirtualTourURLUnbranded, VirtualTourURLZillow} = props;
     const [popUp, setPopUp] = useState(false);
     const [sharePopUp, setSharePopUp] = useState(false);
     const [snackBar, setSnackBar] = useState(false);
@@ -138,6 +138,40 @@ const ContactCard = (props) => {
                 >
                     Send to Friend
                 </Button>
+                {VirtualTourURLBranded?<Button 
+                    color={"primary"}
+                    sx={{
+                        fontSize: "14px",
+                        marginTop: "10px",
+                        backgroundColor: "#ED6C02",
+                        color: "#fff",
+                        "&:hover":{
+                            backgroundColor: "#ED6C02",
+                            color: "#fff"
+                        }
+                        
+                    }}
+                    onClick={()=> window.open(VirtualTourURLBranded)}
+                >
+                    Virtual Tour 
+                </Button>:''}
+                {VirtualTourURLUnbranded && VirtualTourURLUnbranded!==VirtualTourURLBranded ?<Button 
+                    color={"primary"}
+                    sx={{
+                        fontSize: "14px",
+                        marginTop: "10px",
+                        backgroundColor: "#ED6C02",
+                        color: "#fff",
+                        "&:hover":{
+                            backgroundColor: "#ED6C02",
+                            color: "#fff"
+                        }
+                        
+                    }}
+                    onClick={()=> window.open(VirtualTourURLUnbranded)}
+                >
+                    Virtual Tour 2
+                </Button>: ''}
             </Grid>
             <Dialog 
                 onClose={()=>setPopUp(false)} 
