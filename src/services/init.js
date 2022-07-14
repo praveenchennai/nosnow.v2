@@ -9,19 +9,43 @@ const getBaseUrl=(service)=>{
     return MODULE_SERVICE_URL;
 }
 
+const getContent = (name) =>{
+    var middleContent = Config.middleContent[name];
+    return {data: middleContent};
+}
+
+const getTestimonials = () =>{
+    var testimonials = Config.testimonials;
+    return {data: testimonials};
+}
+
+const getEnvironment = () =>{
+    var environment = Config.environment;
+    return {data: environment};
+}
+
 const rawBaseQuery = fetchBaseQuery({
     baseUrl: '/'
 });
 
 const dynamicBaseQuery = async (args, api, extraOptions) =>{
-    const adjustedUrl = getBaseUrl(args.service) + args.url;
-    const adjustedArgs =  typeof args === 'string' ? adjustedUrl: { ...args, url: adjustedUrl }
-    return rawBaseQuery(adjustedArgs, api, extraOptions);
+    switch(args.service){
+        case 'content-service':
+            return getContent(args.name);
+        case 'testimonials-service':
+            return getTestimonials();   
+        case 'environment-service':
+            return getEnvironment();          
+        default:
+            const adjustedUrl = getBaseUrl(args.service) + args.url;
+            const adjustedArgs =  typeof args === 'string' ? adjustedUrl: { ...args, url: adjustedUrl }
+            return rawBaseQuery(adjustedArgs, api, extraOptions);
+    }
 }
 
 // initialize an empty api service that we'll inject endpoints into later as needed
 export const initSplitApi = createApi({
     baseQuery: dynamicBaseQuery,
-    tagTypes: ['Mail'],
+    tagTypes: ['Mail', 'testimonials', 'content', 'environment'],
     endpoints: () => ({}),
 })
