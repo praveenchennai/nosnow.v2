@@ -15,6 +15,8 @@ const ResultRoutes = lazy(()=>import('components/results/routes'));
 const CommunityContent = lazy (()=>import('components/communities/details'));
 const CommunityGroupContent = lazy (()=>import('components/community-group/details'));
 const CommunityList = lazy (()=>import('components/communities/list'));
+const Testimonials = lazy(() => import('components/testimonials'));
+const Environment = lazy(() => import('components/environment'));
 
 const About = lazy(()=>import('components/content/about'));
 const ParlanteVideo = lazy(()=>import('components/content/parlante-video'));
@@ -58,6 +60,8 @@ const Routes = (props) => {
                         <Route path="/content/about" render = {()=><About />} exact/>
                         <Route path="/content/tcalc" render = {()=><Tcalc />} exact/>
                         <Route path="/content/parlante-video" render={()=> <ParlanteVideo />} exact/>
+                        <Route path="/content/testimonials" render = {()=><Testimonials />} exact/>
+                        <Route path="/content/environment" render = {()=><Environment />} exact/>
                     </Switch>
                 </Suspense>
                 <Footer {...props}/>

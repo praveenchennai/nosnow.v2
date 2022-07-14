@@ -75,6 +75,8 @@ const LeftMenu = (props) => {
             icon: 'add_circle',
             subMenu: [
                 {title: 'About the Parlante Group', secTitle: '', useNavi: true, onclick: '/content/about'},
+                {title: 'Testimonials', secTitle: '', useNavi: true, onclick: '/content/testimonials' },
+                {title: 'Vacant Land Environmental Assessment Notice', secTitle: '', useNavi: true, onclick: '/content/environment' },
                 {title: 'Rick Parlante in the News', secTitle: '', onclick: 'https://rick.nosnownaples.com' },
                 {title: 'Parlante Group Video', secTitle: '', useNavi: true, onclick: '/content/parlante-video' },
                 {title: 'Real Estate Special Report', secTitle: '', onclick: 'https://news.nosnownaples.com'},

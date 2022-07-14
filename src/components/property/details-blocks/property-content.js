@@ -44,7 +44,6 @@ const PropertyContent = (props) => {
         SpaFeatures,
         FoundationDetails,
         
-
         Sewer,
         Utilities,
         
