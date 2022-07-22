@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import PropertyDetails1 from './details-blocks/details1';
 import PropertyContent from './details-blocks/property-content';
 import {useGetPropertyQuery} from 'services/bridge-api'
+
 import ContactCard from '../contact/contact'
 import { GoogleMap, Marker, LoadScript   } from '@react-google-maps/api';
 import { useSelector, useDispatch } from 'react-redux';
@@ -16,6 +17,7 @@ const containerStyle = {
 const PropertyMain1 = () => {
     const {id} = useParams();
     const {xsSize, smSize, mdSize, lgSize, xlSize} = useSelector(state=>state.design)
+    
     const {property, lat, lng, status, isLoading, error} = useGetPropertyQuery(id, {
         skip: !id,
         selectFromResult: ({ data, status, isLoading, error, id, originalArgs }) => {
@@ -30,11 +32,6 @@ const PropertyMain1 = () => {
         }
     });
 
-    useEffect(()=>{
-        console.log(property)
-        //window.scrollTo({top: 0,left: 0})
-    }, [property])
-        
 return (
     <React.Fragment>
     {property?.ListingId?

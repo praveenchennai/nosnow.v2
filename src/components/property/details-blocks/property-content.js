@@ -2,10 +2,16 @@ import React from 'react';
 import { Grid, Typography, Divider} from '@mui/material';
 import Element from './element'
 import Title from './element-title'
+import {useGetRoomsQuery} from 'services/property'
 
 const PropertyContent = (props) => {
+
+
+    
     
     var {
+        ListingKey,
+
         PublicRemarks, MlsStatus,RoomsTotal,BathroomsTotalDecimal,
         MLSAreaMajor, ListPrice, 
         ListingId, UnparsedAddress, NABOR_Bedrooms,
@@ -98,6 +104,20 @@ const PropertyContent = (props) => {
         TaxAnnualAmount
 
     } = props;
+
+    const {rooms, roomStatus, roomLoading, roomError} = useGetRoomsQuery({id:ListingKey}, {
+        skip: !ListingKey,
+        selectFromResult: ({ data, status, isLoading, error, id, originalArgs }) => {
+            return {
+                rooms: data?.bundle || [],
+                roomStatus: status,
+                roomLoading: isLoading,
+                roomError: error
+            }
+        }
+    });
+
+    console.log(rooms)
 
     var mlsArray = [
         {name: 'City', value: City || ''},
@@ -319,6 +339,9 @@ const PropertyContent = (props) => {
                 {financialsArray.map((f, i)=><Element key={i} value={{label: f.name, value: f.value, para: f.para, half: f.half}}/>)}
             </Grid>
             <Title value={{label: 'ROOM DIMENSIONS'}}/>
+            <Grid container item md={12} justifyContent="space-evenly">
+                {rooms?.map((f, i)=><Element key={i} value={{label: f.RoomType, value: f.RoomDimensions, para: false, half: false}}/>)}
+            </Grid>
             <Title value={{label: 'EXTERIOR FEATURES'}}/>
             <Grid container item md={12} justifyContent="space-evenly">
                 {exteriorArray.map((f, i)=><Element key={i} value={{label: f.name, value: f.value, para: f.para, half: f.half}}/>)}
