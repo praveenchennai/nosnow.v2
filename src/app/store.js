@@ -12,12 +12,14 @@ import content from 'api/content'
 import resresults from 'api/results'
 import { mailAPI } from 'services/mail'
 import { contentAPI } from 'services/content'
+import { propertyApi } from 'services/property'
 
 const store = configureStore({
     reducer: {
         [bridgeAPI.reducerPath]: bridgeAPI.reducer,
         [mailAPI.reducerPath]: mailAPI.reducer,
         [contentAPI.reducerPath]: contentAPI.reducer,
+        [propertyApi.reducerPath]: propertyApi.reducer,
         auth: auth,
         res: res,
         communityGroup: communityGroup,
@@ -28,7 +30,11 @@ const store = configureStore({
         content: content,
         design: design
     },
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(bridgeAPI.middleware).concat(contentAPI.middleware).concat(mailAPI.middleware),
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware()
+    .concat(bridgeAPI.middleware)
+    .concat(contentAPI.middleware)
+    .concat(propertyApi.middleware)
+    .concat(mailAPI.middleware)
 })
 
 setupListeners(store.dispatch)

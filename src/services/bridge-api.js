@@ -17,9 +17,7 @@ const axiosBaseQuery = ({ baseUrl } = { baseUrl: '' }) =>
       var browserToken = `access_token=${Config.api.browserToken}`;
       switch(data){
         case 'property':
-
           var reqUrl = `${baseUrl}/${url}?${browserToken}`
-          console.log(reqUrl)
         break;
         case 'search': 
           var reqUrl = `${baseUrl}?${browserToken}${url}`

@@ -4,9 +4,15 @@ const stage = 'prod';
 
 const getBaseUrl=(service)=>{
     var module_url = Config.stage[stage];
-    var MODULE_SERVICE = module_url.find(m=>m.service===service);
-    var MODULE_SERVICE_URL = `https://${MODULE_SERVICE.apiId}.execute-api.${MODULE_SERVICE.region}.amazonaws.com/${stage}/`;
-    return MODULE_SERVICE_URL;
+    if(service==='bridgeApi-service'){
+        var baseURL = `${Config.api.apiUrl}${Config.dataSet[stage]}/`;
+        return baseURL
+    } else {
+        
+        var MODULE_SERVICE = module_url.find(m=>m.service===service);
+        var MODULE_SERVICE_URL = `https://${MODULE_SERVICE.apiId}.execute-api.${MODULE_SERVICE.region}.amazonaws.com/${stage}/`;
+        return MODULE_SERVICE_URL;
+    }
 }
 
 const getContent = (name) =>{
@@ -35,7 +41,12 @@ const dynamicBaseQuery = async (args, api, extraOptions) =>{
         case 'testimonials-service':
             return getTestimonials();   
         case 'environment-service':
-            return getEnvironment();          
+            return getEnvironment();   
+        case 'bridgeApi-service':
+            const url = `${getBaseUrl(args.service)}${args.resource}?access_token=${Config.api.browserToken}&${args.url}`;
+            console.log(url);
+            const modifiedArgs =  typeof args === 'string' ? url : { ...args, url: url }
+            return rawBaseQuery(modifiedArgs, api, extraOptions);    
         default:
             const adjustedUrl = getBaseUrl(args.service) + args.url;
             const adjustedArgs =  typeof args === 'string' ? adjustedUrl: { ...args, url: adjustedUrl }
@@ -46,6 +57,6 @@ const dynamicBaseQuery = async (args, api, extraOptions) =>{
 // initialize an empty api service that we'll inject endpoints into later as needed
 export const initSplitApi = createApi({
     baseQuery: dynamicBaseQuery,
-    tagTypes: ['Mail', 'testimonials', 'content', 'environment'],
+    tagTypes: ['Mail', 'testimonials', 'content', 'environment', 'Rooms'],
     endpoints: () => ({}),
 })
