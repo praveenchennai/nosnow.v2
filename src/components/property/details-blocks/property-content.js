@@ -340,7 +340,7 @@ const PropertyContent = (props) => {
             </Grid>
             <Title value={{label: 'ROOM DIMENSIONS'}}/>
             <Grid container item md={12} justifyContent="space-evenly">
-                {rooms?.map((f, i)=><Element key={i} value={{label: f.RoomType, value: `${f.RoomLength || ''} X ${f.RoomWidth}`, para: false, half: false}}/>)}
+                {rooms?.map((f, i)=><Element key={i} value={{label: f.RoomType, value: `${f.RoomLength || ''} X ${f.RoomWidth || ''}`, para: false, half: false}}/>)}
             </Grid>
             <Title value={{label: 'EXTERIOR FEATURES'}}/>
             <Grid container item md={12} justifyContent="space-evenly">
